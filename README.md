@@ -4,7 +4,7 @@
 ## Setup
 
 ```bash
-bash -c "$( curl -fsSL https://raw.github.com/${github-username}/dotfiles/master/setup.sh )"
+bash -c "$( curl -fsSL https://raw.github.com/varubogu/dotfiles/master/setup.sh )"
 ```
 
 
