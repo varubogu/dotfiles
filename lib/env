@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# aptが利用可能かどうかをチェックする関数
+is_apt_available() {
+  command -v apt > /dev/null 2>&1
+  return $?
+}
+
+# macOSかどうかをチェックする関数
+is_macos() {
+  return "$(uname)" != "Darwin" ]
+}
+
+# WSLかどうかをチェックする関数
+is_wsl() {
+  grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null
+  return $?
+}

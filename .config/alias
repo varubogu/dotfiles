@@ -1,0 +1,16 @@
+#!/bin/zsh
+
+source ~/dotfiles/lib/env
+
+# WSL環境の場合
+# if is_wsl; then
+#   # ホストのSSHを使用する
+#     alias ssh='ssh.exe'
+#     alias ssh-add='ssh-add.exe'
+# fi
+
+# パッケージのアップデートコマンド
+alias pup='~/dotfiles/bin/mng/pkgup'
+
+# dotfiles構成出力
+alias dout='~/dotfiles/bin/struct/dout'

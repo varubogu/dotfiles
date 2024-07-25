@@ -1,0 +1,41 @@
+dotfiles
+|-- .config
+|   |-- .bash
+|   |   |-- .bash_profile
+|   |   `-- .bashrc
+|   |-- .zsh
+|   |   |-- .zprofile
+|   |   |-- .zshenv
+|   |   |-- .zshrc
+|   |   `-- .zshrc.lazy
+|   `-- alias
+|-- .github
+|   `-- workflows
+|       `-- test.yml
+|-- .gitignore
+|-- .gitignore_global
+|-- .gitignore_shared
+|-- LICENSE
+|-- README.md
+|-- bin
+|   |-- init
+|   |   |-- init_ubuntu_after.sh
+|   |   |-- install.sh
+|   |   |-- install_apt.sh
+|   |   |-- install_mac.sh
+|   |   `-- symlink.sh
+|   |-- mng
+|   |   `-- pkgup
+|   `-- struct
+|       `-- dout
+|-- etc
+|   `-- pkg
+|       `-- Brewfile
+|-- lib
+|   `-- env
+|-- setup.sh
+`-- var
+    |-- find.txt
+    `-- tree.txt
+
+14 directories, 25 files
