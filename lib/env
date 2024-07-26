@@ -1,18 +1,75 @@
 #!/bin/bash
 
-# aptが利用可能かどうかをチェックする関数
+is_brew_available() {
+  command -v brew > /dev/null 2>&1
+  return $?
+}
+
 is_apt_available() {
   command -v apt > /dev/null 2>&1
   return $?
 }
 
-# macOSかどうかをチェックする関数
-is_macos() {
-  return "$(uname)" != "Darwin" ]
+is_yum_available() {
+  command -v yum > /dev/null 2>&1
+  return $?
 }
 
-# WSLかどうかをチェックする関数
+is_pacman_available() {
+  command -v pacman > /dev/null 2>&1
+  return $?
+}
+
+is_linux() {
+  [ "$(uname)" = "Linux" ]
+}
+
+is_macos() {
+  [ "$(uname)" = "Darwin" ]
+}
+
 is_wsl() {
   grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null
-  return $?
+}
+
+is_windows() {
+  case "$(uname -r)" in
+    *Microsoft*)
+      return 0
+      ;;
+    *CYGWIN*|*MINGW*|*MSYS*)
+      return 0
+      ;;
+    *)
+      return 1
+      ;;
+  esac
+}
+
+wsl_ssh_forwarding() {
+    export SSH_AUTH_SOCK=$HOME/.ssh/agent.sock
+    # need `ps -ww` to get non-truncated command for matching
+    # use square brackets to generate a regex match for the process we want but that doesn't match the grep command running it!
+    ALREADY_RUNNING=$(ps -auxww | grep -q "[n]piperelay.exe -ei -s //./pipe/openssh-ssh-agent"; echo $?)
+    if [[ $ALREADY_RUNNING != "0" ]]; then
+        if [[ -S $SSH_AUTH_SOCK ]]; then
+            # not expecting the socket to exist as the forwarding command isn't running (http://www.tldp.org/LDP/abs/html/fto.html)
+            echo "removing previous socket..."
+            rm $SSH_AUTH_SOCK
+        fi
+        echo "Starting SSH-Agent relay..."
+        # setsid to force new session to keep running
+        # set socat to listen on $SSH_AUTH_SOCK and forward to npiperelay which then forwards to openssh-ssh-agent on windows
+        (setsid socat UNIX-LISTEN:$SSH_AUTH_SOCK,fork EXEC:"npiperelay.exe -ei -s //./pipe/openssh-ssh-agent",nofork &) >/dev/null 2>&1
+    fi
+}
+
+
+echo_env() {
+  echo "TERM: $TERM Shell: $SHELL"
+  echo "OS: $(uname)"
+  echo "LANG: $LANG"
+  echo "Home: $HOME PWD: $PWD"
+  echo "User: $USER"
+  echo "Editor: $EDITOR"
 }

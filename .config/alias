@@ -2,15 +2,20 @@
 
 source ~/dotfiles/lib/env
 
-# WSL環境の場合
 # if is_wsl; then
-#   # ホストのSSHを使用する
+#   # SSH by Host(Windows)
 #     alias ssh='ssh.exe'
 #     alias ssh-add='ssh-add.exe'
 # fi
 
 # パッケージのアップデートコマンド
-alias pup='~/dotfiles/bin/mng/pkgup'
+alias pupd='~/dotfiles/bin/mng/pkg_update'
 
-# dotfiles構成出力
-alias dout='~/dotfiles/bin/struct/dout'
+# パッケージのインストールコマンド
+alias pinstall='~/dotfiles/bin/mng/pkg_install'
+
+# Create package list
+alias pdump='~/dotfiles/bin/mng/pkg_dump'
+
+# Print dotfiles structure
+alias pstr='~/dotfiles/bin/struct/print_struct'

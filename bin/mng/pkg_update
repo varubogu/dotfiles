@@ -1,52 +1,52 @@
 #!/bin/bash
 
-# apt が使える場合
-if type apt > /dev/null 2>&1; then
-  sudo apt update && sudo apt upgrade -y
-fi
-
-# yum が使える場合
-if type yum > /dev/null 2>&1; then
-  sudo yum update -y
-fi
-
-# brew が使える場合
+# use brew
 if type brew > /dev/null 2>&1; then
   brew update && brew upgrade
 fi
 
-# npm が使える場合
+# use apt-get
+if type apt-get > /dev/null 2>&1; then
+  sudo apt-get update && sudo apt-get upgrade -y
+fi
+
+# use yum
+if type yum > /dev/null 2>&1; then
+  sudo yum update -y
+fi
+
+# use npm
 if type npm > /dev/null 2>&1; then
   npm update -g
 fi
 
-# yarn が使える場合
+# use yarn
 if type yarn > /dev/null 2>&1; then
   yarn global upgrade
 fi
 
-# pnpm が使える場合
+# use pnpm
 if type pnpm > /dev/null 2>&1; then
   pnpm update -g
 fi
 
-# bunが使える場合
+# use bun
 if type bun > /dev/null 2>&1; then
   bun update
 fi
 
-# composer が使える場合
+# use composer
 if type composer > /dev/null 2>&1; then
   composer self-update
   composer global update
 fi
 
-# gem が使える場合
+# use gem
 if type gem > /dev/null 2>&1; then
   gem update
 fi
 
-# pip が使える場合
+# use pip
 if type pip > /dev/null 2>&1; then
   pip install --upgrade pip
   pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1 | xargs -n1 pip install -U

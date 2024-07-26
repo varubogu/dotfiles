@@ -203,3 +203,5 @@ __pycache__/
 # Amazon Web Services
 .aws
 
+# self exclude
+dotfiles

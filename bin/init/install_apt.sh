@@ -1,11 +1,9 @@
 #!/bin/bash
 
-cd ~/
-
+cd "$HOME/" || exit
 
 echo "apt update..."
-sudo apt update
-sudo apt upgrade -y
+sudo apt update && sudo apt upgrade -y
 
 echo "locale to japan ..."
 sudo apt -y install language-pack-ja
@@ -14,21 +12,23 @@ sudo update-locale LANG=ja_JP.UTF8
 echo "installing tools..."
 sudo apt install git zsh curl wget ca-certificates gnupg lsb-release -y
 
-echo "change shell to zsh..."
-chsh -s $(which zsh)
-
 echo "installing HomeBrew..."
-$ sudo apt-get install build-essential procps file -y
+sudo apt-get install build-essential procps file -y
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 echo "installing 1password..."
-curl -sS https://downloads.1password.com/linux/keys/1password.asc | sudo gpg --dearmor --output /usr/share/keyrings/1password-archive-keyring.gpg
-echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/amd64 stable main' | sudo tee /etc/apt/sources.list.d/1password.list
-sudo mkdir -p /etc/debsig/policies/AC2D62742012EA22/
-curl -sS https://downloads.1password.com/linux/debian/debsig/1password.pol | sudo tee /etc/debsig/policies/AC2D62742012EA22/1password.pol
-sudo mkdir -p /usr/share/debsig/keyrings/AC2D62742012EA22
-curl -sS https://downloads.1password.com/linux/keys/1password.asc | sudo gpg --dearmor --output /usr/share/debsig/keyrings/AC2D62742012EA22/debsig.gpg
-sudo apt update && sudo apt install 1password -y
+sudo -s \
+curl -sS https://downloads.1password.com/linux/keys/1password.asc | \
+gpg --dearmor --output /usr/share/keyrings/1password-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/$(dpkg --print-architecture) stable main" |
+tee /etc/apt/sources.list.d/1password.list
+mkdir -p /etc/debsig/policies/AC2D62742012EA22/
+curl -sS https://downloads.1password.com/linux/debian/debsig/1password.pol | \
+tee /etc/debsig/policies/AC2D62742012EA22/1password.pol
+mkdir -p /usr/share/debsig/keyrings/AC2D62742012EA22
+curl -sS https://downloads.1password.com/linux/keys/1password.asc | \
+gpg --dearmor --output /usr/share/debsig/keyrings/AC2D62742012EA22/debsig.gpg
+apt update && apt install 1password 1password-cli -y
 
 echo "installing docker ..."
 sudo mkdir -p /etc/apt/keyrings
@@ -42,8 +42,5 @@ sudo apt install docker-compose-plugin -y
 echo "installing oh-my-zsh ..."
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-
-
-
-
-
+echo "change shell to zsh..."
+chsh -s "$(which zsh)"
