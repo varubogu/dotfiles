@@ -3,7 +3,7 @@
 # 現在のディレクトリをスタックにプッシュし、新しいディレクトリに移動
 pushd ~/dotfiles > /dev/null
 
-OUTDIR=~/dotfiles/var
+OUTDIR=~/.local/share/struct
 
 # 全ファイルを~/dotfilesからの相対パスとして列挙
 OUTFILE=$OUTDIR/find.txt

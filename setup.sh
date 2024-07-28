@@ -11,8 +11,6 @@ is_command_exists() {
     fi
 }
 
-
-
 setup_git() {
     echo "Checking git..."
     if is_command_exists git; then
@@ -57,6 +55,8 @@ setup_yadm() {
     fi
 }
 
+# XDG Base Directory Specification
+bash -c "$( curl -fsSL https://raw.github.com/varubogu/dotfiles/master/.local/bin/init/xdg_base_dir.sh )"
 
 main() {
     setup_git
@@ -65,9 +65,11 @@ main() {
     # 各シェルに実行権限付与
     find ~/dotfiles -name "*.sh" -exec chmod +x {} \;
 
+    # XDG Base Directory Specification
+    bash -c "$( curl -fsSL https://raw.github.com/varubogu/dotfiles/master/.local/bin/init/xdg_base_dir.sh )"
+
     echo "Installed dotfiles successfully!"
     echo "Please run the following command"
-    echo "`$SHELL` ~/dotfiles/setup_after.sh"
 }
 
 main

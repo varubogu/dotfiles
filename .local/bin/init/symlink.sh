@@ -100,7 +100,7 @@ safe_copy() {
 
 # パッケージのシンボリックリンクを作成
 DOTPACKAGE=$HOME/dotfiles/etc/pkg
-safe_symlink $DOTPACKAGE/.Brewfile ~/.Brewfile
+safe_symlink $DOTPACKAGE/Brewfile ~/Brewfile
 
 # 設定ファイルのシンボリックリンクを作成
 DOTCONFIG=$HOME/dotfiles/.config

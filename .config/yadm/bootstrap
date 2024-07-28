@@ -1,2 +1,2 @@
 #!/bin/bash
-~/dotfiles/bin/init/install.sh
+~/.local/bin/init/install.sh
