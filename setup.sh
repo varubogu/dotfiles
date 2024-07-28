@@ -1,7 +1,5 @@
 #!/bin/bash
 
-source "$HOME/dotfiles/lib/env"
-
 if command -v git &> /dev/null; then
     echo "git already installed"
 else
@@ -29,4 +27,3 @@ echo "Starting installation..."
 
 # 各シェルに実行権限付与
 find ~/dotfiles -name "*.sh" -exec chmod +x {} \;
-~/dotfiles/bin/init/install.sh
