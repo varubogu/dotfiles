@@ -9,7 +9,6 @@
 	#program = /mnt/c/Users/$USER/AppData/Local/1Password/app/8/op-ssh-sign-wsl
 	# Use 1Password-ssh-sign　on MacOS
 	#program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
-	# Using Orbstack's 1Password-ssh-sign　on Mac
-	#program = /mnt/mac/Applications/1Password.app/Contents/MacOS/op-ssh-sign
+	# Use OrbStack: Not required.
 	# Brew
 	#program = /mnt/c/Users/$USER/AppData/Local/1Password/8/op-ssh-sign

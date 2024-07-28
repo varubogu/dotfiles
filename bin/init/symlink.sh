@@ -122,4 +122,6 @@ safe_symlink $DOTCONFIG/bash/.bash_profile $HOME/.bash_profile
 safe_symlink $DOTCONFIG/zsh/.zshrc $HOME/.zshrc
 safe_symlink $DOTCONFIG/zsh/.zprofile $HOME/.zprofile
 safe_symlink $DOTCONFIG/zsh/.zshrc.lazy $HOME/.zshrc.lazy
+
+
 safe_copy $DOTCONFIG/git/config_local $HOME/.gitconfig
