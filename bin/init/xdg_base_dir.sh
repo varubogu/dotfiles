@@ -4,6 +4,11 @@ safe_env() {
 
     if [ -z "${!var_name}" ]; then
         export $var_name="$value"
+
+        # Create directory if not exist
+        if [ ! -d "${!var_name}" ]; then
+            mkdir -p "${!var_name}"
+        fi
     else
         echo "warn: \`$var_name\` is exist"
     fi
