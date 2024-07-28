@@ -204,8 +204,11 @@ __pycache__/
 .aws
 
 # GnuPG Key
-~/.gnupg
-~/.config/gnupg/pubring.kbx
+.gnupg
+.config/gnupg/pubring.kbx
+
+.ssh/*
+.config/ssh/*
 
 # self exclude
 dotfiles
