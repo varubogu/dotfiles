@@ -25,16 +25,7 @@ else
     git -C ~/dotfiles pull
 fi
 
-echo "Do you want to start the installation? (y/N)"
-read answer
-
-if [[ ! $answer =~ ^[Yy]$ ]]; then
-    echo "Installation aborted."
-    exit 0
-fi
-
 echo "Starting installation..."
-
 
 # 各シェルに実行権限付与
 find ~/dotfiles -name "*.sh" -exec chmod +x {} \;
