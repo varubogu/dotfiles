@@ -29,14 +29,23 @@ export ZSH_THEME_DIR=$ZSH_DATA_HOME/themes
 export ZSH_CACHE_DIR=$XDG_CACHE_HOME/zsh
 
 
-current_shell=$(ps -p $$ -o args=)
-if [[ $current_shell == "*zsh" ]]; then
-    export HISTFILE=$ZSH_HISTFILE
-    export HISTSIZE=$ZSH_HISTSIZE
-    export SAVEHIST=$ZSH_SAVEHIST
-elif [[ $current_shell == "*bash" ]]; then
-    export HISTFILE=$BASH_HISTFILE
-    export HISTSIZE=$BASH_HISTSIZE
-    export SAVEHIST=$BASH_SAVEHIST
-fi
-
+current_shell=$SHELL
+case "$current_shell" in
+    *zsh)
+        echo "active zsh"
+        export HISTFILE="$ZSH_HISTFILE"
+        export HISTSIZE="$ZSH_HISTSIZE"
+        export SAVEHIST="$ZSH_SAVEHIST"
+        ;;
+    *bash)
+        echo "active bash"
+        export HISTFILE="$BASH_HISTFILE"
+        export HISTSIZE="$BASH_HISTSIZE"
+        # not found in bash
+        # export SAVEHIST="$BASH_SAVEHIST"
+        ;;
+    *)
+        echo "Unknown shell: $current_shell"
+        exit 1
+        ;;
+esac
