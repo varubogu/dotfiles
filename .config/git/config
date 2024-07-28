@@ -3,7 +3,7 @@
 	email = toyosuke@varubogu.com
 
 [core]
-	excludesfile = ~/.config/git/.gitignore_global
+	excludesfile = ~/.config/git/ignore_global
 [commit]
 	gpgsign = true
 [init]

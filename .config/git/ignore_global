@@ -203,5 +203,9 @@ __pycache__/
 # Amazon Web Services
 .aws
 
+# GnuPG Key
+~/.gnupg
+~/.config/gnupg/pubring.kbx
+
 # self exclude
 dotfiles
