@@ -55,18 +55,16 @@ setup_yadm() {
     fi
 }
 
-# XDG Base Directory Specification
-bash -c "$( curl -fsSL https://raw.github.com/varubogu/dotfiles/master/.local/bin/init/xdg_base_dir.sh )"
 
 main() {
+    # XDG Base Directory Specification
+    bash -c "$( curl -fsSL https://raw.github.com/varubogu/dotfiles/master/.local/bin/init/xdg_base_dir.sh )"
+
     setup_git
     setup_yadm
 
     # 各シェルに実行権限付与
     find ~/dotfiles -name "*.sh" -exec chmod +x {} \;
-
-    # XDG Base Directory Specification
-    bash -c "$( curl -fsSL https://raw.github.com/varubogu/dotfiles/master/.local/bin/init/xdg_base_dir.sh )"
 
     echo "Installed dotfiles successfully!"
     echo "Please run the following command"
