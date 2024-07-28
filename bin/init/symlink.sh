@@ -83,19 +83,8 @@ safe_copy() {
     local can_copy=false
 
     if [ -e "$src" ]; then
-        # ファイルが存在する場合は日時付きバックアップを取ってからコピーを作成
-        local backup_date=$(date '+%Y%m%d%H%M%S')
-        local backup_file="${src}.bk.${backup_date}"
-        echo "backup ${src} to ${backup_file}"
-        # 移動先ファイルの存在チェック
-        if [ -e "${backup_file}" ]; then
-            echo "Error: already exitst `${backup_file}`"
-            echo "To be safe, the function is terminated."
-            return 1
-        fi
-        mv "$src" "${backup_file}"
-        can_copy=true
-
+        # ファイルが存在する場合はコピーしない
+        echo "$src is already exist."
     else
         # ファイルが存在しない場合はそのままコピーを作成
         can_copy=true
