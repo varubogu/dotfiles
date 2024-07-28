@@ -1,6 +1,8 @@
 #!/bin/bash
 
-DOTFILES_REPO_URL="https://github.com/varubogu/dotfiles.git"
+DOTFILES_REPO_OWNER="varubogu"
+DOTFILES_REPO_NAME="dotfiles"
+DOTFILES_REPO_URL="https://github.com/$DOTFILES_REPO_OWNER/$DOTFILES_REPO_NAME.git"
 DOTFILES_BRANCH="main"
 
 is_command_exists() {
@@ -58,7 +60,7 @@ setup_yadm() {
 
 main() {
     # XDG Base Directory Specification
-    bash -c "$( curl -fsSL https://raw.github.com/varubogu/dotfiles/master/.local/bin/init/xdg_base_dir.sh )"
+    bash -c "$( curl -fsSL https://raw.github.com/$DOTFILES_REPO_OWNER/$DOTFILES_REPO_NAME/master/.local/bin/xdg_base_dir/xdg_base_dir.sh )"
 
     setup_git
     setup_yadm
