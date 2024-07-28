@@ -1,14 +1,20 @@
+#!/bin/bash
+
 safe_env() {
     local var_name=$1
-    local value=$2
+    local var_value=$2
 
-    if [ -z "${!var_name}" ]; then
-        export $var_name="$value"
+    # Check if variable is exist
+    if [ ! -z "${var_name}" ]; then
+        export $var_name="$var_value"
 
-        # Create directory if not exist
-        if [ ! -d "${!var_name}" ]; then
-            mkdir -p "${!var_name}"
-        fi
+        # Split the value by colon and create each directory
+        echo "$var_value" | tr ':' '\n' | while read -r dir; do
+            if [ ! -d "$dir" ]; then
+                mkdir -p "$dir"
+                echo "Created directory: $dir"
+            fi
+        done
     else
         echo "warn: \`$var_name\` is exist"
     fi
