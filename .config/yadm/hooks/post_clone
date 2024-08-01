@@ -10,6 +10,7 @@ if [[ ! -f "${YADM_HOOK_REPO}/info/sparse-checkout" ]]; then
 !.editorconfig
 !LICENSE
 !README.md
+!setup_win.ps1
 !setup.sh
 EOF
   yadm checkout --quiet
