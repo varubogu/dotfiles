@@ -1,36 +1,17 @@
 #!/bin/bash
 
-is_brew_available() {
-  command -v brew > /dev/null 2>&1
-  return $?
-}
+is_command_available() { command -v "$1" &> /dev/null; }
 
-is_apt_available() {
-  command -v apt > /dev/null 2>&1
-  return $?
-}
+is_brew_available() { is_command_available brew; }
+is_apt_available() { is_command_available apt; }
+is_yum_available() { is_command_available yum; }
+is_pacman_available() { is_command_available pacman; }
 
-is_yum_available() {
-  command -v yum > /dev/null 2>&1
-  return $?
-}
+is_linux() { [ "$(uname)" = "Linux" ]; }
 
-is_pacman_available() {
-  command -v pacman > /dev/null 2>&1
-  return $?
-}
+is_macos() { [ "$(uname)" = "Darwin" ];}
 
-is_linux() {
-  [ "$(uname)" = "Linux" ]
-}
-
-is_macos() {
-  [ "$(uname)" = "Darwin" ]
-}
-
-is_wsl() {
-  grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null
-}
+is_wsl() { grep -qEi "(Microsoft|WSL)" /proc/version; }
 
 is_windows() {
   case "$(uname -r)" in
