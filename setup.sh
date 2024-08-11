@@ -96,9 +96,6 @@ clone_dotfiles() {
 main() {
     cd ~/ || exit
 
-    # XDG Base Directory Specification
-    curl -sSL $DOTFILES_REPO_RAW_URL/master/.local/bin/xdg_base_dir/xdg_base_dir.sh
-
     setup_brew
     setup_git
     setup_yadm
@@ -106,6 +103,9 @@ main() {
 
     # 各シェルに実行権限付与
     find ~/dotfiles -name "*.sh" -exec chmod +x {} \;
+
+    # XDG Base Directory Specification
+    . ~$DOTFILES_REPO_NAME/.local/bin/xdg_base_dir/xdg_base_dir.sh
 
     echo "Installed dotfiles successfully!"
     . ~/$DOTFILES_REPO_NAME/.local/bin/init/install.sh
