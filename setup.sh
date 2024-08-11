@@ -1,16 +1,20 @@
 #!/bin/bash
 
+set -eu
+
 DOTFILES_REPO_OWNER="varubogu"
 DOTFILES_REPO_NAME="dotfiles"
 DOTFILES_REPO_URL="https://github.com/$DOTFILES_REPO_OWNER/$DOTFILES_REPO_NAME.git"
 DOTFILES_REPO_RAW_URL="https://raw.github.com/$DOTFILES_REPO_OWNER/$DOTFILES_REPO_NAME"
 DOTFILES_BRANCH="main"
 
-
+is_command_available() { command -v "$1" &> /dev/null; }
+is_linux() { [ "$(uname)" = "Linux" ]; }
+is_mac() { [ "$(uname)" = "Darwin" ];}
 
 setup_brew() {
     echo "Checking brew..."
-    if is_command_exists brew; then
+    if is_command_available brew; then
         echo "brew already installed"
     else
         echo "brew is not installed. Installing brew..."
@@ -36,15 +40,14 @@ setup_brew() {
 
 setup_git() {
     echo "Checking git..."
-    if is_command_exists git; then
+    if is_command_available git; then
         echo "git already installed"
     else
         echo "git is not installed. Installing git..."
-        if is_brew_installed; then
+        if is_command_available brew; then
             brew install git
-        elif is_apt_installed; then
-            sudo apt-get update
-            sudo apt-get install -y git
+        elif is_command_available apt-get; then
+            sudo apt-get update && sudo apt-get install -y git
         else
             echo "Unable to install git. Please install it manually."
             exit 1
@@ -54,13 +57,13 @@ setup_git() {
 
 setup_yadm() {
     echo "Checking yadm..."
-    if command -v yadm &> /dev/null; then
+    if is_command_available yadm; then
         echo "yadm already installed"
     else
         echo "yadm is not installed. Installing yadm..."
-        if is_command_exists brew; then
+        if is_command_available brew; then
             brew install yadm
-        elif is_command_exists apt-get; then
+        elif is_command_available apt-get; then
             sudo apt-get update && sudo apt-get install -y yadm
         else
             echo "Unable to install yadm. Please install it manually."
@@ -78,27 +81,34 @@ setup_yadm() {
     fi
 }
 
+clone_dotfiles() {
+    if [ -d $DOTFILES_REPO_NAME ]; then
+        echo "dotfiles already cloned"
+        cd $DOTFILES_REPO_NAME || exit
+        git pull origin $DOTFILES_BRANCH
+        cd ../
+    else
+        echo "Cloning dotfiles..."
+        git clone $DOTFILES_REPO_URL $DOTFILES_REPO_NAME
+    fi
+}
 
 main() {
     cd ~/ || exit
 
     # XDG Base Directory Specification
-    sudo curl -sSL $DOTFILES_REPO_RAW_URL/master/.local/bin/xdg_base_dir/xdg_base_dir.sh
+    curl -sSL $DOTFILES_REPO_RAW_URL/master/.local/bin/xdg_base_dir/xdg_base_dir.sh
 
     setup_brew
     setup_git
     setup_yadm
-
-    git clone $DOTFILES_REPO_URL $DOTFILES_REPO_NAME
+    clone_dotfiles
 
     # 各シェルに実行権限付与
     find ~/dotfiles -name "*.sh" -exec chmod +x {} \;
 
-    . ~/dotfiles/.local/share/functions.sh
-
     echo "Installed dotfiles successfully!"
-    echo "Next step: Run ~/dotfiles/.local/bin/init/install.sh"
-    . ~/dotfiles/.local/bin/init/install.sh
+    . ~/$DOTFILES_REPO_NAME/.local/bin/init/install.sh
 }
 
 main

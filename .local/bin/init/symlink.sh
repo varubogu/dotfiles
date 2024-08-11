@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-source $HOME/dotfiles/lib/env
+. $HOME/dotfiles/.local/bin/lib/env_os.sh
 
 # シンボリックリンクを作成する関数
 #
@@ -99,8 +99,12 @@ safe_copy() {
 
 
 # パッケージのシンボリックリンクを作成
-DOTPACKAGE=$HOME/dotfiles/etc/pkg
-safe_symlink $DOTPACKAGE/Brewfile ~/Brewfile
+DOTPACKAGE=$HOME/dotfiles.config
+if is_mac; then
+    safe_symlink $DOTPACKAGE/brew/mac.Brewfile ~/Brewfile
+elif is_linux; then
+    safe_symlink $DOTPACKAGE/brew/linux.Brewfile ~/Brewfile
+fi
 
 # 設定ファイルのシンボリックリンクを作成
 DOTCONFIG=$HOME/dotfiles/.config
@@ -113,5 +117,8 @@ safe_symlink $DOTCONFIG/zsh/.zprofile $HOME/.zprofile
 safe_symlink $DOTCONFIG/zsh/.zshrc.lazy $HOME/.zshrc.lazy
 safe_symlink $DOTCONFIG/editorconfig/.editorconfig $HOME/.editorconfig
 
+if is_mac; then
+    safe_symlink $Home/Movies $HOME/Videos
+fi
 
 safe_copy $DOTCONFIG/git/config_local $HOME/.gitconfig
