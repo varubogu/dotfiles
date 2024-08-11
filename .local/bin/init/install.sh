@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. $HOME/dotfiles/.local.bin/lib/command.sh
+. $HOME/dotfiles/.local/bin/lib/command.sh
 
 echo "install os specific packages"
 
