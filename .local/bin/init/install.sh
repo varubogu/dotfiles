@@ -5,17 +5,19 @@
 
 echo "install os specific packages"
 
+INSTALL_SCRIPTS_DIR="$HOME/dotfiles/.local/bin/init"
+
 if is_mac; then
     echo "apt is available on this system"
-    ./install_mac.sh
+    . $INSTALL_SCRIPTS_DIR/install_mac.sh
 fi
 
 if is_command_available apt; then
     echo "apt is available on this system"
-    ./install_apt.sh
+    . $INSTALL_SCRIPTS_DIR/install_apt.sh
 fi
 
 
 
 # シンボリックリンクを貼る
-"$HOME/dotfiles/bin/init/symlink.sh"
+. $INSTALL_SCRIPTS_DIR/symlink.sh
