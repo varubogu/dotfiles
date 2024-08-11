@@ -17,19 +17,16 @@ setup_brew() {
     if is_command_available brew; then
         echo "brew already installed"
     else
-        echo "brew is not installed. Installing brew..."
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-        echo "brew installed successfully"
+        echo "brew is not installed."
         if is_mac; then
-            echo "mac brew setting"
+            echo "mac brew installation..."
+            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+            echo "brew installed successfully"
             echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
             eval "$(/opt/homebrew/bin/brew shellenv)"
             echo "mac brew setting done"
         elif is_linux; then
-            echo "linux brew setting"
-            echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.bash_profile
-            eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-            echo "linux brew setting done"
+            echo "linux brew skip"
         else
             echo "brew installation failed. Please install it manually."
             exit 1
