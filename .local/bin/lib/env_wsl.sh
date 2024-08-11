@@ -1,3 +1,5 @@
+#!/bin/bash
+
 wsl_ssh_forwarding() {
     export SSH_AUTH_SOCK=$HOME/.ssh/agent.sock
     # need `ps -ww` to get non-truncated command for matching

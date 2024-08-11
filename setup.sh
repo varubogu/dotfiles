@@ -102,7 +102,7 @@ main() {
     find ~/dotfiles -name "*.sh" -exec chmod +x {} \;
 
     # XDG Base Directory Specification
-    . ~$DOTFILES_REPO_NAME/.local/bin/xdg_base_dir/xdg_base_dir.sh
+    . ~/$DOTFILES_REPO_NAME/.local/bin/xdg_base_dir/xdg_base_dir.sh
 
     echo "Installed dotfiles successfully!"
     . ~/$DOTFILES_REPO_NAME/.local/bin/init/install.sh
