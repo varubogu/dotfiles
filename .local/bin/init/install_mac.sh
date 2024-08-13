@@ -1,10 +1,16 @@
 #!/bin/zsh
 
-echo "installing Xcode..."
-xcode-select --install
+# xcode-selectがインストール済みかどうかをチェック
+if xcode-select -p &>/dev/null; then
+    echo "xcode-select is already installed."
+else
+    echo "xcode-select is not installed. Starting installation..."
+    xcode-select --install
+fi
 
-echo "installing Rosetta..."
-sudo softwareupdate --install-rosetta --agree-to-licensesudo softwareupdate --install-rosetta --agree-to-license
-
-echo "installing HomeBrew..."
-sudo /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+if /usr/bin/pgrep oahd >/dev/null 2>&1; then
+    echo "Rosetta 2 is already installed."
+else
+    echo "Rosetta 2 is not installed. Starting installation..."
+    /usr/sbin/softwareupdate --install-rosetta --agree-to-license
+fi
