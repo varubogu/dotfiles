@@ -1,4 +1,0 @@
-source ~/.local/share/bin/utils.sh
-if is_command_exist brew; then
-    brew bundle dump --global --force
-fi

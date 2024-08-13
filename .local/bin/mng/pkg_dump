@@ -3,5 +3,5 @@
 . ~/dotfiles/.local/bin/lib/command.sh
 
 if is_command_available brew; then
-    brew bundle
+    brew bundle dump --global --force
 fi
