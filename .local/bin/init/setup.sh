@@ -7,10 +7,11 @@ DOTFILES_REPO_NAME="dotfiles"
 DOTFILES_REPO_URL="https://github.com/$DOTFILES_REPO_OWNER/$DOTFILES_REPO_NAME.git"
 DOTFILES_REPO_RAW_URL="https://raw.github.com/$DOTFILES_REPO_OWNER/$DOTFILES_REPO_NAME"
 DOTFILES_BRANCH="main"
+DOTFILES_BIN_DIR="/.local/bin"
+BIN_DIR=~/$DOTFILES_REPO_NAME$DOTFILES_BIN_DIR
 
-is_command_available() { command -v "$1" &> /dev/null; }
-is_linux() { [ "$(uname)" = "Linux" ]; }
-is_mac() { [ "$(uname)" = "Darwin" ];}
+. $BIN_DIR/lib/command.sh
+. $BIN_DIR/lib/env_os.sh
 
 setup_brew() {
     echo "Checking brew..."
@@ -102,11 +103,23 @@ main() {
     find ~/dotfiles -name "*.sh" -exec chmod +x {} \;
 
     # XDG Base Directory Specification
-    . ~/$DOTFILES_REPO_NAME/.local/bin/xdg_base_dir/xdg_base_dir.sh
-    . ~/$DOTFILES_REPO_NAME/.local/bin/xdg_base_dir/xdg_base_app.sh
+    . $BIN_DIR/xdg_base_dir/xdg_base_dir.sh
+    . $BIN_DIR/xdg_base_dir/xdg_base_app.sh
 
     echo "Installed dotfiles successfully!"
-    . ~/$DOTFILES_REPO_NAME/.local/bin/init/install.sh
+
+    if is_mac; then
+        echo "mac install"
+        . $INSTALL_SCRIPTS_DIR/install_mac.sh
+    fi
+
+    if is_command_available apt; then
+        echo "apt install"
+        . $INSTALL_SCRIPTS_DIR/install_apt.sh
+    fi
+
+    # シンボリックリンクを貼る
+    . $INSTALL_SCRIPTS_DIR/symlink.sh
 }
 
 main
