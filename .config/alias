@@ -1,21 +1,23 @@
 #!/bin/zsh
 
-source ~/dotfiles/lib/env
+$BIN_DIR=~/dotfiles/.local/bin
+
+. $BIN_DIR/lib/env_os.sh
 
 # if is_wsl; then
-#   # SSH by Host(Windows)
+#     # SSH by Host(Windows)
 #     alias ssh='ssh.exe'
 #     alias ssh-add='ssh-add.exe'
 # fi
 
 # パッケージのアップデートコマンド
-alias pupd='~/dotfiles/bin/mng/pkg_update'
+alias pup=$BIN_DIR/mng/pkg_update
 
 # パッケージのインストールコマンド
-alias pinstall='~/dotfiles/bin/mng/pkg_install'
+alias pins=$BIN_DIR/mng/pkg_install
 
 # Create package list
-alias pdump='~/dotfiles/bin/mng/pkg_dump'
+alias pdump=$BIN_DIR/mng/pkg_dump
 
 # Print dotfiles structure
-alias pstr='~/dotfiles/bin/struct/print_struct'
+alias pstr=$BIN_DIR/struct/print_struct

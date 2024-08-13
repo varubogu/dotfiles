@@ -121,6 +121,12 @@ main() {
 
     # シンボリックリンクを貼る
     . $INIT_DIR/symlink.sh
+
+    if is_command_available zsh; then
+        . ~/dotfiles/.config/zsh/.zshrc
+    else
+        . ~/dotfiles/.config/bash/.bashrc
+    fi
 }
 
 main
