@@ -115,9 +115,9 @@ main() {
         echo "Installed mac dotfiles successfully!"
     fi
 
-    if is_command_available apt; then
-        echo "apt install"
-        . $INIT_DIR/install_apt.sh
+    if is_command_available apt-get; then
+        echo "apt-get install"
+        . $INIT_DIR/install_apt-get.sh
         echo "Installed apt dotfiles successfully!"
     fi
 
