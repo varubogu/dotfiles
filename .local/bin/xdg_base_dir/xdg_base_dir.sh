@@ -39,4 +39,10 @@ safe_env "XDG_MUSIC_DIR" "$HOME/Music"
 safe_env "XDG_PICTURES_DIR" "$HOME/Pictures"
 safe_env "XDG_PUBLICSHARE_DIR" "$HOME/Public"
 safe_env "XDG_TEMPLATES_DIR" "$HOME/Templates"
-safe_env "XDG_VIDEOS_DIR" "$HOME/Videos"
+if is_mac; then
+    # macOSではVideosディレクトリが存在しないため、
+    # 後でMoviesディレクトリにマウントする
+    safe_env "XDG_VIDEOS_DIR" "$HOME/Videos" false
+else
+    safe_env "XDG_VIDEOS_DIR" "$HOME/Videos"
+fi
