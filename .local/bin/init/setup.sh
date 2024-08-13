@@ -103,6 +103,7 @@ main() {
 
     # XDG Base Directory Specification
     . ~/$DOTFILES_REPO_NAME/.local/bin/xdg_base_dir/xdg_base_dir.sh
+    . ~/$DOTFILES_REPO_NAME/.local/bin/xdg_base_dir/xdg_base_app.sh
 
     echo "Installed dotfiles successfully!"
     . ~/$DOTFILES_REPO_NAME/.local/bin/init/install.sh
