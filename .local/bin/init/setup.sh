@@ -101,32 +101,39 @@ main() {
     clone_dotfiles
 
     # 各シェルに実行権限付与
+    echo "chmod +x"
     find ~/dotfiles -name "*.sh" -exec chmod +x {} \;
 
     # XDG Base Directory Specification
+    echo "XDG Base Directory Specification"
     . $BIN_DIR/xdg_base_dir/xdg_base_dir.sh
     . $BIN_DIR/xdg_base_dir/xdg_base_app.sh
-
-    echo "Installed dotfiles successfully!"
 
     if is_mac; then
         echo "mac install"
         . $INIT_DIR/install_mac.sh
+        echo "Installed mac dotfiles successfully!"
     fi
 
     if is_command_available apt; then
         echo "apt install"
         . $INIT_DIR/install_apt.sh
+        echo "Installed apt dotfiles successfully!"
     fi
 
     # シンボリックリンクを貼る
+    echo "symlink execution"
     . $INIT_DIR/symlink.sh
 
     if is_command_available zsh; then
+        echo "zshrc execution"
         . ~/dotfiles/.config/zsh/.zshrc
     else
+        echo "bashrc execution"
         . ~/dotfiles/.config/bash/.bashrc
     fi
+
+    echo "Installed dotfiles successfully!"
 }
 
 main
