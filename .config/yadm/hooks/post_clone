@@ -7,7 +7,6 @@ if [[ ! -f "${YADM_HOOK_REPO}/info/sparse-checkout" ]]; then
 /*
 !.github
 !.vscode
-!.editorconfig
 !LICENSE
 !README.md
 EOF
