@@ -3,7 +3,7 @@
 safe_env() {
     local var_name=$1
     local var_value=$2
-    local is_make_dir=${3:-false}
+    local is_make_dir=${3:-true}
 
     # Check if variable is exist
     if [ ! -z "${var_name}" ]; then
@@ -22,9 +22,9 @@ safe_env() {
 }
 
 # XDG Base Directory Specification
-safe_env "XDG_RUNTIME_DIR" "/run/user/$(id -u)" true
-safe_env "XDG_CONFIG_DIRS" "/etc/xdg" true
-safe_env "XDG_DATA_DIRS" "/usr/local/share:/usr/share" true
+safe_env "XDG_RUNTIME_DIR" "/run/user/$(id -u)" false
+safe_env "XDG_CONFIG_DIRS" "/etc/xdg" false
+safe_env "XDG_DATA_DIRS" "/usr/local/share:/usr/share" false
 safe_env "XDG_CONFIG_HOME" "$HOME/.config"
 safe_env "XDG_CACHE_HOME" "$HOME/.cache"
 safe_env "XDG_DATA_HOME" "$HOME/.local/share"
