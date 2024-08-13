@@ -3,6 +3,7 @@
 safe_env() {
     local var_name=$1
     local var_value=$2
+    local is_make_dir=${3:-false}
 
     # Check if variable is exist
     if [ ! -z "${var_name}" ]; then
@@ -10,7 +11,7 @@ safe_env() {
 
         # Split the value by colon and create each directory
         echo "$var_value" | tr ':' '\n' | while read -r dir; do
-            if [ ! -d "$dir" ]; then
+            if [ ! -d "$dir" ] && $is_make_dir; then
                 mkdir -p "$dir"
                 echo "Created directory: $dir"
             fi
@@ -21,9 +22,9 @@ safe_env() {
 }
 
 # XDG Base Directory Specification
-safe_env "XDG_RUNTIME_DIR" "/run/user/$(id -u)"
-safe_env "XDG_CONFIG_DIRS" "/etc/xdg"
-safe_env "XDG_DATA_DIRS" "/usr/local/share:/usr/share"
+safe_env "XDG_RUNTIME_DIR" "/run/user/$(id -u)" true
+safe_env "XDG_CONFIG_DIRS" "/etc/xdg" true
+safe_env "XDG_DATA_DIRS" "/usr/local/share:/usr/share" true
 safe_env "XDG_CONFIG_HOME" "$HOME/.config"
 safe_env "XDG_CACHE_HOME" "$HOME/.cache"
 safe_env "XDG_DATA_HOME" "$HOME/.local/share"
