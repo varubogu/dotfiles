@@ -9,6 +9,7 @@ DOTFILES_REPO_RAW_URL="https://raw.github.com/$DOTFILES_REPO_OWNER/$DOTFILES_REP
 DOTFILES_BRANCH="main"
 DOTFILES_BIN_DIR="/.local/bin"
 BIN_DIR=~/$DOTFILES_REPO_NAME$DOTFILES_BIN_DIR
+INIT_DIR=$BINDIR/init
 
 . $BIN_DIR/lib/command.sh
 . $BIN_DIR/lib/env_os.sh
@@ -110,16 +111,16 @@ main() {
 
     if is_mac; then
         echo "mac install"
-        . $INSTALL_SCRIPTS_DIR/install_mac.sh
+        . $INIT_DIR/install_mac.sh
     fi
 
     if is_command_available apt; then
         echo "apt install"
-        . $INSTALL_SCRIPTS_DIR/install_apt.sh
+        . $INIT_DIR/install_apt.sh
     fi
 
     # シンボリックリンクを貼る
-    . $INSTALL_SCRIPTS_DIR/symlink.sh
+    . $INIT_DIR/symlink.sh
 }
 
 main
