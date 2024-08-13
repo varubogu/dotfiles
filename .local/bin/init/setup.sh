@@ -2,13 +2,13 @@
 
 set -eu
 
-DOTFILES_REPO_OWNER="varubogu"
-DOTFILES_REPO_NAME="dotfiles"
-DOTFILES_REPO_URL="https://github.com/$DOTFILES_REPO_OWNER/$DOTFILES_REPO_NAME.git"
-DOTFILES_REPO_RAW_URL="https://raw.github.com/$DOTFILES_REPO_OWNER/$DOTFILES_REPO_NAME"
-DOTFILES_BRANCH="main"
-DOTFILES_BIN_DIR="/.local/bin"
-BIN_DIR=~/$DOTFILES_REPO_NAME$DOTFILES_BIN_DIR
+REPO_OWNER="varubogu"
+REPO_NAME="dotfiles"
+REPO_URL="https://github.com/$REPO_OWNER/$REPO_NAME.git"
+REPO_RAW="https://raw.github.com/$REPO_OWNER/$REPO_NAME"
+BRANCH="main"
+DOT_BIN_DIR=".local/bin"
+BIN_DIR=~/$REPO_NAME/$DOT_BIN_DIR
 INIT_DIR=$BIN_DIR/init
 
 . $BIN_DIR/lib/command.sh
@@ -73,22 +73,22 @@ setup_yadm() {
     echo "Cloning dotfiles..."
     if [ -d ~/.local/share/yadm/repo.git ]; then
         echo "yadm is already initialized"
-        yadm pull origin $DOTFILES_BRANCH
+        yadm pull origin $BRANCH
     else
         echo "yadm is none repository. Cloning dotfiles..."
-        yadm clone $DOTFILES_REPO_URL
+        yadm clone $REPO_URL
     fi
 }
 
 clone_dotfiles() {
-    if [ -d $DOTFILES_REPO_NAME ]; then
+    if [ -d $REPO_NAME ]; then
         echo "dotfiles already cloned"
-        cd $DOTFILES_REPO_NAME || exit
-        git pull origin $DOTFILES_BRANCH
+        cd $REPO_NAME || exit
+        git pull origin $BRANCH
         cd ../
     else
         echo "Cloning dotfiles..."
-        git clone $DOTFILES_REPO_URL $DOTFILES_REPO_NAME
+        git clone $REPO_URL $REPO_NAME
     fi
 }
 
