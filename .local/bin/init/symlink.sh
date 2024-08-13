@@ -99,15 +99,14 @@ safe_copy() {
 
 
 # パッケージのシンボリックリンクを作成
-DOTPACKAGE=$HOME/dotfiles.config
+DOTCONFIG=$HOME/dotfiles/.config
 if is_mac; then
-    safe_symlink $DOTPACKAGE/brew/mac.Brewfile ~/Brewfile
+    safe_symlink $DOTCONFIG/brew/mac.Brewfile ~/Brewfile
 elif is_linux; then
-    safe_symlink $DOTPACKAGE/brew/linux.Brewfile ~/Brewfile
+    safe_symlink $DOTCONFIG/brew/linux.Brewfile ~/Brewfile
 fi
 
 # 設定ファイルのシンボリックリンクを作成
-DOTCONFIG=$HOME/dotfiles/.config
 safe_symlink $DOTCONFIG/ $HOME/.config
 
 safe_symlink $DOTCONFIG/bash/.bashrc $HOME/.bashrc
