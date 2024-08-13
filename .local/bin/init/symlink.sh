@@ -117,7 +117,7 @@ safe_symlink $DOTCONFIG/zsh/.zshrc.lazy $HOME/.zshrc.lazy
 safe_symlink $DOTCONFIG/editorconfig/.editorconfig $HOME/.editorconfig
 
 if is_mac; then
-    safe_symlink $Home/Movies $HOME/Videos
+    safe_symlink $HOME/Movies $HOME/Videos
 fi
 
 safe_copy $DOTCONFIG/git/config_local $HOME/.gitconfig
