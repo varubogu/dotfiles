@@ -106,11 +106,20 @@ export LANG=ja_JP.UTF-8
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 . ~/dotfiles/.local/bin/lib/env_os.sh
+. ~/dotfiles/.local/bin/lib/command.sh
 
 if is_wsl; then
     . ~/dotfiles/.local/bin/lib/env_wsl.sh
     wsl_ssh_forwarding
 fi
 
+if is_mac; then
+    export SSH_AUTH_SOCK=~/.1Password/agent.sock
+fi
+
+if is_command_available brew; then
+    alias brewup='brew update && brew upgrade'
+    export PATH="/opt/homebrew/bin:$PATH"
+fi
 
 source ~/.zshrc.lazy
