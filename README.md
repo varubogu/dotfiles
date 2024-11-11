@@ -7,19 +7,21 @@ It will be the same no matter how many times you do it.
 Root setup
 
 ```bash
-bash -c "$( curl -fsSL https://raw.github.com/varubogu/dotfiles/master/.local/bin/init/setup.sh )"
+bash -c "$( curl -fsSL https://raw.github.com/varubogu/dotfiles/master/.local/bin/setup/setup.sh )"
 ```
 
 Rootless setup
 
 ```bash
-bash -c "$( curl -fsSL https://raw.github.com/varubogu/dotfiles/master/.local/bin/init/setup_rootless.sh )"
+bash -c "$( curl -fsSL https://raw.github.com/varubogu/dotfiles/master/.local/bin/setup/setup_rootless.sh )"
 ```
 
 Windows setup
 
 ```ps1
-pwsh -c "$( curl -fsSL https://raw.github.com/varubogu/dotfiles/master/.local/bin/init/setup.ps1 )"
+$scriptUrl = "https://raw.github.com/varubogu/dotfiles/master/.local/bin/setup/setup_win.ps1"
+$scriptContent = Invoke-RestMethod -Uri $scriptUrl
+Invoke-Expression $scriptContent
 ```
 
 ## Structure
@@ -28,15 +30,15 @@ pwsh -c "$( curl -fsSL https://raw.github.com/varubogu/dotfiles/master/.local/bi
 
 ```bash
 # alias:pstr
-~/dotfiles/bin/struct/print_struct
+~/dotfiles/bin/struct/print_struct.sh
 ```
 
 ### relational path view
 
-/var/find.txt
+~/.local/share/struct/find.txt
 
 ### tree view
 
-/var/tree.txt
+~/.local/share/struct/tree.txt
 
 ## Policy
