@@ -41,8 +41,9 @@ function Main {
     # XDG Base Directory Specificationを設定
     Start-Process pwsh.exe -ArgumentList "-File `"$BIN_DIR\xdg_base_dir\setEnv.ps1`"" -Verb RunAs
 
-    # wingetでアプリを一括インストール
-    winget import -i .\.config\winget\20241110_w2022.json
+    # アプリを一括インストール
+    Write-Host "install apps"
+    . "$BIN_DIR\install\install_windows.ps1"
 
     # シンボリックリンクを貼る
     Write-Host "symlink execution"
