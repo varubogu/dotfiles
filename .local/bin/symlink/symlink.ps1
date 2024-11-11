@@ -46,7 +46,7 @@ function Safe-Symlink {
             if (Test-Path $backupFile) {
                 Throw "Error: already exists '${backupFile}' To be safe, the function is terminated."
             }
-            Move-Item -Path $From -Destination $backupFile
+            Move-Item -Path $To -Destination $backupFile
         } else {
             # ファイルでもシンボリックリンクでもない場合は作れないとしてエラー
             # コピー先がディレクトリの場合は想定外の挙動になる恐れがある
