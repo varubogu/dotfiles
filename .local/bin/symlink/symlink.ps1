@@ -56,7 +56,7 @@ function Safe-Symlink {
 
     # シンボリックリンクを作成
     Write-Host "Created symbolic link $From ---> $To"
-    New-Item -ItemType SymbolicLink -Path $From -Target $To
+    New-Item -ItemType SymbolicLink -Path $To -Target $From
 }
 
 # ファイル・ディレクトリをコピーする関数
