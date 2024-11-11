@@ -99,4 +99,4 @@ $DOTCONFIG = "~\.config"
 
 # 設定ファイルのシンボリックリンクを作成
 Safe-Symlink -From "$DOTCONFIG\editorconfig\config" -To "~\.editorconfig"
-Safe-Copy -From "$DOTCONFIG\git\config" -To "~\.gitconfig"
+Safe-Symlink -From "$DOTCONFIG\git\config" -To "~\.gitconfig"

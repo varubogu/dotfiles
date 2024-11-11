@@ -3,6 +3,8 @@
 # エラー発生時に実行を停止
 $ErrorActionPreference = "Stop"
 
+$EXECSHELL = "pwsh.exe"
+
 $REPO_OWNER = "varubogu"
 $REPO_NAME = "dotfiles"
 $REPO_URL = "https://github.com/$REPO_OWNER/$REPO_NAME.git"
@@ -47,7 +49,7 @@ function Main {
     Start-Sleep -s 3
 
     # XDG Base Directory Specificationを設定
-    Start-Process pwsh.exe -ArgumentList "-File `"$BIN_DIR\xdg_base_dir\setEnv.ps1`"" -Verb RunAs
+    Start-Process $EXECSHELL -ArgumentList "-File `"$BIN_DIR\xdg_base_dir\setEnv.ps1`"" -Verb RunAs
 
     # アプリを一括インストール
     Write-Host "install apps"
