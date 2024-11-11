@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# 未定義変数があったらエラー
+# エラーが発生した場合はスクリプトを終了
 set -eu
 
 REPO_OWNER="varubogu"
