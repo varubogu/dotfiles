@@ -49,6 +49,15 @@ jobs:
       - name: Install dotfiles
         run: bash -c "$( curl -fsSL https://raw.github.com/${github-username}/dotfiles/master/setup.sh )"
 
+  win-install:
+    runs-on: windows-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+      - name: Run a script
+        run: |
+          echo "Hello from Windows!"
+
   lint:
     runs-on: ubuntu-latest
     container: ubuntu:latest
