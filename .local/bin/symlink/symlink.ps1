@@ -1,87 +1,96 @@
 # シンボリックリンクを作成する関数
 #
 # パラメータ:
-#   $Destination - シンボリックリンクを貼る元のファイルパス（リンク元）
-#   $Source - シンボリックリンクを貼る先のファイルパス（リンク先）
+#   $From - シンボリックリンクを貼る元のファイル・ディレクトリパス（リンク元）
+#   $To - シンボリックリンクを貼る先のファイル・ディレクトリパス（リンク先）
 #
 # 動作:
-# 1. リンク先が既にシンボリックリンクの場合は何もしない
-# 2. リンク先にファイルが存在する場合は、バックアップを作成してからリンクを作成
-# 3. リンク先にファイルが存在しない場合は、直接リンクを作成
+# 1. リンク先に何も存在しない場合は、直接リンクを作成
+# 2. リンク先が既にシンボリックリンクの場合は何もしない
+# 3. リンク先にファイルが存在する場合は、バックアップを作成してからリンクを作成
+# 4. リンク先が存在し、ファイル以外の場合はエラー
 #
 # 注意:
 # - 既存のファイルはバックアップされます（ファイル名.bk.年月日時分秒の形式）
 function Safe-Symlink {
     param(
         [Parameter(Mandatory=$true)]
-        [string]$Destination,
+        [string]$From,
         [Parameter(Mandatory=$true)]
-        [string]$Source
+        [string]$To
     )
 
     # リンク元ファイルの存在チェック
-    if (-not (Test-Path $Destination)) {
-        Write-Error "Error: Source file '$Destination' does not exist."
-        return
+    if (-not (Test-Path $From)) {
+        Throw "Error: From file '$From' does not exist."
     }
 
-    $canSymlink = $false
+    # リンク先ファイルの存在チェック（なければそのまま続行）
+    if (Test-Path $To) {
 
-    if (Test-Path -PathType SymbolicLink $Source) {
-        # シンボリックリンク作成済み
-        Write-Host "$Source is already a symbolic link."
-        return
-    }
-    elseif (Test-Path $Source) {
-        # ファイルが存在する場合は日時付きバックアップを取ってからシンボリックリンクを作成
-        $backupDate = Get-Date -Format "yyyyMMddHHmmss"
-        $backupFile = "${Source}.bk.${backupDate}"
-        Write-Host "backup ${Source} to ${backupFile}"
+        $ToItem = Get-Item $To
+        $symlinkType = $ToItem.LinkType
 
-        # 移動先ファイルの存在チェック
-        if (Test-Path $backupFile) {
-            Write-Error "Error: already exists '${backupFile}'"
-            Write-Error "To be safe, the function is terminated."
+        if ($symlinkType -eq "SymbolicLink") {
+            # シンボリックリンク作成済み
+            Write-Host "$From is already a symbolic link."
             return
+
+        } elseif (Test-Path $To -PathType Leaf) {
+            # ファイルが存在する場合は日時付きバックアップを取ってからシンボリックリンクを作成
+            $backupDate = Get-Date -Format "yyyyMMddHHmmss"
+            $backupFile = "${From}.bk.${backupDate}"
+            Write-Host "backup ${From} to ${backupFile}"
+
+            # バックアップ先が存在する場合はエラー
+            if (Test-Path $backupFile) {
+                Throw "Error: already exists '${backupFile}' To be safe, the function is terminated."
+            }
+            Move-Item -Path $From -Destination $backupFile
+        } else {
+            # ファイルでもシンボリックリンクでもない場合は作れないとしてエラー
+            # コピー先がディレクトリの場合は想定外の挙動になる恐れがある
+            Throw "Error: $To is not a file or directory or symbolic link."
         }
-        Move-Item -Path $Source -Destination $backupFile
-        $canSymlink = $true
-    }
-    else {
-        # ファイルが存在しない場合はそのままシンボリックリンクを作成
-        $canSymlink = $true
     }
 
-    if ($canSymlink) {
-        # シンボリックリンクを作成
-        Write-Host "Created symbolic link $Destination ---> $Source"
-        New-Item -ItemType SymbolicLink -Path $Source -Target $Destination
-    }
+    # シンボリックリンクを作成
+    Write-Host "Created symbolic link $From ---> $To"
+    New-Item -ItemType SymbolicLink -Path $From -Target $To
 }
 
-# ファイルをコピーする関数
+# ファイル・ディレクトリをコピーする関数
+#
+# パラメータ:
+#   $From - コピーする元のファイル・ディレクトリパス
+#   $To - コピーする先のファイル・ディレクトリパス
+#
+# 動作:
+# 1. コピー先に何も存在しない場合は、直接コピーを作成
+# 2. コピー先が存在する場合は何もしない
+#
 function Safe-Copy {
     param(
         [Parameter(Mandatory=$true)]
-        [string]$Destination,
+        [string]$From,
         [Parameter(Mandatory=$true)]
-        [string]$Source
+        [string]$To
     )
 
     # リンク元ファイルの存在チェック
-    if (-not (Test-Path $Destination)) {
-        Write-Error "Error: Source file '$Destination' does not exist."
+    if (-not (Test-Path $From)) {
+        Write-Error "Error: From file '$From' does not exist."
         return
     }
 
-    if (Test-Path $Source) {
+    if (Test-Path $To) {
         # ファイルが存在する場合はコピーしない
-        Write-Host "$Source is already exist."
+        Write-Host "$To is already exist."
     }
     else {
         # コピーを作成
-        Write-Host "Created copy $Destination ---> $Source"
-        Copy-Item -Path $Destination -Destination $Source -Recurse
+        Write-Host "Created copy $From ---> $To"
+        Copy-Item -Path $From -Destination $To -Recurse
     }
 }
 
@@ -89,5 +98,5 @@ $DOTCONFIG = "~\.config"
 
 
 # 設定ファイルのシンボリックリンクを作成
-Safe-Symlink -Destination "$DOTCONFIG\editorconfig\.editorconfig" -Source "~/.editorconfig"
-Safe-Copy -Destination "$DOTCONFIG\git\config" -Source "~/.gitconfig"
+Safe-Symlink -From "~\.editorconfig" -To "$DOTCONFIG\editorconfig\.editorconfig"
+Safe-Copy -From "~\.gitconfig" -To "$DOTCONFIG\git\config"
