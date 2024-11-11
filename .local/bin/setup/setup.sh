@@ -79,6 +79,13 @@ setup_yadm() {
     else
         echo "yadm is none repository. Cloning dotfiles..."
         yadm clone $REPO_URL
+
+        if [[ ! -f "${YADM_HOOK_REPO}/info/sparse-checkout" ]]; then
+            # 不要なファイルを除外して再読み込みする
+            yadm config core.sparseCheckout true
+            cp ~/.config/yadm/sparse-checkout "${YADM_HOOK_REPO}/info/sparse-checkout"
+            yadm checkout main
+        fi
     fi
 }
 

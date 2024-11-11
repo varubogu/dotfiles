@@ -28,6 +28,11 @@ function Setup-Yadm {
     else {
         Write-Host "yadm is none repository. Cloning dotfiles..."
         yadm clone $REPO_URL
+
+        # 不要なファイルを除外して再読み込みする
+        yadm config core.sparseCheckout true
+        Copy-Item -Path "~\.config\yadm\sparse-checkout" -Destination "~\.local\share\yadm\info\sparse-checkout"
+        yadm checkout main
     }
 }
 
