@@ -10,13 +10,13 @@
 	defaultBranch = main
 
 [includeif "defined(os) && os == 'windows'"]
-	path = "~/.config.git/windows/win.config"
+	path = "~/.config/git/windows/win.config"
 
 [includeif "defined(os) && os == 'wsl'"]
-	path = "~/.config.git/wsl.config"
+	path = "~/.config/git/wsl/wsl.config"
 
 [includeif "defined(os) && os == 'linux'"]
-	path = "~/.config.git/linux.config"
+	path = "~/.config/git/linux/linux.config"
 
 [includeif "defined(os) && os == 'darwin'"]
-	path = "~/.config.git/mac.config"
+	path = "~/.config/git/mac/mac.config"

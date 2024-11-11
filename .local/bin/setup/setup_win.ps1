@@ -43,6 +43,9 @@ function Main {
     # yadmをインストール & dotfilesをclone
     Setup-Yadm
 
+    # 3秒待つ
+    Start-Sleep -s 3
+
     # XDG Base Directory Specificationを設定
     Start-Process pwsh.exe -ArgumentList "-File `"$BIN_DIR\xdg_base_dir\setEnv.ps1`"" -Verb RunAs
 
