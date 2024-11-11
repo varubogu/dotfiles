@@ -8,7 +8,7 @@ $REPO_NAME = "dotfiles"
 $REPO_URL = "https://github.com/$REPO_OWNER/$REPO_NAME.git"
 $REPO_RAW = "https://raw.github.com/$REPO_OWNER/$REPO_NAME"
 $BRANCH = "main"
-$BIN_DIR = "$HOME/$REPO_NAME/.local/bin"
+$BIN_DIR = "~\.local\bin"
 
 function Setup-Yadm {
     Write-Host "Checking yadm..."
@@ -21,7 +21,7 @@ function Setup-Yadm {
     }
 
     Write-Host "Cloning dotfiles.to yadm..."
-    if (Test-Path "$HOME/.local/share/yadm/repo.git") {
+    if (Test-Path "~/.local/share/yadm/repo.git") {
         Write-Host "yadm is already initialized"
         yadm pull origin $BRANCH
     }

@@ -85,13 +85,9 @@ function Safe-Copy {
     }
 }
 
-# コピー元ディレクトリ
-$DOTCONFIG_FROM = "~\dotfiles\.config"
-$DOTCONFIG_TO = "~\.config"
+$DOTCONFIG = "~\.config"
 
-# 設定フォルダのシンボリックリンクを作成
-Safe-Symlink -Destination $DOTCONFIG_TO -Source $DOTCONFIG_FROM
 
 # 設定ファイルのシンボリックリンクを作成
-Safe-Symlink -Destination "$DOTCONFIG_TO\editorconfig\.editorconfig" -Source "~/.editorconfig"
-Safe-Copy -Destination "$DOTCONFIG_TO\git\config" -Source "~/.gitconfig"
+Safe-Symlink -Destination "$DOTCONFIG\editorconfig\.editorconfig" -Source "~/.editorconfig"
+Safe-Copy -Destination "$DOTCONFIG\git\config" -Source "~/.gitconfig"
