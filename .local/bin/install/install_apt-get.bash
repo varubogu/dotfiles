@@ -1,5 +1,11 @@
 #!/bin/bash
 
+set -e
+
+# 引数チェック
+is_root="$1"
+
+
 cd "$HOME/" || exit
 
 echo "apt-get update..."
@@ -12,9 +18,11 @@ sudo update-locale LANG=ja_JP.UTF8
 echo "installing tools..."
 sudo apt-get install git zsh curl wget ca-certificates gnupg lsb-release -y
 
-echo "installing HomeBrew..."
-sudo apt-get install build-essential procps file -y
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+if [ "$is_root" = "true" ]; then
+    echo "installing HomeBrew..."
+    sudo apt-get install build-essential procps file -y
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
 
 echo "installing 1password..."
 sudo -s \
