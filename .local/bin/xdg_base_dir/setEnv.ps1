@@ -18,8 +18,9 @@ function Set-SafeEnv {
     )
 
     # 変数が存在するかチェック
-    if ([System.Environment]::GetEnvironmentVariable($VarName, "User") -eq $null) {
-        Write-Host "$VarName set"
+    $currentValue = [System.Environment]::GetEnvironmentVariable($VarName, "User")
+    if ($currentValue -eq $null) {
+        Write-Host "$VarName set. --> $VarValue"
 
         # ユーザー環境変数を設定
         [System.Environment]::SetEnvironmentVariable($VarName, $VarValue, "User")
@@ -36,7 +37,7 @@ function Set-SafeEnv {
             }
         }
     } else {
-        Write-Host "$VarName is exist"  # メッセージを修正
+        Write-Host "$VarName is exist. -->$currentValue"  # メッセージを修正
     }
 }
 

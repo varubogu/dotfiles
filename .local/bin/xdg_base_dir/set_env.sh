@@ -7,6 +7,7 @@ safe_env() {
 
     # Check if variable is exist
     if [ ! -z "${var_name}" ]; then
+        echo "$var_name set. --> $var_value"
         export $var_name="$var_value"
 
         # Split the value by colon and create each directory
@@ -17,7 +18,7 @@ safe_env() {
             fi
         done
     else
-        echo "warn: \`$var_name\` is exist"
+        echo "warn: \`$var_name\` is exist. --> $var_value"
     fi
 }
 
