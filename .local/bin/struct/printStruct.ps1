@@ -31,8 +31,29 @@ $result = Get-ChildItem -Path $HOME -Recurse -Force |
 
             # パターンをワイルドカードに変換
             $wildcardPattern = $pattern.Replace("/", $pathSeparator)
-            if ($relativePath -like "*\$wildcardPattern*") {
-                return $false
+
+            # パスをディレクトリ単位に分割
+            $pathParts = $relativePath -split [regex]::Escape($pathSeparator)
+
+            # **を含むパターンの特別処理
+            if ($wildcardPattern -match '\*\*') {
+                $regexPattern = [WildcardPattern]::new($wildcardPattern).ToWql()
+                if ($relativePath -match $regexPattern) {
+                    return $false
+                }
+            }
+            # 通常のワイルドカードパターン
+            elseif ($wildcardPattern -match '\*') {
+                if ($relativePath -like $wildcardPattern) {
+                    return $false
+                }
+            }
+            # 完全一致パターン
+            else {
+                # パターンがパスの一部として含まれているかチェック
+                if ($relativePath -like "*$wildcardPattern*") {
+                    return $false
+                }
             }
         }
         return $true
