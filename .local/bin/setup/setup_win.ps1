@@ -10,7 +10,7 @@ $REPO_NAME = "dotfiles"
 $REPO_URL = "https://github.com/$REPO_OWNER/$REPO_NAME.git"
 $REPO_RAW = "https://raw.github.com/$REPO_OWNER/$REPO_NAME"
 $BRANCH = "main"
-$BIN_DIR = "~\.local\bin"
+$BIN_DIR = "$HOME\.local\bin"
 
 function Setup-Yadm {
     Write-Host "Checking yadm..."
@@ -23,7 +23,7 @@ function Setup-Yadm {
     }
 
     Write-Host "Cloning dotfiles.to yadm..."
-    if (Test-Path "~/.local/share/yadm/repo.git") {
+    if (Test-Path "$HOME/.local/share/yadm/repo.git") {
         Write-Host "yadm is already initialized"
         yadm pull origin $BRANCH
     }
@@ -33,14 +33,14 @@ function Setup-Yadm {
 
         # 不要なファイルを除外して再読み込みする
         yadm config core.sparseCheckout true
-        Copy-Item -Path "~\.config\yadm\sparse-checkout" -Destination "~\.local\share\yadm\info\sparse-checkout"
+        Copy-Item -Path "$HOME\.config\yadm\sparse-checkout" -Destination "$HOME\.local\share\yadm\info\sparse-checkout"
         yadm checkout main
     }
 }
 
 function Main {
     # ホームディレクトリに移動
-    Set-Location ~
+    Set-Location $HOME
 
     # yadmをインストール & dotfilesをclone
     Setup-Yadm
@@ -57,7 +57,7 @@ function Main {
 
     # シンボリックリンクを貼る
     Write-Host "symlink execution"
-    . "$BIN_DIR/symlink/symlink.ps1"
+    . "$BIN_DIR\symlink\symlink.ps1"
 
     Write-Host "Installed dotfiles successfully!"
 }
