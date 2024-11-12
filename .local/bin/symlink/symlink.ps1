@@ -12,7 +12,7 @@
 #
 # 注意:
 # - 既存のファイルはバックアップされます（ファイル名.bk.年月日時分秒の形式）
-function Safe-Symlink {
+function New-Symlink-Safety {
     param(
         [Parameter(Mandatory=$true)]
         [string]$From,
@@ -69,7 +69,7 @@ function Safe-Symlink {
 # 1. コピー先に何も存在しない場合は、直接コピーを作成
 # 2. コピー先が存在する場合は何もしない
 #
-function Safe-Copy {
+function Copy-Item-Safety {
     param(
         [Parameter(Mandatory=$true)]
         [string]$From,
@@ -96,5 +96,5 @@ function Safe-Copy {
 
 
 # 設定ファイルのシンボリックリンクを作成
-Safe-Symlink -From .config\editorconfig\config -To .editorconfig
-Safe-Symlink -From .config\git\config -To .gitconfig
+New-Symlink-Safety -From "$HOME\.config\editorconfig\config" -To "$HOME\.editorconfig"
+New-Symlink-Safety -From "$HOME\.config\git\config" -To "$HOME\.gitconfig"
