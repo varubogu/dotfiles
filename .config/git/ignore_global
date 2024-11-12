@@ -263,5 +263,3 @@ __pycache__/
 .ssh/*
 .config/ssh/*
 
-# self exclude
-dotfiles
