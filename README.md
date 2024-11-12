@@ -1,5 +1,7 @@
 # dotfiles
 
+A solution for managing dotfiles based on YADM.
+
 ## Setup
 
 It will be the same no matter how many times you do it.
