@@ -40,9 +40,9 @@ $result = Get-ChildItem -Path $HOME -Recurse -Force |
     ForEach-Object {
         $_.FullName.Replace("$HOME\", "")
     } |
-    Sort-Object -Property FullName -Ascending
+    Sort-Object -Property FullName
 
-Set-Content $result $OUTFILE -Encoding UTF8
+Set-Content -Value $result -Path $OUTFILE -Encoding UTF8
 
 # 全ファイルをツリーとして列挙
 $OUTFILE = Join-Path $OUTDIR "tree.txt"
