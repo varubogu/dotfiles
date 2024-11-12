@@ -1,3 +1,6 @@
+echo "change shell to zsh..."
+chsh -s "$(which zsh)"
+
 
 # .zshrcを開き、
 # ZSH_THEME="agnoster"
