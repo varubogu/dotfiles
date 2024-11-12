@@ -1,9 +1,8 @@
 #!/bin/bash
 
-set -e
 
 # 引数チェック
-is_root="$1"
+is_root="${1:-false}"
 
 
 cd "$HOME/" || exit
