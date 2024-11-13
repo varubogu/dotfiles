@@ -52,7 +52,7 @@ if ! is_command_available docker; then
     sudo apt-get install docker-compose-plugin -y
 fi
 
-echo "installing oh-my-zsh ..."
-if [ ! -d "$HOME/.oh-my-zsh" ]; then
+if [ ! -d "$XDG_CONFIG_HOME/zsh/ohmyzsh" ] && [ ! -d "$HOME/.oh-my-zsh" ]; then
+    echo "installing oh-my-zsh ..."
     yes | sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
