@@ -105,11 +105,11 @@ export LANG=ja_JP.UTF-8
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-. $HOME/.local/bin/lib/env_os.sh
-. $HOME/.local/bin/lib/command.sh
+. $HOME/.local/bin/lib/env_os.bash
+. $HOME/.local/bin/lib/command.bash
 
 if is_wsl; then
-    . $HOME/.local/bin/lib/env_wsl.sh
+    . $HOME/.local/bin/lib/env_wsl.bash
     wsl_ssh_forwarding
 fi
 

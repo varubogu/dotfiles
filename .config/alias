@@ -2,7 +2,7 @@
 
 $BIN_DIR=$HOME/.local/bin
 
-. $BIN_DIR/lib/env_os.sh
+. $BIN_DIR/lib/env_os.bash
 
 # if is_wsl; then
 #     # SSH by Host(Windows)

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. ~/.local/bin/lib/command.sh
+. ~/.local/bin/lib/command.bash
 
 # use brew
 if is_command_available brew; then
