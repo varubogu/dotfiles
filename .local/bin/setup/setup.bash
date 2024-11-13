@@ -80,7 +80,7 @@ setup_yadm() {
         yadm pull origin $BRANCH
     else
         echo "yadm is none repository. Cloning dotfiles..."
-        yadm clone $REPO_URL
+        yadm clone $REPO_URL -y
 
         if [[ ! -f "$HOME/.local/share/yadm/repo.git/info/sparse-checkout" ]]; then
             # 不要なファイルを除外して再読み込みする
