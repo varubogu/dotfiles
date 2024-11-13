@@ -105,21 +105,27 @@ export LANG=ja_JP.UTF-8
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-. ~/dotfiles/.local/bin/lib/env_os.sh
-. ~/dotfiles/.local/bin/lib/command.sh
+. $HOME/.local/bin/lib/env_os.sh
+. $HOME/.local/bin/lib/command.sh
 
 if is_wsl; then
-    . ~/dotfiles/.local/bin/lib/env_wsl.sh
+    . $HOME/.local/bin/lib/env_wsl.sh
     wsl_ssh_forwarding
 fi
 
 if is_mac; then
-    export SSH_AUTH_SOCK=~/.1Password/agent.sock
+
+    # 1PasswordのSSHエージェントを使用
+    if [ -S $HOME/.1Password/agent.sock ]; then
+        export SSH_AUTH_SOCK=$HOME/.1Password/agent.sock
+    fi
+
+    # Homebrewのエイリアスと設定
+    if is_command_available brew; then
+        alias brewup='brew update && brew upgrade'
+        export PATH="/opt/homebrew/bin:$PATH"
+    fi
 fi
 
-if is_command_available brew; then
-    alias brewup='brew update && brew upgrade'
-    export PATH="/opt/homebrew/bin:$PATH"
-fi
 
-source ~/.zshrc.lazy
+source $HOME/.zshrc.lazy

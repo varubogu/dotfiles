@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-source ~/dotfiles/.config/alias
+source $HOME/.config/alias
 
 prompt_context() {
   if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
