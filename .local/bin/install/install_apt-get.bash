@@ -47,6 +47,6 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io -y
 sudo apt-get install docker-compose-plugin -y
 
 echo "installing oh-my-zsh ..."
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" -y
+yes | sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 
