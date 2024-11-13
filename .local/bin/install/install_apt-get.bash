@@ -41,8 +41,8 @@ if [ "$is_root" = "true" ]; then
     fi
 fi
 
-echo "installing docker ..."
 if ! is_command_available docker; then
+    echo "installing docker ..."
     sudo mkdir -p /etc/apt/keyrings
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --yes --dearmor -o /etc/apt/keyrings/docker.gpg
     sudo chmod a+r /etc/apt/keyrings/docker.gpg
@@ -55,4 +55,10 @@ fi
 if [ ! -d "$XDG_CONFIG_HOME/zsh/ohmyzsh" ] && [ ! -d "$HOME/.oh-my-zsh" ]; then
     echo "installing oh-my-zsh ..."
     yes | sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+    if [ ! -d "$XDG_CONFIG_HOME/zsh/ohmyzsh" ]; then
+        echo "oh-my-zsh already installed"
+    elif [ ! -d "$HOME/.oh-my-zsh" ]; then
+        echo "oh-my-zsh already installed"
+    fi
 fi
