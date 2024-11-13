@@ -95,30 +95,32 @@ main() {
     cd $HOME || exit
 
     if is_mac; then
+        # Macの場合、パッケージ管理ソフトが無いのでbrewをインストール
         setup_brew
     fi
 
     setup_yadm
 
     # 各シェルに実行権限付与
-    echo "chmod +x"
+    echo "chmod +x to bash scripts"
     find $HOME/.local/bin -name "*.bash" -exec chmod +x {} \;
 
-    # XDG Base Directory Specification
+    # XDG Base Directory Specificationを設定
     echo "XDG Base Directory Specification"
     . $BIN_DIR/xdg_base_dir/set_env.bash
     . $BIN_DIR/xdg_base_dir/xdg_base_app.bash
 
+    #　環境に合わせてパッケージをインストール
     if is_mac; then
         echo "mac install"
         . $BIN_DIR/install/install_mac.zsh
         echo "Installed mac dotfiles successfully!"
-    fi
-
-    if is_command_available apt-get; then
-        echo "apt-get install"
-        . $BIN_DIR/install/install_apt-get.bash
-        echo "Installed apt dotfiles successfully!"
+    else
+        if is_command_available apt-get; then
+            echo "apt-get install"
+            . $BIN_DIR/install/install_apt-get.bash
+            echo "Installed apt dotfiles successfully!"
+        fi
     fi
 
     # シンボリックリンクを貼る
