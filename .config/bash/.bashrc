@@ -120,4 +120,5 @@ if ! shopt -oq posix; then
   fi
 fi
 
-. ~/.config/alias
+# aliasを読み込むが、zshで操作することを想定しているため一応読むだけにしておく
+. ~/.config/alias.zsh
