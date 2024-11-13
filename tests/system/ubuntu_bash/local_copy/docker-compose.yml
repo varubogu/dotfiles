@@ -1,0 +1,9 @@
+services:
+  ubuntu:
+    build:
+      context: ../../../../ # dotfilesのルートパス
+      dockerfile: tests/system/ubuntu_bash/local_copy/Dockerfile
+    tty: true
+    stdin_open: true
+    volumes:
+      - ./result:/workspace/result
