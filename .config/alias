@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-$BIN_DIR=~/dotfiles/.local/bin
+$BIN_DIR=$HOME/.local/bin
 
 . $BIN_DIR/lib/env_os.sh
 

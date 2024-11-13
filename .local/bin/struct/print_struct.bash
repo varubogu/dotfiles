@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 # 現在のディレクトリをスタックにプッシュし、新しいディレクトリに移動
-pushd ~/dotfiles > /dev/null
+pushd $HOME > /dev/null
 
 OUTDIR=$XDG_STATE_HOME/struct
 mkdir -p $OUTDIR

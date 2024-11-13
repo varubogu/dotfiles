@@ -116,4 +116,4 @@ if ! shopt -oq posix; then
   fi
 fi
 
-source ~/dotfiles/.config/alias
+source ~/.config/alias
