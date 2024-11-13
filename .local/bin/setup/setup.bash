@@ -107,8 +107,8 @@ main() {
 
     # XDG Base Directory Specificationを設定
     echo "XDG Base Directory Specification"
-    . $BIN_DIR/xdg_base_dir/set_env.bash
-    . $BIN_DIR/xdg_base_dir/xdg_base_app.bash
+    . $HOME/.config/xdg_base_dir/set_env.bash
+    . $HOME/.config/xdg_base_dir/xdg_base_app.bash
 
     #　環境に合わせてパッケージをインストール
     if is_mac; then
