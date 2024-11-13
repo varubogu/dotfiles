@@ -96,5 +96,6 @@ function Copy-Item-Safety {
 
 
 # 設定ファイルのシンボリックリンクを作成
+New-Symlink-Safety -From "$HOME\.config\git\local.config" -To "$HOME\.config\git\win.config"
 New-Symlink-Safety -From "$HOME\.config\editorconfig\config" -To "$HOME\.editorconfig"
 New-Symlink-Safety -From "$HOME\.config\git\config" -To "$HOME\.gitconfig"

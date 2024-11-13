@@ -3,20 +3,10 @@
 	email = toyosuke@varubogu.com
 
 [core]
-	excludesfile = ~/.config/git/ignore_global
+	excludesfile = "~/.config/git/ignore_global"
 [commit]
 	gpgsign = true
 [init]
 	defaultBranch = main
-
-[includeif "defined(os) && os == 'windows'"]
-	path = "~/.config/git/windows/win.config"
-
-[includeif "defined(os) && os == 'wsl'"]
-	path = "~/.config/git/wsl/wsl.config"
-
-[includeif "defined(os) && os == 'linux'"]
-	path = "~/.config/git/linux/linux.config"
-
-[includeif "defined(os) && os == 'darwin'"]
-	path = "~/.config/git/mac/mac.config"
+[include]
+	path = "local.config"
