@@ -14,3 +14,8 @@ else
     echo "Rosetta 2 is not installed. Starting installation..."
     /usr/sbin/softwareupdate --install-rosetta --agree-to-license
 fi
+
+brew bundle $HOME/.config/brew/Brewfile
+
+echo "installing oh-my-zsh ..."
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"

@@ -9,13 +9,13 @@ It will be the same no matter how many times you do it.
 Root setup
 
 ```bash
-bash -c "$( curl -fsSL https://raw.github.com/varubogu/dotfiles/master/.local/bin/setup/setup.sh )"
+bash -c "$( curl -fsSL https://raw.github.com/varubogu/dotfiles/master/.local/bin/setup/setup.bash )"
 ```
 
 Rootless setup
 
 ```bash
-bash -c "$( curl -fsSL https://raw.github.com/varubogu/dotfiles/master/.local/bin/setup/setup_rootless.sh )"
+bash -c "$( curl -fsSL https://raw.github.com/varubogu/dotfiles/master/.local/bin/setup/setup_rootless.bash )"
 ```
 
 Windows setup

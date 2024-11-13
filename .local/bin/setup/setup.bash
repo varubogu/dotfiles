@@ -9,12 +9,32 @@ REPO_NAME="dotfiles"
 REPO_URL="https://github.com/$REPO_OWNER/$REPO_NAME.git"
 REPO_RAW="https://raw.github.com/$REPO_OWNER/$REPO_NAME"
 BRANCH="main"
-DOT_BIN_DIR=".local/bin"
-BIN_DIR=~/$REPO_NAME/$DOT_BIN_DIR
-INIT_DIR=$BIN_DIR/init
+BIN_DIR=$HOME/.local/bin
 
-. $BIN_DIR/lib/command.sh
-. $BIN_DIR/lib/env_os.sh
+#!/bin/bash
+
+is_command_available() { command -v "$1" &> /dev/null; }
+
+is_linux() { [ "$(uname)" = "Linux" ]; }
+
+is_mac() { [ "$(uname)" = "Darwin" ];}
+
+is_wsl() { grep -qEi "(Microsoft|WSL)" /proc/version; }
+
+is_windows() {
+  case "$(uname -r)" in
+    *Microsoft*)
+      return 0
+      ;;
+    *CYGWIN*|*MINGW*|*MSYS*)
+      return 0
+      ;;
+    *)
+      return 1
+      ;;
+  esac
+}
+
 
 setup_brew() {
     echo "Checking brew..."
@@ -26,31 +46,13 @@ setup_brew() {
             echo "mac brew installation..."
             /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
             echo "brew installed successfully"
-            echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+            echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> $HOME/.zprofile
             eval "$(/opt/homebrew/bin/brew shellenv)"
             echo "mac brew setting done"
         elif is_linux; then
             echo "linux brew skip"
         else
             echo "brew installation failed. Please install it manually."
-            exit 1
-        fi
-    fi
-}
-
-
-setup_git() {
-    echo "Checking git..."
-    if is_command_available git; then
-        echo "git already installed"
-    else
-        echo "git is not installed. Installing git..."
-        if is_command_available brew; then
-            brew install git
-        elif is_command_available apt-get; then
-            sudo apt-get update && sudo apt-get install -y git
-        else
-            echo "Unable to install git. Please install it manually."
             exit 1
         fi
     fi
@@ -73,73 +75,62 @@ setup_yadm() {
     fi
 
     echo "Cloning dotfiles..."
-    if [ -d ~/.local/share/yadm/repo.git ]; then
+    if [ -d $HOME/.local/share/yadm/repo.git ]; then
         echo "yadm is already initialized"
         yadm pull origin $BRANCH
     else
         echo "yadm is none repository. Cloning dotfiles..."
         yadm clone $REPO_URL
 
-        if [[ ! -f "${YADM_HOOK_REPO}/info/sparse-checkout" ]]; then
+        if [[ ! -f "$HOME/.local/share/yadm/repo.git/info/sparse-checkout" ]]; then
             # 不要なファイルを除外して再読み込みする
             yadm config core.sparseCheckout true
-            cp ~/.config/yadm/sparse-checkout "${YADM_HOOK_REPO}/info/sparse-checkout"
+            cp $HOME/.config/yadm/sparse-checkout "$HOME/.local/share/yadm/repo.git/info/sparse-checkout"
             yadm checkout main
         fi
     fi
 }
 
-clone_dotfiles() {
-    if [ -d $REPO_NAME ]; then
-        echo "dotfiles already cloned"
-        cd $REPO_NAME || exit
-        git pull origin $BRANCH
-        cd ../
-    else
-        echo "Cloning dotfiles..."
-        git clone $REPO_URL $REPO_NAME
-    fi
-}
-
 main() {
-    cd ~/ || exit
+    cd $HOME || exit
 
-    setup_brew
-    setup_git
+    if is_mac; then
+        setup_brew
+    fi
+
     setup_yadm
-    clone_dotfiles
 
     # 各シェルに実行権限付与
     echo "chmod +x"
-    find ~/dotfiles -name "*.sh" -exec chmod +x {} \;
+    find $HOME/.local/bin -name "*.bash" -exec chmod +x {} \;
 
     # XDG Base Directory Specification
     echo "XDG Base Directory Specification"
-    . $BIN_DIR/xdg_base_dir/xdg_base_dir.sh
-    . $BIN_DIR/xdg_base_dir/xdg_base_app.sh
+    . $BIN_DIR/xdg_base_dir/set_env.bash
+    . $BIN_DIR/xdg_base_dir/xdg_base_app.bash
 
     if is_mac; then
         echo "mac install"
-        . $INIT_DIR/install_mac.sh
+        . $BIN_DIR/install/install_mac.zsh
         echo "Installed mac dotfiles successfully!"
     fi
 
     if is_command_available apt-get; then
         echo "apt-get install"
-        . $INIT_DIR/install_apt-get.sh
+        . $BIN_DIR/install/install_apt-get.bash
         echo "Installed apt dotfiles successfully!"
     fi
 
     # シンボリックリンクを貼る
     echo "symlink execution"
-    . $INIT_DIR/symlink.sh
+    . $BIN_DIR/symlink/symlink.bash
 
     if is_command_available zsh; then
         echo "zshrc execution"
-        . ~/dotfiles/.config/zsh/.zshrc
+        . $HOME/.config/zsh/.zshrc
     else
         echo "bashrc execution"
-        . ~/dotfiles/.config/bash/.bashrc
+        . $HOME/.config/bash/.bashrc
     fi
 
     if is_wsl; then
@@ -149,9 +140,9 @@ main() {
         export WIN_HOME="/mnt/c/Users/$WIN_USERNAME"
 
         echo "Creating symlink to Windows home directory..."
-        if [ ! -L ~/windows_home ]; then
-            echo "Created symlink: ~/windows_home -> $WIN_HOME"
-            ln -s "$WIN_HOME" ~/windows_home
+        if [ ! -L $HOME/windows_home ]; then
+            echo "Created symlink: $HOME/windows_home -> $WIN_HOME"
+            ln -s "$WIN_HOME" $HOME/windows_home
         fi
     fi
 
