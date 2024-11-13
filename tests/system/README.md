@@ -2,12 +2,22 @@
 
 ## テスト環境
 
+### ホストOS
+
 - Windows 11
 - WSL2
 - Ubuntu 24.04
 - macOS
 
-上記をDockerで構築し、テストを行う。
+上記の環境で構築し、テストを行う。
+
+### テスト対象OS
+
+- Windows 11（ホストはWindowsのみ）
+- macOS（ホストはmacOSのみ）
+- Ubuntu 24.04
+- AlmaLinux 9
+- Arch Linux
 
 ## 初期インストール
 
