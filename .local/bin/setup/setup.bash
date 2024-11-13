@@ -125,10 +125,10 @@ main() {
     echo "symlink execution"
     . $BIN_DIR/symlink/symlink.bash
 
-    if is_command_available zsh; then
+    if [[ "$SHELL" == *"/zsh"* ]]; then
         echo "zshrc execution"
         . $HOME/.config/zsh/.zshrc
-    else
+    elif [[ "$SHELL" == *"/bash"* ]]; then
         echo "bashrc execution"
         . $HOME/.config/bash/.bashrc
     fi
