@@ -23,10 +23,11 @@ ENV LANG=ja_JP.UTF-8
 ENV LANGUAGE=ja_JP:ja
 ENV LC_ALL=ja_JP.UTF-8
 
-COPY exec.bash /workspace/exec.bash
+# 実行用スクリプトのコピー
+COPY tests/system/ubuntu_bash/cloudsetup/exec.bash /workspace/exec.bash
 
 # dotfilesのコピー
-COPY tests/system/ubuntu_bash/cloudsetup/exec.bash /workspace/exec.bash
+COPY . /workspace/dotfiles
 
 # コンテナ起動時のコマンド
 CMD ["/workspace/exec.bash"]
