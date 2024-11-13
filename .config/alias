@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-$BIN_DIR=$HOME/.local/bin
+BIN_DIR=$HOME/.local/bin
 
 . $BIN_DIR/lib/env_os.bash
 
@@ -11,13 +11,13 @@ $BIN_DIR=$HOME/.local/bin
 # fi
 
 # パッケージのアップデートコマンド
-alias pup=$BIN_DIR/mng/pkg_update
+alias pup=$BIN_DIR/mng/pkg_update.bash
 
 # パッケージのインストールコマンド
-alias pins=$BIN_DIR/mng/pkg_install
+alias pins=$BIN_DIR/mng/pkg_install.bash
 
 # Create package list
-alias pdump=$BIN_DIR/mng/pkg_dump
+alias pdump=$BIN_DIR/mng/pkg_dump.bash
 
 # Print dotfiles structure
-alias pstr=$BIN_DIR/struct/print_struct
+alias pstr=$BIN_DIR/struct/print_struct.bash
