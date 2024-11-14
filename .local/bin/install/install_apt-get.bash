@@ -2,7 +2,7 @@
 
 
 # 引数チェック
-is_root="${1:-false}"
+IS_ROOT=${1:-true}
 
 
 cd "$HOME/" || exit

@@ -15,7 +15,7 @@ bash -c "$( curl -fsSL https://raw.github.com/varubogu/dotfiles/master/.local/bi
 Rootless setup
 
 ```bash
-bash -c "$( curl -fsSL https://raw.github.com/varubogu/dotfiles/master/.local/bin/setup/setup_rootless.bash )"
+bash -c "$( curl -fsSL https://raw.github.com/varubogu/dotfiles/master/.local/bin/setup/setup.bash ) -noroot"
 ```
 
 Windows setup

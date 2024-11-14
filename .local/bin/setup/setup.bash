@@ -4,6 +4,13 @@
 # エラーが発生した場合はスクリプトを終了
 set -eu
 
+# デフォルトはtrue、-norootオプションがある場合はfalseに設定
+IS_ROOT=true
+while getopts "noroot" opt; do
+    case $opt in
+        noroot) IS_ROOT=false ;;
+    esac
+done
 REPO_OWNER="varubogu"
 REPO_NAME="dotfiles"
 REPO_URL="https://github.com/$REPO_OWNER/$REPO_NAME.git"
@@ -118,7 +125,7 @@ main() {
     else
         if is_command_available apt-get; then
             echo "apt-get install"
-            . $BIN_DIR/install/install_apt-get.bash
+            . $BIN_DIR/install/install_apt-get.bash $IS_ROOT
             echo "Installed apt dotfiles successfully!"
         fi
     fi
