@@ -137,13 +137,13 @@ main() {
     echo "symlink execution"
     . $BIN_DIR/symlink/symlink.bash
 
-    if [[ "$SHELL" == *"/zsh"* ]]; then
-        echo "zshrc execution"
-        . $HOME/.zshrc
-    elif [[ "$SHELL" == *"/bash"* ]]; then
-        echo "bashrc execution"
-        . $HOME/.bashrc
-    fi
+    # if [[ "$SHELL" == *"/zsh"* ]]; then
+    #     echo "zshrc execution"
+    #     . $HOME/.zshrc
+    # elif [[ "$SHELL" == *"/bash"* ]]; then
+    #     echo "bashrc execution"
+    #     . $HOME/.bashrc
+    # fi
 
     if is_wsl; then
         if [ -r "/mnt/c/Users" ]; then
@@ -162,9 +162,15 @@ main() {
 
     echo "Installed dotfiles successfully!"
 
-    if [[ "$SHELL" == *"/bash"* ]]; then
-        echo "next step zsh execution (requires sudo)"
+    if [[ "$SHELL" == *"/zsh"* ]]; then
+        echo "next step: zshrc reload"
+        echo 'source $HOME/.zshrc'
+    elif [[ "$SHELL" == *"/bash"* ]]; then
+        echo "next step: zsh execution (requires sudo)"
         echo 'chsh -s "$(which zsh)"'
+        echo "or"
+        echo "next step: bashrc reload"
+        echo 'source $HOME/.bashrc'
     fi
 }
 
