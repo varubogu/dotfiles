@@ -87,6 +87,7 @@ setup_yadm() {
     echo "Cloning dotfiles..."
     if [ -d $HOME/.local/share/yadm/repo.git ]; then
         echo "yadm is already initialized"
+        yadm reset HEAD --soft
         yadm pull origin $BRANCH
     else
         echo "yadm is none repository. Cloning dotfiles..."
