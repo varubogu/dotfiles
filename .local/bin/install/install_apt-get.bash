@@ -21,7 +21,7 @@ sudo apt-get install git zsh curl wget ca-certificates gnupg lsb-release -y
 if ! is_command_available brew && [ "$is_root" = "true" ]; then
     echo "installing HomeBrew..."
     sudo apt-get install build-essential procps file -y
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    yes "" | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
 if is_command_available brew && [ -f "$XDG_CONFIG_HOME/brew/Brewfile" ]; then
