@@ -1,0 +1,10 @@
+#!/bin/bash
+
+. $BIN_DIR/lib/env_os.bash
+
+if is_wsl; then
+    # ホストのPowerShellからユーザー名を取得し、改行コードを削除
+    export WIN_USERNAME=$(powershell.exe '$env:USERNAME' | tr -d '\r')
+    # Windowsのユーザーフォルダのパス
+    export WIN_HOME="/mnt/c/Users/$WIN_USERNAME"
+fi
