@@ -2,10 +2,6 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-# XDG Base Directory Specification
-. $HOME/.config/xdg_base_dir/set_env.bash
-. $HOME/.config/xdg_base_dir/xdg_base_app.bash
-
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
