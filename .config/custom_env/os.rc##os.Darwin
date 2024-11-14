@@ -1,0 +1,13 @@
+#!/bin/zsh
+
+# 1PasswordのSSHエージェントを使用
+SSH_1PASSWORD_AGENT_SOCK=$HOME/.1Password/agent.sock
+if [ -S $SSH_1PASSWORD_AGENT_SOCK ]; then
+    export SSH_AUTH_SOCK=$SSH_1PASSWORD_AGENT_SOCK
+fi
+
+# Homebrewのエイリアスと設定
+if is_command_available brew; then
+    alias brewup='brew update && brew upgrade'
+    export PATH="/opt/homebrew/bin:$PATH"
+fi

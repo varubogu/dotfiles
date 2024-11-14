@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-. $HOME/.local/bin/lib/env_os.bash
+. $HOME/.local/bin/lib/functions.bash
 
 # シンボリックリンクを作成する関数
 #

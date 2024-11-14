@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. ~/.local/bin/lib/command.bash
+. $HOME/.local/bin/lib/functions.bash
 
 # use brew
 if is_command_available brew; then
@@ -10,6 +10,15 @@ fi
 # use apt-get
 if is_command_available apt-get; then
   sudo apt-get update && sudo apt-get upgrade -y
+fi
+
+# use snap
+if is_command_available snap; then
+  sudo snap refresh
+fi
+
+if is_command_available pacman; then
+  sudo pacman -Syu
 fi
 
 # use yum

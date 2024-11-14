@@ -120,5 +120,26 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# aliasを読み込むが、zshで操作することを想定しているため一応読むだけにしておく
-. ~/.config/alias.zsh
+# Common environment
+. $HOME/.config/custom_env/common.rc
+
+# OS specific environment
+. $HOME/.config/custom_env/os.rc
+
+# XDG Base Configuration
+export SSH_CONFIG=$XDG_CONFIG_HOME/ssh
+export GNUPGHOME=$XDG_CONFIG_HOME/gnupg
+
+# Bash specific environment
+export BASH_CONFIG=$XDG_CONFIG_HOME/bash
+export BASH_DATA_HOME=$XDG_DATA_HOME/bash
+export BASH_LOG_DIR=$BASH_DATA_HOME/log
+export BASH_PLUGIN_DIR=$BASH_DATA_HOME/plugins
+export BASH_THEME_DIR=$BASH_DATA_HOME/themes
+export BASH_HISTORY_DIR=$BASH_DATA_HOME/history
+export BASH_HISTFILE=$BASH_HISTORY_DIR/histfile
+export BASH_HISTSIZE=1000
+export BASH_SAVEHIST=1000
+export BASH_CACHE_DIR=$XDG_CACHE_HOME/bash
+export HISTFILE="$BASH_HISTFILE"
+export HISTSIZE="$BASH_HISTSIZE"

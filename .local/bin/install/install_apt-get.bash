@@ -1,5 +1,6 @@
 #!/bin/bash
 
+. $HOME/.local/bin/lib/functions.bash
 
 # 引数チェック
 is_root=${1:-true}
@@ -23,6 +24,10 @@ if ! is_command_available brew && [ "$is_root" = "true" ]; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
+if is_command_available brew && [ -f "$XDG_CONFIG_HOME/brew/Brewfile" ]; then
+    echo "installing brew packages..."
+    brew bundle $XDG_CONFIG_HOME/brew/Brewfile
+fi
 
 if ! is_command_available 1password && [ "$is_root" = "true" ]; then
     echo "installing 1password..."

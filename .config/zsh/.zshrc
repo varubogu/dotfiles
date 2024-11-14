@@ -110,27 +110,31 @@ export LANG=ja_JP.UTF-8
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-. $HOME/.local/bin/lib/env_os.bash
-. $HOME/.local/bin/lib/command.bash
-
-if is_wsl; then
-    . $HOME/.local/bin/lib/env_wsl.bash
-    wsl_ssh_forwarding
-fi
-
-if is_mac; then
-
-    # 1PasswordのSSHエージェントを使用
-    if [ -S $HOME/.1Password/agent.sock ]; then
-        export SSH_AUTH_SOCK=$HOME/.1Password/agent.sock
-    fi
-
-    # Homebrewのエイリアスと設定
-    if is_command_available brew; then
-        alias brewup='brew update && brew upgrade'
-        export PATH="/opt/homebrew/bin:$PATH"
-    fi
-fi
+prompt_context() {
+  if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
+    prompt_segment black default "%(!.%{%F{yellow}%}.)$USER"
+  fi
+}
 
 
-source $HOME/.zshrc.lazy
+# Common environment
+. $HOME/.config/custom_env/common.rc
+
+# OS specific environment
+. $HOME/.config/custom_env/os.rc
+
+# Zsh specific environment
+export ZDOTDIR=$XDG_CONFIG_HOME/zsh
+export ZSH_DATA_HOME=$XDG_DATA_HOME/zsh
+export ZSH_HISTORY=$ZSH_DATA_HOME/history
+export ZSH_HISTFILE=$ZSH_HISTORY/histfile
+export ZSH_HISTSIZE=1000
+export ZSH_SAVEHIST=1000
+export ZSH_LOG_DIR=$ZSH_DATA_HOME/log
+export ZSH_PLUGIN_DIR=$ZSH_DATA_HOME/plugins
+export ZSH_THEME_DIR=$ZSH_DATA_HOME/themes
+export ZSH_CACHE_DIR=$XDG_CACHE_HOME/zsh
+export HISTFILE="$ZSH_HISTFILE"
+export HISTSIZE="$ZSH_HISTSIZE"
+export SAVEHIST="$ZSH_SAVEHIST"
+

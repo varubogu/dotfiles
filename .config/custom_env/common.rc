@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# XDG Base Directory Specification
+. $HOME/.config/xdg_base_dir/set_env.bash
+
+export SSH_CONFIG=$XDG_CONFIG_HOME/ssh
+export GNUPGHOME=$XDG_CONFIG_HOME/gnupg
+
+
+BIN_DIR=$HOME/.local/bin
+
+. $BIN_DIR/lib/functions.bash
+
+
+
+# パッケージのアップデートコマンド
+alias pkg_update=$BIN_DIR/mng/pkg_update.bash
+
+# パッケージのインストールコマンド
+alias pkg_install=$BIN_DIR/mng/pkg_install.bash
+
+# Create package list
+alias pkg_dump=$BIN_DIR/mng/pkg_dump.bash
+
+# Print dotfiles structure
+alias print_struct=$BIN_DIR/struct/print_struct.bash
