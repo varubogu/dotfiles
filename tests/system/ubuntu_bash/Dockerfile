@@ -7,6 +7,7 @@ WORKDIR /workspace
 
 RUN apt-get update && apt-get install -y \
     curl \
+    sudo \
     && rm -rf /var/lib/apt/lists/*
 
 # 実行用スクリプトのコピー
