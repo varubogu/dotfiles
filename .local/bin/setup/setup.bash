@@ -129,10 +129,10 @@ main() {
 
     if [[ "$SHELL" == *"/zsh"* ]]; then
         echo "zshrc execution"
-        . $HOME/.config/zsh/.zshrc
+        . $HOME/.zshrc
     elif [[ "$SHELL" == *"/bash"* ]]; then
         echo "bashrc execution"
-        . $HOME/.config/bash/.bashrc
+        . $HOME/.bashrc
     fi
 
     if is_wsl; then
