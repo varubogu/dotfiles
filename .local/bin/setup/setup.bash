@@ -136,15 +136,17 @@ main() {
     fi
 
     if is_wsl; then
-        # ホストのPowerShellからユーザー名を取得し、改行コードを削除
-        export WIN_USERNAME=$(powershell.exe '$env:USERNAME' | tr -d '\r')
-        # Windowsのユーザーフォルダのパス
-        export WIN_HOME="/mnt/c/Users/$WIN_USERNAME"
+        if [ -r "/mnt/c/Users" ]; then
+            # ホストのPowerShellからユーザー名を取得し、改行コードを削除
+            export WIN_USERNAME=$(powershell.exe '$env:USERNAME' | tr -d '\r')
+            # Windowsのユーザーフォルダのパス
+            export WIN_HOME="/mnt/c/Users/$WIN_USERNAME"
 
-        echo "Creating symlink to Windows home directory..."
-        if [ ! -L $HOME/windows_home ]; then
-            echo "Created symlink: $HOME/windows_home -> $WIN_HOME"
-            ln -s "$WIN_HOME" $HOME/windows_home
+            echo "Creating symlink to Windows home directory..."
+            if [ ! -L $HOME/windows_home ]; then
+                echo "Created symlink: $HOME/windows_home -> $WIN_HOME"
+                ln -s "$WIN_HOME" $HOME/windows_home
+            fi
         fi
     fi
 
