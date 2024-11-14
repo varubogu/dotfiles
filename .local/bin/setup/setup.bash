@@ -6,9 +6,12 @@ set -eu
 
 # デフォルトはtrue、-norootオプションがある場合はfalseに設定
 is_root=true
-while getopts "noroot" opt; do
-    case $opt in
-        noroot) is_root=false ;;
+for arg in "$@"; do
+    case $arg in
+        --noroot)
+            is_root=false
+            shift
+            ;;
     esac
 done
 REPO_OWNER="varubogu"
