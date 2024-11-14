@@ -22,17 +22,17 @@ is_mac() { [ "$(uname)" = "Darwin" ];}
 is_wsl() { grep -qEi "(Microsoft|WSL)" /proc/version; }
 
 is_windows() {
-  case "$(uname -r)" in
-    *Microsoft*)
-      return 0
-      ;;
-    *CYGWIN*|*MINGW*|*MSYS*)
-      return 0
-      ;;
-    *)
-      return 1
-      ;;
-  esac
+    case "$(uname -r)" in
+        *Microsoft*)
+            return 0
+            ;;
+        *CYGWIN*|*MINGW*|*MSYS*)
+            return 0
+            ;;
+        *)
+            return 1
+            ;;
+    esac
 }
 
 
