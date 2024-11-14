@@ -39,7 +39,7 @@ if ! is_command_available 1password && [ "$is_root" = "true" ]; then
     sudo mkdir -p /etc/debsig/policies/AC2D62742012EA22/
     curl -sS https://downloads.1password.com/linux/debian/debsig/1password.pol | sudo tee /etc/debsig/policies/AC2D62742012EA22/1password.pol
     sudo mkdir -p /usr/share/debsig/keyrings/AC2D62742012EA22
-    sudo apt update && sudo apt install 1password 1password-cli -y
+    sudo apt-get update && sudo apt-get install 1password 1password-cli -y
 fi
 
 if ! is_command_available docker && [ "$is_root" = "true" ]; then
