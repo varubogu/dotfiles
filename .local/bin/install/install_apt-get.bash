@@ -5,6 +5,8 @@
 # 引数チェック
 is_root=${1:-true}
 
+# アーキテクチャ判定
+arch=$(dpkg --print-architecture)
 
 cd "$HOME/" || exit
 
@@ -18,9 +20,13 @@ echo "installing tools..."
 sudo apt-get install git zsh curl wget ca-certificates gnupg lsb-release -y
 
 if ! is_command_available brew && [ "$is_root" = "true" ]; then
-    echo "installing HomeBrew..."
-    sudo apt-get install build-essential procps file -y
-    yes "" | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    if [ "$arch" = "x86_64" ]; then
+        echo "installing HomeBrew..."
+        sudo apt-get install build-essential procps file -y
+        yes "" | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    else
+        echo "HomeBrew is not supported on $arch"
+    fi
 fi
 
 if is_command_available brew && [ -f "$XDG_CONFIG_HOME/brew/Brewfile" ]; then
