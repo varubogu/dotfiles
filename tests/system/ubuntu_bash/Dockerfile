@@ -9,7 +9,8 @@ WORKDIR /workspace
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Asia/Tokyo
 
-RUN apt-get update && apt-get install -y \
+RUN ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime \
+    && apt-get update && apt-get install -y \
     curl \
     sudo \
     && rm -rf /var/lib/apt/lists/*
