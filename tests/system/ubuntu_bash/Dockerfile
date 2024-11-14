@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:24.04
 
 VOLUME /workspace/result
 
@@ -6,7 +6,8 @@ VOLUME /workspace/result
 WORKDIR /workspace
 
 RUN apt-get update && apt-get install -y \
-    curl
+    curl \
+    && rm -rf /var/lib/apt/lists/*
 
 # 実行用スクリプトのコピー
 COPY tests/system/ubuntu_bash/exec.bash /workspace/exec.bash
