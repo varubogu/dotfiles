@@ -1,13 +1,10 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
-# XDG Base Directory Specification
-. $HOME/.config/xdg_base_dir/set_env.bash
-. $HOME/.config/xdg_base_dir/xdg_base_app.bash
 
 # Path to your Oh My Zsh installation.
 #export ZSH="$HOME/.oh-my-zsh"
-export ZSH="$XDG_CONFIG_HOME/zsh/ohmyzsh"
+export ZSH="$HOME/.config/zsh/ohmyzsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
