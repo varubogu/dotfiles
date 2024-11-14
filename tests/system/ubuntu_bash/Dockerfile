@@ -12,6 +12,9 @@ RUN apt-get update && apt-get install -y \
 # 実行用スクリプトのコピー
 COPY tests/system/ubuntu_bash/exec.bash /workspace/exec.bash
 
+# dotfilesのコピー
+COPY . /workspace/dotfiles
+
 # コンテナ起動時のコマンド
 CMD ["/workspace/exec.bash"]
 
