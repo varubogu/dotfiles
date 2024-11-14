@@ -2,7 +2,10 @@ services:
   ubuntu:
     build:
       context: ../../../../ # dotfilesのルートパス
-      dockerfile: tests/system/ubuntu_bash/local_copy/Dockerfile
+      dockerfile: tests/system/ubuntu_bash/Dockerfile
+    environment:
+      - LOCAL_COPY=true
+    #   - LOCAL_COPY=false
     tty: true
     stdin_open: true
     volumes:

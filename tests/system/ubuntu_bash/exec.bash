@@ -7,8 +7,13 @@ LOG_FILE="/workspace/result/test_result.log"
 mkdir -p /workspace/result
 
 # dotfilesのインストール
+echo "LOCAL_COPY: $LOCAL_COPY"
 echo "=== dotfilesのインストールを開始 ===" | tee -a "$LOG_FILE"
-bash /workspace/dotfiles/.local/bin/setup/setup.bash 2>&1 | tee -a "$LOG_FILE"
+if [ $LOCAL_COPY ]; then
+    bash /workspace/dotfiles/.local/bin/setup/setup.bash 2>&1 | tee -a "$LOG_FILE"
+else
+    bash -c "$(curl -fsSL https://raw.github.com/varubogu/dotfiles/master/.local/bin/setup/setup.bash)" 2>&1 | tee -a "$LOG_FILE"
+fi
 
 # インストール結果のテスト
 echo -e "\n=== インストール結果のテスト開始 ===" | tee -a "$LOG_FILE"
