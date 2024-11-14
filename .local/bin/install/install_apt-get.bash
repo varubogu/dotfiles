@@ -13,7 +13,6 @@ sudo apt-get update && sudo apt-get upgrade -y
 
 echo "locale to japan ..."
 sudo apt-get -y install language-pack-ja
-sudo update-locale LANG=ja_JP.UTF8
 
 echo "installing tools..."
 sudo apt-get install git zsh curl wget ca-certificates gnupg lsb-release -y

@@ -5,6 +5,10 @@ VOLUME /workspace/result
 # 作業ディレクトリの設定
 WORKDIR /workspace
 
+# tzdataでdebconfのエラーが出るので非対話モードにする
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TZ=Asia/Tokyo
+
 RUN apt-get update && apt-get install -y \
     curl \
     sudo \
