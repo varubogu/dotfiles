@@ -5,10 +5,10 @@
 set -eu
 
 # デフォルトはtrue、-norootオプションがある場合はfalseに設定
-IS_ROOT=true
+is_root=true
 while getopts "noroot" opt; do
     case $opt in
-        noroot) IS_ROOT=false ;;
+        noroot) is_root=false ;;
     esac
 done
 REPO_OWNER="varubogu"
@@ -125,7 +125,7 @@ main() {
     else
         if is_command_available apt-get; then
             echo "apt-get install"
-            . $BIN_DIR/install/install_apt-get.bash $IS_ROOT
+            . $BIN_DIR/install/install_apt-get.bash $is_root
             echo "Installed apt dotfiles successfully!"
         fi
     fi
