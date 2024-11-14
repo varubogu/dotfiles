@@ -158,6 +158,11 @@ main() {
     fi
 
     echo "Installed dotfiles successfully!"
+
+    if [[ "$SHELL" == *"/bash"* ]]; then
+        echo "next step zsh execution (requires sudo)"
+        echo 'chsh -s "$(which zsh)"'
+    fi
 }
 
 main
