@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# ホストのPowerShellからユーザー名を取得し、改行コードを削除
+export WIN_USERNAME=$(powershell.exe '$env:USERNAME' | tr -d '\r')
+# Windowsのユーザーフォルダのパス
+export WIN_HOME="/mnt/c/Users/$WIN_USERNAME"
+
+if [ -r "/mnt/c/Users" ]; then
+
+    echo "Creating symlink to Windows home directory..."
+    if [ ! -L $HOME/windows_home ]; then
+        echo "Created symlink: $HOME/windows_home -> $WIN_HOME"
+        ln -s "$WIN_HOME" $HOME/windows_home
+    fi
+
+fi
+# WSLからホストにアクセスするための情報
+wsl_rc_path="$HOME/.config/custom_env/wsl.rc"
+echo "export WIN_USERNAME=$WIN_USERNAME" >> $wsl_rc_path
+echo "export WIN_HOME=$WIN_HOME" >> $wsl_rc_path

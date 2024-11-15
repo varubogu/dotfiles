@@ -1,12 +1,9 @@
 #!/bin/bash
 
+. $HOME/.config/custom_env/wsl.rc
+
 alias ssh='ssh.exe'
 alias ssh-add='ssh-add.exe'
-
-# ホストのPowerShellからユーザー名を取得し、改行コードを削除
-export WIN_USERNAME=$(powershell.exe '$env:USERNAME' | tr -d '\r')
-# Windowsのユーザーフォルダのパス
-export WIN_HOME="/mnt/c/Users/$WIN_USERNAME"
 
 # WSL2で過去に使っていた1PasswordのSSHエージェント設定
 #
