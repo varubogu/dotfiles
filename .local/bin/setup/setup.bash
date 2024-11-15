@@ -201,7 +201,9 @@ main() {
         fi
     else
         echo_log_info "oh-my-zsh already installed"
-        omz update
+        if is_command_available omz; then
+            omz update
+        fi
     fi
 
 
