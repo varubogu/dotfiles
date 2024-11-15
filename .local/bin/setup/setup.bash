@@ -113,10 +113,6 @@ main() {
 
     setup_yadm
 
-    # 各シェルに実行権限付与
-    echo "chmod +x to bash scripts"
-    find $HOME/.local/bin -name "*.bash" -exec chmod +x {} \;
-
     # XDG Base Directory Specificationを設定
     echo "XDG Base Directory Specification"
     . $HOME/.config/xdg_base_dir/set_env.bash
