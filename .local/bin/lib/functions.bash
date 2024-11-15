@@ -1,6 +1,22 @@
 
 #!/bin/bash
 
+echo_log() {
+    echo "***dotfiles[$1] $2"
+}
+
+echo_log_info() {
+    echo_log "INFO" "$1"
+}
+
+echo_log_error() {
+    echo_log "ERROR" "$1"
+}
+
+echo_log_warn() {
+    echo_log "WARN" "$1"
+}
+
 is_command_available() { command -v "$1" &> /dev/null; }
 
 
