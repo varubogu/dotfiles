@@ -63,16 +63,3 @@ if ! is_command_available docker && [ "$is_root" = "true" ]; then
     sudo apt-get install docker-compose-plugin -y
 fi
 
-ohmyzsh_root="$HOME/.oh-my-zsh"
-ohmyzsh_xdg="$XDG_CONFIG_HOME/zsh/ohmyzsh"
-
-if [ ! -d "$ohmyzsh_xdg" ] && [ ! -d "$ohmyzsh_root" ]; then
-    echo "installing oh-my-zsh ..."
-    yes | sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
-    if [ ! -d "$ohmyzsh_xdg" ]; then
-        echo "oh-my-zsh already installed"
-    elif [ ! -d "$ohmyzsh_root" ]; then
-        echo "oh-my-zsh already installed"
-    fi
-fi

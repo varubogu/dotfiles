@@ -21,5 +21,3 @@ else
     echo "Brewfile is not found. Please create it first."
 fi
 
-echo "installing oh-my-zsh ..."
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"

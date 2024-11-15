@@ -143,8 +143,28 @@ main() {
     # fi
 
     if [ -f $HOME/.local/bin/setup/setup.os.bash ]; then
+        echo "os specific setup"
         . $HOME/.local/bin/setup/setup.os.bash
+        echo "os specific setup done"
     fi
+
+    ohmyzsh_root="$HOME/.oh-my-zsh"
+    if [ ! -d "$ohmyzsh_root" ]; then
+        echo "installing oh-my-zsh ..."
+        echo "After installation, please type 'exit' to quit the interactive mode"
+        sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+        if [ ! -d "$ohmyzsh_root" ]; then
+            echo "oh-my-zsh already installed"
+        else
+            echo "oh-my-zsh installation failed"
+            exit 1
+        fi
+    else
+        echo "oh-my-zsh already installed"
+        omz update
+    fi
+
 
     echo "Installed dotfiles successfully!"
 
