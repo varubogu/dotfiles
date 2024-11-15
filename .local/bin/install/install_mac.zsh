@@ -15,7 +15,11 @@ else
     /usr/sbin/softwareupdate --install-rosetta --agree-to-license
 fi
 
-brew bundle $HOME/.config/brew/Brewfile
+if [ -f "$HOME/.config/brew/Brewfile" ]; then
+    brew bundle install --file=$HOME/.config/brew/Brewfile
+else
+    echo "Brewfile is not found. Please create it first."
+fi
 
 echo "installing oh-my-zsh ..."
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
