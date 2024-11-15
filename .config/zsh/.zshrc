@@ -150,3 +150,4 @@ export HISTFILE="$ZSH_HISTFILE"
 export HISTSIZE="$ZSH_HISTSIZE"
 export SAVEHIST="$ZSH_SAVEHIST"
 
+echo "welcome to zsh"

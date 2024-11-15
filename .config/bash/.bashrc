@@ -139,3 +139,5 @@ export BASH_SAVEHIST=1000
 export BASH_CACHE_DIR=$XDG_CACHE_HOME/bash
 export HISTFILE="$BASH_HISTFILE"
 export HISTSIZE="$BASH_HISTSIZE"
+
+echo "welcome to bash"
