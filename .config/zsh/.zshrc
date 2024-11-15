@@ -1,6 +1,24 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
+# XDG Base Directory Specification
+. $HOME/.config/xdg_base_dir/set_env.bash
+
+# Zsh specific environment
+export ZDOTDIR=$XDG_CONFIG_HOME/zsh
+export ZSH_DATA_HOME=$XDG_DATA_HOME/zsh
+export ZSH_HISTORY=$ZSH_DATA_HOME/history
+export ZSH_HISTFILE=$ZSH_HISTORY/histfile
+export ZSH_HISTSIZE=1000
+export ZSH_SAVEHIST=1000
+export ZSH_LOG_DIR=$ZSH_DATA_HOME/log
+export ZSH_PLUGIN_DIR=$ZSH_DATA_HOME/plugins
+export ZSH_THEME_DIR=$ZSH_DATA_HOME/themes
+export ZSH_CACHE_DIR=$XDG_CACHE_HOME/zsh
+export HISTFILE="$ZSH_HISTFILE"
+export HISTSIZE="$ZSH_HISTSIZE"
+export SAVEHIST="$ZSH_SAVEHIST"
+
 
 # Path to your Oh My Zsh installation.
 #export ZSH="$HOME/.oh-my-zsh"
@@ -135,19 +153,5 @@ else
     echo "OS specific environment is not found. Please create it first."
 fi
 
-# Zsh specific environment
-export ZDOTDIR=$XDG_CONFIG_HOME/zsh
-export ZSH_DATA_HOME=$XDG_DATA_HOME/zsh
-export ZSH_HISTORY=$ZSH_DATA_HOME/history
-export ZSH_HISTFILE=$ZSH_HISTORY/histfile
-export ZSH_HISTSIZE=1000
-export ZSH_SAVEHIST=1000
-export ZSH_LOG_DIR=$ZSH_DATA_HOME/log
-export ZSH_PLUGIN_DIR=$ZSH_DATA_HOME/plugins
-export ZSH_THEME_DIR=$ZSH_DATA_HOME/themes
-export ZSH_CACHE_DIR=$XDG_CACHE_HOME/zsh
-export HISTFILE="$ZSH_HISTFILE"
-export HISTSIZE="$ZSH_HISTSIZE"
-export SAVEHIST="$ZSH_SAVEHIST"
 
 echo "welcome to zsh"

@@ -2,6 +2,19 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+# XDG Base Directory Specification
+. $HOME/.config/xdg_base_dir/set_env.bash
+
+# Bash specific environment
+export BASH_CONFIG=$XDG_CONFIG_HOME/bash
+export BASH_DATA_HOME=$XDG_DATA_HOME/bash
+export BASH_LOG_DIR=$BASH_DATA_HOME/log
+export BASH_PLUGIN_DIR=$BASH_DATA_HOME/plugins
+export BASH_THEME_DIR=$BASH_DATA_HOME/themes
+export BASH_HISTORY_DIR=$BASH_DATA_HOME/history
+export BASH_HISTFILE=$BASH_HISTORY_DIR/histfile
+export BASH_CACHE_DIR=$XDG_CACHE_HOME/bash
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -16,8 +29,13 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
+export BASH_HISTSIZE=1000
+export BASH_SAVEHIST=1000
+HISTSIZE=$BASH_HISTSIZE
 HISTFILESIZE=2000
+HISTFILE="$BASH_HISTFILE"
+HISTSIZE="$BASH_HISTSIZE"
+
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -117,27 +135,17 @@ if ! shopt -oq posix; then
 fi
 
 # Common environment
-. $HOME/.config/custom_env/common.rc
+if [ -r "$HOME/.config/custom_env/common.rc" ]; then
+    . $HOME/.config/custom_env/common.rc
+else
+    echo "Common environment is not found. Please create it first."
+fi
 
 # OS specific environment
-. $HOME/.config/custom_env/os.rc
-
-# XDG Base Configuration
-export SSH_CONFIG=$XDG_CONFIG_HOME/ssh
-export GNUPGHOME=$XDG_CONFIG_HOME/gnupg
-
-# Bash specific environment
-export BASH_CONFIG=$XDG_CONFIG_HOME/bash
-export BASH_DATA_HOME=$XDG_DATA_HOME/bash
-export BASH_LOG_DIR=$BASH_DATA_HOME/log
-export BASH_PLUGIN_DIR=$BASH_DATA_HOME/plugins
-export BASH_THEME_DIR=$BASH_DATA_HOME/themes
-export BASH_HISTORY_DIR=$BASH_DATA_HOME/history
-export BASH_HISTFILE=$BASH_HISTORY_DIR/histfile
-export BASH_HISTSIZE=1000
-export BASH_SAVEHIST=1000
-export BASH_CACHE_DIR=$XDG_CACHE_HOME/bash
-export HISTFILE="$BASH_HISTFILE"
-export HISTSIZE="$BASH_HISTSIZE"
+if [ -r "$HOME/.config/custom_env/os.rc" ]; then
+    . $HOME/.config/custom_env/os.rc
+else
+    echo "OS specific environment is not found. Please create it first."
+fi
 
 echo "welcome to bash"

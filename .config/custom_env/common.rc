@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# XDG Base Directory Specification
-. $HOME/.config/xdg_base_dir/set_env.bash
-
 export SSH_CONFIG=$XDG_CONFIG_HOME/ssh
 export GNUPGHOME=$XDG_CONFIG_HOME/gnupg
 
