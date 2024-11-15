@@ -4,7 +4,13 @@
 
 # Path to your Oh My Zsh installation.
 #export ZSH="$HOME/.oh-my-zsh"
-export ZSH="$HOME/.config/zsh/ohmyzsh"
+if [ -d "$HOME/.config/zsh/ohmyzsh" ]; then
+    export ZSH="$HOME/.config/zsh/ohmyzsh"
+elif [ -d "$HOME/.oh-my-zsh" ]; then
+    export ZSH="$HOME/.oh-my-zsh"
+else
+    echo "Oh My Zsh is not installed. Please install it first."
+fi
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
@@ -75,7 +81,9 @@ HIST_STAMPS="yyyy/mm/dd"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
 
-source $ZSH/oh-my-zsh.sh
+if [ -r "$ZSH/oh-my-zsh.sh" ]; then
+    source $ZSH/oh-my-zsh.sh
+fi
 
 # User configuration
 
@@ -83,7 +91,6 @@ source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
-export LANG=ja_JP.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -115,10 +122,18 @@ prompt_context() {
 
 
 # Common environment
-. $HOME/.config/custom_env/common.rc
+if [ -r "$HOME/.config/custom_env/common.rc" ]; then
+    . $HOME/.config/custom_env/common.rc
+else
+    echo "Common environment is not found. Please create it first."
+fi
 
 # OS specific environment
-. $HOME/.config/custom_env/os.rc
+if [ -r "$HOME/.config/custom_env/os.rc" ]; then
+    . $HOME/.config/custom_env/os.rc
+else
+    echo "OS specific environment is not found. Please create it first."
+fi
 
 # Zsh specific environment
 export ZDOTDIR=$XDG_CONFIG_HOME/zsh
