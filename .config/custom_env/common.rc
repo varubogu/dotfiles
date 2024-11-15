@@ -16,14 +16,14 @@ BIN_DIR=$HOME/.local/bin
 
 
 
-# パッケージのアップデートコマンド
+# Update all packages as much as possible
 alias pkg_update=$BIN_DIR/mng/pkg_update.bash
 
-# パッケージのインストールコマンド
+# Install packages from package configuration file
 alias pkg_install=$BIN_DIR/mng/pkg_install.bash
 
-# Create package list
+# Output package list
 alias pkg_dump=$BIN_DIR/mng/pkg_dump.bash
 
-# Print dotfiles structure
+# Output dotfiles structure
 alias print_struct=$BIN_DIR/struct/print_struct.bash
