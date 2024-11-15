@@ -46,10 +46,10 @@ is_windows() {
 
 
 echo_env() {
-    echo "TERM: $TERM Shell: $SHELL"
-    echo "OS: $(uname)"
-    echo "LANG: $LANG"
-    echo "Home: $HOME PWD: $PWD"
-    echo "User: $USER"
-    echo "Editor: $EDITOR"
+    echo_log_info "TERM: $TERM Shell: $SHELL"
+    echo_log_info "OS: $(uname)"
+    echo_log_info "LANG: $LANG"
+    echo_log_info "Home: $HOME PWD: $PWD"
+    echo_log_info "User: $USER"
+    echo_log_info "Editor: $EDITOR"
 }

@@ -51,12 +51,12 @@ is_windows() {
 
 
 echo_env() {
-    echo "TERM: $TERM Shell: $SHELL"
-    echo "OS: $(uname)"
-    echo "LANG: $LANG"
-    echo "Home: $HOME PWD: $PWD"
-    echo "User: $USER"
-    echo "Editor: $EDITOR"
+    echo_log_info "TERM: $TERM Shell: $SHELL"
+    echo_log_info "OS: $(uname)"
+    echo_log_info "LANG: $LANG"
+    echo_log_info "Home: $HOME PWD: $PWD"
+    echo_log_info "User: $USER"
+    echo_log_info "Editor: $EDITOR"
 }
 
 # .config/lib/functions.bash end
@@ -87,22 +87,22 @@ BIN_DIR=$HOME/.local/bin
 
 
 setup_brew() {
-    echo "Checking brew..."
+    echo_log_info "Checking brew..."
     if is_command_available brew; then
-        echo "brew already installed"
+        echo_log_info "brew already installed"
     else
-        echo "brew is not installed."
+        echo_log_info "brew is not installed."
         if is_mac; then
-            echo "mac brew installation..."
+            echo_log_info "mac brew installation..."
             /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-            echo "brew installed successfully"
-            echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> $HOME/.zprofile
+            echo_log_info "brew installed successfully"
+            echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> $HOME/.zshrc
             eval "$(/opt/homebrew/bin/brew shellenv)"
-            echo "mac brew setting done"
+            echo_log_info "mac brew setting done"
         elif is_linux; then
-            echo "linux brew skip"
+            echo_log_info "linux brew skip"
         else
-            echo "brew installation failed. Please install it manually."
+            echo_log_error "brew installation failed. Please install it manually."
             exit 1
         fi
     fi
@@ -111,26 +111,26 @@ setup_brew() {
 setup_yadm() {
     echo "Checking yadm..."
     if is_command_available yadm; then
-        echo "yadm already installed"
+        echo_log_info "yadm already installed"
     else
-        echo "yadm is not installed. Installing yadm..."
+        echo_log_info "yadm is not installed. Installing yadm..."
         if is_command_available brew; then
             brew install yadm
         elif is_command_available apt-get; then
             sudo apt-get update && sudo apt-get install -y yadm
         else
-            echo "Unable to install yadm. Please install it manually."
+            echo_log_error "Unable to install yadm. Please install it manually."
             exit 1
         fi
     fi
 
     echo "Cloning dotfiles..."
     if [ -d $HOME/.local/share/yadm/repo.git ]; then
-        echo "yadm is already initialized"
+        echo_log_info "yadm is already initialized"
         yadm reset HEAD --soft
         yadm pull origin $BRANCH
     else
-        echo "yadm is none repository. Cloning dotfiles..."
+        echo_log_info "yadm is none repository. Cloning dotfiles..."
         yes | yadm clone $REPO_URL
 
         if [[ ! -f "$HOME/.local/share/yadm/repo.git/info/sparse-checkout" ]]; then
@@ -153,24 +153,24 @@ main() {
     setup_yadm
 
     # XDG Base Directory Specificationを設定
-    echo "XDG Base Directory Specification"
+    echo_log_info "XDG Base Directory Specification"
     . $HOME/.config/xdg_base_dir/set_env.bash
 
     #　環境に合わせてパッケージをインストール
     if is_mac; then
-        echo "mac install"
+        echo_log_info "mac install"
         . $BIN_DIR/install/install_mac.zsh
-        echo "Installed mac dotfiles successfully!"
+        echo_log_info "Installed mac dotfiles successfully!"
     else
         if is_command_available apt-get; then
-            echo "apt-get install"
+            echo_log_info "apt-get install"
             . $BIN_DIR/install/install_apt-get.bash $is_root
-            echo "Installed apt dotfiles successfully!"
+            echo_log_info "Installed apt dotfiles successfully!"
         fi
     fi
 
     # シンボリックリンクを貼る
-    echo "symlink execution"
+    echo_log_info "symlink execution"
     . $BIN_DIR/symlink/symlink.bash
 
     # if [[ "$SHELL" == *"/zsh"* ]]; then
@@ -182,40 +182,40 @@ main() {
     # fi
 
     if [ -f $HOME/.local/bin/setup/setup.os.bash ]; then
-        echo "os specific setup"
+        echo_log_info "os specific setup"
         . $HOME/.local/bin/setup/setup.os.bash
-        echo "os specific setup done"
+        echo_log_info "os specific setup done"
     fi
 
     ohmyzsh_root="$HOME/.oh-my-zsh"
     if [ ! -d "$ohmyzsh_root" ]; then
-        echo "installing oh-my-zsh ..."
-        echo "After installation, please type 'exit' to quit the interactive mode"
+        echo_log_info "installing oh-my-zsh ..."
+        echo_log_info "After installation, please type 'exit' to quit the interactive mode"
         sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
         if [ ! -d "$ohmyzsh_root" ]; then
-            echo "oh-my-zsh already installed"
+            echo_log_info "oh-my-zsh already installed"
         else
-            echo "oh-my-zsh installation failed"
+            echo_log_error "oh-my-zsh installation failed"
             exit 1
         fi
     else
-        echo "oh-my-zsh already installed"
+        echo_log_info "oh-my-zsh already installed"
         omz update
     fi
 
 
-    echo "Installed dotfiles successfully!"
+    echo_log_info "Installed dotfiles successfully!"
 
     if [[ "$SHELL" == *"/zsh"* ]]; then
-        echo "next step: zshrc reload"
+        echo_log_info "next step: zshrc reload"
         echo 'source $HOME/.zshrc'
     elif [[ "$SHELL" == *"/bash"* ]]; then
-        echo "next step: zsh execution (requires sudo)"
-        echo 'chsh -s "$(which zsh)"'
-        echo "or"
-        echo "next step: bashrc reload"
-        echo 'source $HOME/.bashrc'
+        echo_log_info "next step: zsh execution (requires sudo)"
+        echo_log_info 'chsh -s "$(which zsh)"'
+        echo_log_info "or"
+        echo_log_info "next step: bashrc reload"
+        echo_log_info 'source $HOME/.bashrc'
     fi
 }
 

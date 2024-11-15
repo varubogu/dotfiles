@@ -7,21 +7,23 @@ export WIN_HOME="/mnt/c/Users/$WIN_USERNAME"
 
 if [ -r "/mnt/c/Users" ]; then
 
-    echo "Creating symlink to Windows home directory..."
+    echo_log_info "Creating symlink to Windows home directory..."
     if [ ! -L $HOME/windows_home ]; then
-        echo "Created symlink: $HOME/windows_home -> $WIN_HOME"
+        echo_log_info "Created symlink: $HOME/windows_home -> $WIN_HOME"
         ln -s "$WIN_HOME" $HOME/windows_home
     fi
 
 fi
 # WSLからホストにアクセスするための情報
 wsl_rc_path="$HOME/.config/custom_env/wsl.rc"
+echo_log_info "Creating $wsl_rc_path file..."
 cat<< EOF > $wsl_rc_path
 export WIN_USERNAME=$WIN_USERNAME
 export WIN_HOME=$WIN_HOME
 EOF
 
 wsl_gitconfig_path="$HOME/.config/git/wsl/wsl.gitconfig"
+echo_log_info "Creating $wsl_gitconfig_path file..."
 cat<< EOF > $wsl_gitconfig_path
 [gpg "ssh"]
   program = "$WIN_HOME/AppData/Local/1Password/app/8/op-ssh-sign-wsl"
