@@ -17,7 +17,7 @@ echo "locale to japan ..."
 sudo apt-get -y install language-pack-ja
 
 echo "installing tools..."
-sudo apt-get install git zsh curl wget ca-certificates gnupg lsb-release -y
+sudo apt-get install git zsh curl wget tree ca-certificates gnupg lsb-release -y
 
 if ! is_command_available brew && [ "$is_root" = "true" ]; then
     if [ "$arch" = "x86_64" ]; then
