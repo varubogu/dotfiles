@@ -63,3 +63,4 @@ if ! is_command_available docker && [ "$is_root" = "true" ]; then
     sudo apt-get install docker-compose-plugin -y
 fi
 
+sudo apt-get install fonts-powerline -y
