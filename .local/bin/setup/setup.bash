@@ -1,8 +1,7 @@
 #!/bin/bash
 
-# 未定義変数があったらエラー
-# エラーが発生した場合はスクリプトを終了
-set -eu
+# Exit script on error
+set -e
 
 # デフォルトはtrue、-norootオプションがある場合はfalseに設定
 is_root=true
