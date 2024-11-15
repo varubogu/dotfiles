@@ -16,5 +16,13 @@ if [ -r "/mnt/c/Users" ]; then
 fi
 # WSLからホストにアクセスするための情報
 wsl_rc_path="$HOME/.config/custom_env/wsl.rc"
-echo "export WIN_USERNAME=$WIN_USERNAME" >> $wsl_rc_path
-echo "export WIN_HOME=$WIN_HOME" >> $wsl_rc_path
+cat<< EOF > $wsl_rc_path
+export WIN_USERNAME=$WIN_USERNAME
+export WIN_HOME=$WIN_HOME
+EOF
+
+wsl_gitconfig_path="$HOME/.config/git/wsl/wsl.gitconfig"
+cat<< EOF > $wsl_gitconfig_path
+[gpg "ssh"]
+  program = "$WIN_HOME/AppData/Local/1Password/app/8/op-ssh-sign-wsl"
+EOF
