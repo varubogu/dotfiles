@@ -3,6 +3,68 @@
 # Exit script on error
 set -e
 
+# .config/lib/functions.bash start
+
+echo_log() {
+    echo "***dotfiles[$1] $2"
+}
+
+echo_log_info() {
+    echo_log "INFO" "$1"
+}
+
+echo_log_error() {
+    echo_log "ERROR" "$1"
+}
+
+echo_log_warn() {
+    echo_log "WARN" "$1"
+}
+
+is_command_available() { command -v "$1" &> /dev/null; }
+
+
+is_linux() { [ "$(uname)" = "Linux" ]; }
+
+is_mac() { [ "$(uname)" = "Darwin" ];}
+
+is_wsl() {
+    [ -n "${WSL_DISTRO_NAME}" ] || \
+    [ -n "${WSLG_DIR}" ] || \
+    (grep -qEi "(Microsoft|WSL)" /proc/version 2>/dev/null && \
+    [ -r "/mnt/c/Users" ])
+}
+
+is_windows() {
+    case "$(uname -r)" in
+        *Microsoft*)
+            return 0
+            ;;
+        *CYGWIN*|*MINGW*|*MSYS*)
+            return 0
+            ;;
+        *)
+            return 1
+            ;;
+    esac
+}
+
+
+echo_env() {
+    echo "TERM: $TERM Shell: $SHELL"
+    echo "OS: $(uname)"
+    echo "LANG: $LANG"
+    echo "Home: $HOME PWD: $PWD"
+    echo "User: $USER"
+    echo "Editor: $EDITOR"
+}
+
+# .config/lib/functions.bash end
+
+
+
+
+
 # デフォルトはtrue、-norootオプションがある場合はfalseに設定
 is_root=true
 for arg in "$@"; do
@@ -21,29 +83,7 @@ REPO_RAW="https://raw.github.com/$REPO_OWNER/$REPO_NAME"
 BRANCH="main"
 BIN_DIR=$HOME/.local/bin
 
-#!/bin/bash
 
-is_command_available() { command -v "$1" &> /dev/null; }
-
-is_linux() { [ "$(uname)" = "Linux" ]; }
-
-is_mac() { [ "$(uname)" = "Darwin" ];}
-
-is_wsl() { grep -qEi "(Microsoft|WSL)" /proc/version; }
-
-is_windows() {
-    case "$(uname -r)" in
-        *Microsoft*)
-            return 0
-            ;;
-        *CYGWIN*|*MINGW*|*MSYS*)
-            return 0
-            ;;
-        *)
-            return 1
-            ;;
-    esac
-}
 
 
 setup_brew() {
