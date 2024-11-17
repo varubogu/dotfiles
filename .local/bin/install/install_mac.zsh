@@ -31,3 +31,6 @@ cd fonts
 # clean-up a bit
 cd ..
 rm -rf fonts
+
+# Starship
+curl -sS https://starship.rs/install.sh | sh
