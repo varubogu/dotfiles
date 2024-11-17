@@ -1,0 +1,18 @@
+#!/bin/zsh
+
+# Add Homebrew to PATH
+if [ -d "/opt/homebrew/bin" ]; then
+    export PATH="/opt/homebrew/bin:$PATH"
+fi
+
+# Use 1Password's SSH agent
+SSH_1PASSWORD_AGENT_SOCK=$HOME/.1Password/agent.sock
+if [ -S $SSH_1PASSWORD_AGENT_SOCK ]; then
+    export SSH_AUTH_SOCK=$SSH_1PASSWORD_AGENT_SOCK
+fi
+
+
+# Homebrew aliases and settings
+if is_command_available brew; then
+    alias brewup='brew update && brew upgrade'
+fi

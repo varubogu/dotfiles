@@ -1,0 +1,7 @@
+[core]
+    sshCommand = "/mnt/c/windows/System32/OpenSSH/ssh.exe"
+
+# [include]
+# 	path = "~/.config/git/wsl/wsl.gpg.config"
+[include]
+	path = "~/.config/git/wsl/wsl.op.config"

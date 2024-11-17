@@ -1,0 +1,152 @@
+{
+	"$schema" : "https://aka.ms/winget-packages.schema.2.0.json",
+	"CreationDate" : "2024-11-10T19:25:47.937-00:00",
+	"Sources" :
+	[
+		{
+			"Packages" :
+			[
+				{
+					"PackageIdentifier" : "7zip.7zip"
+				},
+				{
+					"PackageIdentifier" : "Git.Git"
+				},
+				{
+					"PackageIdentifier" : "Logitech.OptionsPlus"
+				},
+				{
+					"PackageIdentifier" : "RevoUninstaller.RevoUninstaller"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.PowerShell"
+				},
+				{
+					"PackageIdentifier" : "Nvidia.GeForceExperience"
+				},
+				{
+					"PackageIdentifier" : "SUSE.RancherDesktop"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.VisualStudio.2022.Community"
+				},
+				{
+					"PackageIdentifier" : "Google.Chrome.EXE"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.Edge"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.EdgeWebView2Runtime"
+				},
+				{
+					"PackageIdentifier" : "Valve.Steam"
+				},
+				{
+					"PackageIdentifier" : "Appest.TickTick"
+				},
+				{
+					"PackageIdentifier" : "pCloudAG.pCloudDrive"
+				},
+				{
+					"PackageIdentifier" : "Anysphere.Cursor"
+				},
+				{
+					"PackageIdentifier" : "AgileBits.1Password"
+				},
+				{
+					"PackageIdentifier" : "AgileBits.1Password.CLI"
+				},
+				{
+					"PackageIdentifier" : "AutoHotkey.AutoHotkey"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.OneDrive"
+				},
+				{
+					"PackageIdentifier" : "JetBrains.Toolbox"
+				},
+				{
+					"PackageIdentifier" : "Obsidian.Obsidian"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.VisualStudioCode"
+				},
+				{
+					"PackageIdentifier" : "JetBrains.dotTrace"
+				},
+				{
+					"PackageIdentifier" : "Canonical.Ubuntu.2404"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.AppInstaller"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.UI.Xaml.2.7"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.UI.Xaml.2.8"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.VCLibs.Desktop.14"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.DevHome"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.WindowsTerminal"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.Teams.Free"
+				},
+				{
+					"PackageIdentifier" : "TheBrowserCompany.Arc"
+				}
+			],
+			"SourceDetails" :
+			{
+				"Argument" : "https://cdn.winget.microsoft.com/cache",
+				"Identifier" : "Microsoft.Winget.Source_8wekyb3d8bbwe",
+				"Name" : "winget",
+				"Type" : "Microsoft.PreIndexed.Package"
+			}
+		},
+		{
+			"Packages" :
+			[
+				{
+					"PackageIdentifier" : "XPFFH613W8V6LV"
+				},
+				{
+					"PackageIdentifier" : "XPFFTQ032PTPHF"
+				},
+				{
+					"PackageIdentifier" : "XP99C9G0KRDZ27"
+				},
+				{
+					"PackageIdentifier" : "XPDC2RH70K22MN"
+				},
+				{
+					"PackageIdentifier" : "XPDM27W10192Q0"
+				},
+				{
+					"PackageIdentifier" : "XPFCC4CD725961"
+				},
+				{
+					"PackageIdentifier" : "XP99GVQDX7JPR4"
+				},
+				{
+					"PackageIdentifier" : "XP89DCGQ3K6VLD"
+				}
+			],
+			"SourceDetails" :
+			{
+				"Argument" : "https://storeedgefd.dsx.mp.microsoft.com/v9.0",
+				"Identifier" : "StoreEdgeFD",
+				"Name" : "msstore",
+				"Type" : "Microsoft.Rest"
+			}
+		}
+	],
+	"WinGetVersion" : "1.9.25180"
+}

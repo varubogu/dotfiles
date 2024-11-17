@@ -1,0 +1,32 @@
+# 一旦全ファイルを含める
+/*
+
+# 除外するリポジトリファイル
+!.github
+!.vscode
+!tests
+!README.md
+!LICENSE
+
+# 自分自身も除外する
+!.local/share/yadm
+
+# 除外するGit管理対象外ファイル
+!*.log
+!*.log.*
+!*.log.*.*
+!*dump*
+
+# YADM alternate files
+!.config/zsh/ohmyzsh
+
+# symlink.bashによるシンボリックリンク
+!.bash_profile
+!.bashrc
+!.editorconfig
+!.gitconfig
+!.gitignore
+!.zprofile
+!.zshrc
+!Brewfile
+!windows_home

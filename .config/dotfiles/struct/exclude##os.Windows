@@ -1,0 +1,30 @@
+# Directories
+.1password
+.aws
+.azure
+.cache
+.cursor
+.cursor-tutor
+.docker
+.gk
+.git
+.gnupg
+.kube
+.sonarlint
+.ssh
+.vscode
+AppData
+CrossDevice
+Desktop
+Documents
+Downloads
+go
+Music
+OneDrive
+Pictures
+Public
+Saved Games
+Videos
+
+# Files
+NTUSER.DAT

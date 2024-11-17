@@ -1,0 +1,12 @@
+[user]
+	name = varubogu
+	email = toyosuke@varubogu.com
+
+[core]
+	excludesfile = "~/.config/git/ignore_global"
+[commit]
+	gpgsign = true
+[init]
+	defaultBranch = main
+[include]
+	path = "local.config"
