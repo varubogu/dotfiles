@@ -1,17 +1,1 @@
 #!/bin/bash
-
-export SSH_CONFIG=$XDG_CONFIG_HOME/ssh
-export GNUPGHOME=$XDG_CONFIG_HOME/gnupg
-
-# 日本語化
-export LANG=ja_JP.UTF-8
-export TZ=Asia/Tokyo
-
-export HOME_LOCAL=$HOME/.local
-export LOCAL_BIN_DIR=$HOME_LOCAL/bin
-export LOCAL_LIB_DIR=$HOME/.local/lib
-
-export PATH=$LOCAL_BIN_DIR:$PATH
-
-. $LOCAL_LIB_DIR/functions.bash
-

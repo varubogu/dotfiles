@@ -3,7 +3,7 @@
 # for examples
 
 # XDG Base Directory Specification
-. $HOME/.config/xdg_base_dir/set_env.bash
+. $HOME/.config/zsh/.zshenv
 
 # Bash specific environment
 export BASH_CONFIG=$XDG_CONFIG_HOME/bash
@@ -147,5 +147,3 @@ if [ -r "$HOME/.config/custom_env/os.rc" ]; then
 else
     echo "OS specific environment is not found. Please create it first."
 fi
-
-echo "welcome to bash"
