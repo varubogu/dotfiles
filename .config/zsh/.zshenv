@@ -12,9 +12,10 @@ function add_before_path() {
 function add_after_path() {
     local -a targets=("$@")
     for target in "${targets[@]}"; do
-    if [ -d "$target" ]; then
-        export PATH="$PATH:$target"
-    fi
+        if [ -d "$target" ]; then
+            export PATH="$PATH:$target"
+        fi
+    done
 }
 
 # XDG Base Directory Specification
