@@ -1,5 +1,22 @@
 #!/usr/bin/env sh
 
+function add_before_path() {
+    local -a targets=("$@")
+    for target in "${targets[@]}"; do
+        if [ -d "$target" ]; then
+            export PATH="$target:$PATH"
+        fi
+    done
+}
+
+function add_after_path() {
+    local -a targets=("$@")
+    for target in "${targets[@]}"; do
+    if [ -d "$target" ]; then
+        export PATH="$PATH:$target"
+    fi
+}
+
 # XDG Base Directory Specification
 export XDG_RUNTIME_DIR="/run/user/$(id -u)"
 export XDG_CONFIG_DIRS="/etc/xdg"
