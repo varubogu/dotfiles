@@ -108,8 +108,7 @@ fi
 
 safe_symlink $DOTCONFIG/bash/.bashrc $HOME/.bashrc
 safe_symlink $DOTCONFIG/bash/.bash_profile $HOME/.bash_profile
-safe_symlink $DOTCONFIG/zsh/.zshrc $HOME/.zshrc
-safe_symlink $DOTCONFIG/zsh/.zprofile $HOME/.zprofile
+safe_symlink $DOTCONFIG/zsh/.zshenv $HOME/.zshenv
 safe_symlink $DOTCONFIG/editorconfig/config $HOME/.editorconfig
 
 if is_mac; then
