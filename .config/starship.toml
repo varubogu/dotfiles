@@ -24,11 +24,12 @@ $scala\
 $docker_context\
 [](fg:#06969A bg:#33658A)\
 $time\
-[ ](fg:#33658A)\
+[ ](fg:#33658A)
+[>> ](fg:#ffff00 bg:#000000)
 """
 
 # Disable the blank line at the start of the prompt
-add_newline = false
+add_newline = true
 
 # You can also replace your username with a neat symbol like   or disable this
 # and use the os module below
