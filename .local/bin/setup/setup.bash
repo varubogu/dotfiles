@@ -191,7 +191,8 @@ main() {
     if [ ! -d "$ohmyzsh_root" ]; then
         echo_log_info "installing oh-my-zsh ..."
         echo_log_info "After installation, please type 'exit' to quit the interactive mode"
-        sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+        # Gitは最低限必要なのでパッケージからインストールしておくこと
+        sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --unattended --skip-chsh --keep-zshrc
 
         if [ ! -d "$ohmyzsh_root" ]; then
             echo_log_info "oh-my-zsh already installed"
