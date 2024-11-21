@@ -187,25 +187,9 @@ main() {
         echo_log_info "os specific setup done"
     fi
 
-    ohmyzsh_root="$HOME/.oh-my-zsh"
-    if [ ! -d "$ohmyzsh_root" ]; then
-        echo_log_info "installing oh-my-zsh ..."
-        echo_log_info "After installation, please type 'exit' to quit the interactive mode"
-        # Gitは最低限必要なのでパッケージからインストールしておくこと
-        sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --unattended --skip-chsh --keep-zshrc
+    # zinit install
+    bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)"
 
-        if [ ! -d "$ohmyzsh_root" ]; then
-            echo_log_info "oh-my-zsh already installed"
-        else
-            echo_log_error "oh-my-zsh installation failed"
-            exit 1
-        fi
-    else
-        echo_log_info "oh-my-zsh already installed"
-        if is_command_available omz; then
-            omz update
-        fi
-    fi
 
 
     echo_log_info "Installed dotfiles successfully!"
