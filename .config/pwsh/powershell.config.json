@@ -1,0 +1,7 @@
+{
+    "ExperimentalFeatures":[
+        "PSFeedbackProvider",
+        "PSCommandNotFoundSuggestion"
+    ],
+    "Microsoft.PowerShell:ExecutionPolicy": "RemoteSigned"
+}
