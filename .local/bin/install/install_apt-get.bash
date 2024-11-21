@@ -67,4 +67,4 @@ fi
 sudo apt-get install fonts-powerline fonts-jetbrains-mono -y
 
 # Starship
-curl -sS https://starship.rs/install.sh | sh
+curl -sS https://starship.rs/install.sh | FORCE=1 sh
