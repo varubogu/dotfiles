@@ -60,7 +60,7 @@ safe_symlink() {
     if [ "$can_symlink" = true ]; then
         # シンボリックリンクを作成
         echo_log_info "Created symbolic link $dest -> $src"
-        ln -s "$dest" "$src"
+        ln -s "$src" "$dest"
     fi
 }
 
