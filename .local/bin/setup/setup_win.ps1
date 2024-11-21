@@ -33,7 +33,7 @@ function Setup-Yadm {
 
         # 不要なファイルを除外して再読み込みする
         yadm config core.sparseCheckout true
-        Copy-Item -Path "$HOME\.config\yadm\sparse-checkout" -Destination "$HOME\.local\share\yadm\info\sparse-checkout"
+        Copy-Item -Path "$HOME\.config\yadm\sparse-checkout" -Destination "$HOME\.local\share\yadm\repo.git\info\sparse-checkout"
         yadm checkout main
     }
 }
