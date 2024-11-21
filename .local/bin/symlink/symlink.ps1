@@ -15,48 +15,48 @@
 function New-Symlink-Safety {
     param(
         [Parameter(Mandatory=$true)]
-        [string]$From,
+        [string]$Source,
         [Parameter(Mandatory=$true)]
-        [string]$To
+        [string]$Destination
     )
 
     # リンク元ファイルの存在チェック
-    if (-not (Test-Path $From)) {
-        Throw "Error: From file '$From' does not exist."
+    if (-not (Test-Path $Source)) {
+        Throw "Error: Source file '$Source' does not exist."
     }
 
     # リンク先ファイルの存在チェック（なければそのまま続行）
-    if (Test-Path $To) {
+    if (Test-Path $Destination) {
 
-        $ToItem = Get-Item $To
-        $symlinkType = $ToItem.LinkType
+        $DestinationItem = Get-Item $Destination
+        $symlinkType = $DestinationItem.LinkType
 
         if ($symlinkType -eq "SymbolicLink") {
             # シンボリックリンク作成済み
-            Write-Host "already a symbolic link: $From"
+            Write-Host "already a symbolic link: $Destination"
             return
 
-        } elseif (Test-Path $To -PathType Leaf) {
+        } elseif (Test-Path $Destination -PathType Leaf) {
             # ファイルが存在する場合は日時付きバックアップを取ってからシンボリックリンクを作成
             $backupDate = Get-Date -Format "yyyyMMddHHmmss"
-            $backupFile = "${From}.bk.${backupDate}"
-            Write-Host "backup ${From} to ${backupFile}"
+            $backupFile = "${Destination}.bk.${backupDate}"
+            Write-Host "backup ${Destination} to ${backupFile}"
 
             # バックアップ先が存在する場合はエラー
             if (Test-Path $backupFile) {
                 Throw "Error: already exists '${backupFile}' To be safe, the function is terminated."
             }
-            Move-Item -Path $To -Destination $backupFile
+            Move-Item -Path $Destination -Destination $backupFile
         } else {
             # ファイルでもシンボリックリンクでもない場合は作れないとしてエラー
             # コピー先がディレクトリの場合は想定外の挙動になる恐れがある
-            Throw "Error: $To is not a file or directory or symbolic link."
+            Throw "Error: $Destination is not a file or directory or symbolic link."
         }
     }
 
     # シンボリックリンクを作成
-    Write-Host "Created symbolic link $From ---> $To"
-    New-Item -ItemType SymbolicLink -Path $To -Target $From
+    Write-Host "Created symbolic link $Destination -> $Source"
+    New-Item -ItemType SymbolicLink -Path $Destination -Target $Source
 }
 
 # ファイル・ディレクトリをコピーする関数
@@ -89,7 +89,7 @@ function Copy-Item-Safety {
     }
     else {
         # コピーを作成
-        Write-Host "Created copy $From ---> $To"
+        Write-Host "Created copy $From -> $To"
         Copy-Item -Path $From -Destination $To -Recurse
     }
 }

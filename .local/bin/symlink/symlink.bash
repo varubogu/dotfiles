@@ -16,8 +16,8 @@
 # 注意:
 # - 既存のファイルはバックアップされます（ファイル名.bk.年月日時分秒の形式）
 safe_symlink() {
-    local dest="$1"
-    local src="$2"
+    local src="$1"
+    local dest="$2"
 
     # 引数チェック
     if [ $# -ne 2 ]; then
@@ -26,30 +26,30 @@ safe_symlink() {
     fi
 
     # リンク元ファイルの存在チェック
-    if [ ! -e "$dest" ]; then
-        echo_log_error "Error: Source file '$dest' does not exist." >&2
+    if [ ! -e "$src" ]; then
+        echo_log_error "Error: Source file '$src' does not exist." >&2
         return 1
     fi
 
     local can_symlink=false
 
-    if [ -L "$src" ]; then
+    if [ -L "$dest" ]; then
         # シンボリックリンク作成済み
-        echo_log_info "already a symbolic link: $src"
+        echo_log_info "already a symbolic link: $dest"
         return 0
 
-    elif [ -e "$src" ]; then
+    elif [ -e "$dest" ]; then
         # ファイルが存在する場合は日時付きバックアップを取ってからシンボリックリンクを作成
         local backup_date=$(date '+%Y%m%d%H%M%S')
-        local backup_file="${src}.bk.${backup_date}"
-        echo_log_info "backup ${src} to ${backup_file}"
+        local backup_file="${dest}.bk.${backup_date}"
+        echo_log_info "backup ${dest} to ${backup_file}"
         # 移動先ファイルの存在チェック
         if [ -e "${backup_file}" ]; then
             echo_log_error "Error: already exitst `${backup_file}`"
             echo_log_error "To be safe, the function is terminated."
             return 1
         fi
-        mv "$src" "${backup_file}"
+        mv "$dest" "${backup_file}"
         can_symlink=true
 
     else
@@ -59,14 +59,14 @@ safe_symlink() {
 
     if [ "$can_symlink" = true ]; then
         # シンボリックリンクを作成
-        echo_log_info "Created symbolic link $dest ---> $src"
+        echo_log_info "Created symbolic link $dest -> $src"
         ln -s "$dest" "$src"
     fi
 }
 
 safe_copy() {
-    local dest="$1"
-    local src="$2"
+    local from="$1"
+    local to="$2"
 
     # 引数チェック
     if [ $# -ne 2 ]; then
@@ -75,16 +75,16 @@ safe_copy() {
     fi
 
     # リンク元ファイルの存在チェック
-    if [ ! -e "$dest" ]; then
-        echo_log_error "Error: Source file '$dest' does not exist." >&2
+    if [ ! -e "$from" ]; then
+        echo_log_error "Error: Source file '$from' does not exist." >&2
         return 1
     fi
 
     local can_copy=false
 
-    if [ -e "$src" ]; then
+    if [ -e "$to" ]; then
         # ファイルが存在する場合はコピーしない
-        echo_log_info "already exist: $src"
+        echo_log_info "already exist: $to"
     else
         # ファイルが存在しない場合はそのままコピーを作成
         can_copy=true
@@ -92,8 +92,8 @@ safe_copy() {
 
     if [ "$can_copy" = true ]; then
         # コピーを作成
-        echo_log_info "Created copy $dest ---> $src"
-        cp -r "$dest" "$src"
+        echo_log_info "Created copy $from -> $to"
+        cp -r "$from" "$to"
     fi
 }
 
