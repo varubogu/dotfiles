@@ -1,5 +1,6 @@
 FROM ubuntu:24.04
 
+# 結果を保存するディレクトリ
 VOLUME /workspace/result
 
 # 作業ディレクトリの設定
