@@ -35,7 +35,7 @@ safe_symlink() {
 
     if [ -L "$src" ]; then
         # シンボリックリンク作成済み
-        echo_log_info "$src is already a symbolic link."
+        echo_log_info "already a symbolic link: $src"
         return 0
 
     elif [ -e "$src" ]; then
@@ -84,7 +84,7 @@ safe_copy() {
 
     if [ -e "$src" ]; then
         # ファイルが存在する場合はコピーしない
-        echo_log_info "$src is already exist."
+        echo_log_info "already exist: $src"
     else
         # ファイルが存在しない場合はそのままコピーを作成
         can_copy=true

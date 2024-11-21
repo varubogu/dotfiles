@@ -33,7 +33,7 @@ function New-Symlink-Safety {
 
         if ($symlinkType -eq "SymbolicLink") {
             # シンボリックリンク作成済み
-            Write-Host "$From is already a symbolic link."
+            Write-Host "already a symbolic link: $From"
             return
 
         } elseif (Test-Path $To -PathType Leaf) {
@@ -85,7 +85,7 @@ function Copy-Item-Safety {
 
     if (Test-Path $To) {
         # ファイルが存在する場合はコピーしない
-        Write-Host "$To is already exist."
+        Write-Host "already exist: $To"
     }
     else {
         # コピーを作成
