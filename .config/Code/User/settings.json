@@ -1,5 +1,4 @@
 {
-    // 言語ごとのオーバーライド
     "[css]": {
         "editor.defaultFormatter": "vscode.css-language-features"
     },
@@ -31,13 +30,47 @@
         "editor.wordBasedSuggestions": "off"
     },
     "aws.suppressPrompts": {
-        "codeWhispererNewWelcomeMessage": true
     },
     "cSpell.userWords": [
+        "applescript",
+        "Autocloaking",
+        "autofetch",
+        "autohotkey",
+        "autoit",
+        "bmewburn",
+        "Cascadia",
+        "charliermarsh",
+        "Consolas",
+        "cscript",
         "DBHOST",
         "DBPASSWORD",
         "DBUSER",
-        "devcontainers"
+        "devcontainers",
+        "factorypath",
+        "fantomasignore",
+        "gdscript",
+        "geequlim",
+        "gfortran",
+        "haxe",
+        "intelephense",
+        "ipynb",
+        "javac",
+        "kitc",
+        "lein",
+        "lessc",
+        "matchtext",
+        "Nologo",
+        "osascript",
+        "Pylance",
+        "qttools",
+        "Rscript",
+        "runhaskell",
+        "rustc",
+        "sbcl",
+        "scriptcs",
+        "sonarlint",
+        "vbscript",
+        "vsintellicode"
     ],
     "cmake.configureOnOpen": true,
     "cmake.options.statusBarVisibility": "compact",
@@ -97,6 +130,7 @@
     "dev.containers.defaultFeatures": {},
     "diffEditor.ignoreTrimWhitespace": false,
     "docker.volumes.sortBy": "CreatedTime",
+    "dotenv.enableAutocloaking": true,
     "editor.accessibilitySupport": "off",
     "editor.bracketPairColorization.enabled": true,
     "editor.codeActionsOnSave": {},
@@ -107,8 +141,33 @@
     "editor.linkedEditing": true,
     "editor.renderWhitespace": "all",
     "editor.suggestSelection": "first",
+    "editor.tokenColorCustomizations": {
+        "[*Dark*]": {
+            "textMateRules": [
+                {
+                    "scope": "ref.matchtext",
+                    "settings": {
+                        "foreground": "#fff"
+                    }
+                }
+            ]
+        },
+        "[*Light*]": {
+            "textMateRules": [
+                {
+                    "scope": "ref.matchtext",
+                    "settings": {
+                        "foreground": "#000"
+                    }
+                }
+            ]
+        },
+        "textMateRules": []
+    },
     "files.associations": {
-        "*.html": "html"
+        "*.html": "html",
+        ".env*": "dotenv",
+        ".fantomasignore": "ignore"
     },
     "files.autoSave": "afterDelay",
     "files.exclude": {
@@ -120,6 +179,11 @@
     "files.trimTrailingWhitespace": true,
     "git.autofetch": true,
     "github.copilot.editor.enableAutoCompletions": true,
+    "github.copilot.enable": {
+        ".env": false,
+        "markdown": true,
+        "plaintext": true
+    },
     "gitlens.defaultDateFormat": "YYYY/MM/DD",
     "gitlens.defaultDateShortFormat": null,
     "gitlens.defaultTimeFormat": "HH:mm:ss",
@@ -151,7 +215,6 @@
         }
     ],
     "settingsSync.ignoredExtensions": [],
-    "sonarlint.ls.javaHome": "",
     "sonarlint.rules": {
         "Web:TableWithoutCaptionCheck": {
             "level": "off"
@@ -163,7 +226,6 @@
     "window.restoreWindows": "none",
     "workbench.colorTheme": "Visual Studio Dark",
     "workbench.editorAssociations": {
-        "*.ipynb": "jupyter.notebook.ipynb"
     },
     "yaml.customTags": [
         "!And",
@@ -193,6 +255,8 @@
         "!Select sequence",
         "!Split",
         "!Split sequence"
-    ]
-    // 以下、未整理の設定
+    ],
+    "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz": {
+        // 以下、未整理の設定
+    }
 }
