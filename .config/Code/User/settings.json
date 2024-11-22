@@ -1,0 +1,198 @@
+{
+    // 言語ごとのオーバーライド
+    "[css]": {
+        "editor.defaultFormatter": "vscode.css-language-features"
+    },
+    "[gdscript]": {
+        "editor.defaultFormatter": "geequlim.godot-tools"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[php]": {
+        "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
+    },
+    "[python]": {
+        "editor.codeActionsOnSave": {
+            "source.fixAll.ruff": "explicit",
+            "source.organizeImports.ruff": "explicit"
+        },
+        "editor.defaultFormatter": "charliermarsh.ruff",
+        "editor.formatOnType": true,
+        "editor.wordBasedSuggestions": "off"
+    },
+    "aws.suppressPrompts": {
+        "codeWhispererNewWelcomeMessage": true
+    },
+    "cSpell.userWords": [
+        "DBHOST",
+        "DBPASSWORD",
+        "DBUSER",
+        "devcontainers"
+    ],
+    "cmake.configureOnOpen": true,
+    "cmake.options.statusBarVisibility": "compact",
+    "cmake.parallelJobs": 4,
+    "code-runner.executorMap": {
+        "FortranFreeForm": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+        "ahk": "autohotkey",
+        "applescript": "osascript",
+        "autoit": "autoit3",
+        "bat": "cmd /c",
+        "c": "cd $dir && gcc $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+        "clojure": "lein exec",
+        "coffeescript": "coffee",
+        "cpp": "cd $dir && g++ $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+        "crystal": "crystal",
+        "csharp": "scriptcs",
+        "d": "cd $dir && dmd $fileName && $dir$fileNameWithoutExt",
+        "dart": "dart",
+        "fortran": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+        "fortran-modern": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+        "fortran_fixed-form": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+        "fsharp": "fsi",
+        "go": "go run",
+        "groovy": "groovy",
+        "haskell": "runhaskell",
+        "haxe": "haxe --cwd $dirWithoutTrailingSlash --run $fileNameWithoutExt",
+        "java": "cd $dir && javac $fileName && java $fileNameWithoutExt",
+        "javascript": "node",
+        "julia": "julia",
+        "kit": "kitc --run",
+        "less": "cd $dir && lessc $fileName $fileNameWithoutExt.css",
+        "lisp": "sbcl --script",
+        "lua": "lua",
+        "nim": "nim compile --verbosity:0 --hints:off --run",
+        "objective-c": "cd $dir && gcc -framework Cocoa $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+        "ocaml": "ocaml",
+        "pascal": "cd $dir && fpc $fileName && $dir$fileNameWithoutExt",
+        "perl": "perl",
+        "perl6": "perl6",
+        "php": "php",
+        "powershell": "powershell -ExecutionPolicy ByPass -File",
+        "python": "python -u",
+        "r": "Rscript",
+        "racket": "racket",
+        "ruby": "ruby",
+        "rust": "cd $dir && rustc $fileName && $dir$fileNameWithoutExt",
+        "sass": "sass --style expanded",
+        "scala": "scala",
+        "scheme": "csi -script",
+        "scss": "scss --style expanded",
+        "shellscript": "bash",
+        "swift": "swift",
+        "typescript": "ts-node",
+        "v": "v run",
+        "vbscript": "cscript //Nologo"
+    },
+    "dev.containers.defaultFeatures": {},
+    "diffEditor.ignoreTrimWhitespace": false,
+    "docker.volumes.sortBy": "CreatedTime",
+    "editor.accessibilitySupport": "off",
+    "editor.bracketPairColorization.enabled": true,
+    "editor.codeActionsOnSave": {},
+    "editor.fontFamily": "'Cascadia Code', 'JetBrainsMono NF Thin', Consolas, 'Courier New', monospace",
+    "editor.fontLigatures": true,
+    "editor.fontSize": 14,
+    "editor.fontVariations": false,
+    "editor.linkedEditing": true,
+    "editor.renderWhitespace": "all",
+    "editor.suggestSelection": "first",
+    "files.associations": {
+        "*.html": "html"
+    },
+    "files.autoSave": "afterDelay",
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.factorypath": true,
+        "**/.project": true,
+        "**/.settings": true
+    },
+    "files.trimTrailingWhitespace": true,
+    "git.autofetch": true,
+    "github.copilot.editor.enableAutoCompletions": true,
+    "gitlens.defaultDateFormat": "YYYY/MM/DD",
+    "gitlens.defaultDateShortFormat": null,
+    "gitlens.defaultTimeFormat": "HH:mm:ss",
+    "gitlens.remotes": [],
+    "gitlens.views.commitDetails.files.layout": "tree",
+    "mssql.connections": [
+        {
+            "database": "{{put-database-name-here}}",
+            "password": "",
+            "server": "{{put-server-name-here}}",
+            "user": "{{put-username-here}}"
+        }
+    ],
+    "php-cs-fixer.executablePath": "${extensionPath}/php-cs-fixer.phar",
+    "php-cs-fixer.lastDownload": 1698383643457,
+    "python.languageServer": "Pylance",
+    "qttools.extraSearchDirectories": [],
+    "redhat.telemetry.enabled": false,
+    "remote.SSH.remotePlatform": {
+        "default": "linux"
+    },
+    "remote.autoForwardPortsSource": "hybrid",
+    "rest-client.fontFamily": "",
+    "rsp-ui.enableStartServerOnActivation": [
+        {
+            "id": "redhat.vscode-community-server-connector",
+            "name": "Community Server Connector",
+            "startOnActivation": true
+        }
+    ],
+    "settingsSync.ignoredExtensions": [],
+    "sonarlint.ls.javaHome": "",
+    "sonarlint.rules": {
+        "Web:TableWithoutCaptionCheck": {
+            "level": "off"
+        }
+    },
+    "terminal.integrated.enableMultiLinePasteWarning": false,
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "window.commandCenter": true,
+    "window.restoreWindows": "none",
+    "workbench.colorTheme": "Visual Studio Dark",
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter.notebook.ipynb"
+    },
+    "yaml.customTags": [
+        "!And",
+        "!And sequence",
+        "!If",
+        "!If sequence",
+        "!Not",
+        "!Not sequence",
+        "!Equals",
+        "!Equals sequence",
+        "!Or",
+        "!Or sequence",
+        "!FindInMap",
+        "!FindInMap sequence",
+        "!Base64",
+        "!Join",
+        "!Join sequence",
+        "!Cidr",
+        "!Ref",
+        "!Sub",
+        "!Sub sequence",
+        "!GetAtt",
+        "!GetAZs",
+        "!ImportValue",
+        "!ImportValue sequence",
+        "!Select",
+        "!Select sequence",
+        "!Split",
+        "!Split sequence"
+    ]
+    // 以下、未整理の設定
+}
