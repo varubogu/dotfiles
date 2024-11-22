@@ -61,6 +61,7 @@
         "matchtext",
         "Nologo",
         "osascript",
+        "phar",
         "Pylance",
         "qttools",
         "Rscript",
@@ -220,7 +221,7 @@
             "level": "off"
         }
     },
-    "terminal.integrated.enableMultiLinePasteWarning": false,
+    "terminal.integrated.enableMultiLinePasteWarning": "auto",
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "window.commandCenter": true,
     "window.restoreWindows": "none",
@@ -256,7 +257,7 @@
         "!Split",
         "!Split sequence"
     ],
-    "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz": {
+    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~": {
         // 以下、未整理の設定
     }
 }
