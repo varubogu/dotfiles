@@ -38,4 +38,44 @@ zinit light-mode for \
     zdharma-continuum/zinit-annex-as-monitor \
     zdharma-continuum/zinit-annex-bin-gem-node \
     zdharma-continuum/zinit-annex-patch-dl \
-    zdharma-continuum/zinit-annex-rust
+    zdharma-continuum/zinit-annex-rust \
+    zsh-users/zsh-syntax-highlighting \
+    zsh-users/zsh-autosuggestions \
+    zsh-users/zsh-completions \
+    zdharma/history-search-multi-word
+
+# 自動保管
+#autoload -U compinit; compinit
+
+# <directory path> only -> cd <directory path>
+# .. -> cd ..
+# /usr/bin -> cd /usr/bin
+setopt auto_cd
+
+# cd alias
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+# When entering a command, delete old identical commands from the command history
+setopt hist_ignore_all_dups
+
+# match big <--> little
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
+# completion menu select
+zstyle ':completion:*:default' menu select=2
+
+# directory completion to add '/'
+setopt auto_param_slash
+
+# カッコを自動補完
+setopt auto_param_keys
+
+# commandline args completion --prefix=/usr/bin  <- '/usr/bin'
+setopt magic_equal_subst
+
+# utf8 name view
+setopt print_eight_bit
+
+# If it starts with a space, no history is added
+setopt hist_ignore_space
