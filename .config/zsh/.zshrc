@@ -79,3 +79,20 @@ setopt print_eight_bit
 
 # If it starts with a space, no history is added
 setopt hist_ignore_space
+
+
+# pyshell_venv
+pysh(){
+    HOST_PYTHON_COMMAND="python"
+    if [ command -v python3 &> /dev/null ]; then
+        HOST_PYTHON_COMMAND="python3"
+    fi
+    if [ ! -d "$HOME/.local/share/pyshell_venv" ]; then
+        $HOST_PYTHON_COMMAND -m venv "$HOME/.local/share/pyshell_venv"
+    fi
+    if [ -d "$HOME/.local/share/pyshell_venv" ]; then
+        source "$HOME/.local/share/pyshell_venv/bin/activate"
+    else
+        echo "pyshell_venv is not found."
+    fi
+}
