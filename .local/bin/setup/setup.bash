@@ -136,7 +136,7 @@ setup_yadm() {
         if [[ ! -f "$HOME/.local/share/yadm/repo.git/info/sparse-checkout" ]]; then
             # 不要なファイルを除外して再読み込みする
             yadm config core.sparseCheckout true
-            cp $HOME/.config/yadm/sparse-checkout "$HOME/.local/share/yadm/repo.git/info/sparse-checkout"
+            ln -s $HOME/.config/yadm/sparse-checkout $HOME/.local/share/yadm/repo.git/info/sparse-checkout
             yadm checkout main
         fi
     fi
