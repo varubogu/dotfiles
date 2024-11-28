@@ -29,8 +29,7 @@
         "editor.formatOnType": true,
         "editor.wordBasedSuggestions": "off"
     },
-    "aws.suppressPrompts": {
-    },
+    "aws.suppressPrompts": {},
     "cSpell.userWords": [
         "applescript",
         "Autocloaking",
@@ -128,31 +127,29 @@
         "v": "v run",
         "vbscript": "cscript //Nologo"
     },
+    "debug.allowBreakpointsEverywhere": true,
+    "debug.showBreakpointsInOverviewRuler": true,
+    "dev.containers.copyGitConfig": false,
     "dev.containers.defaultFeatures": {},
+    "dev.containers.gitCredentialHelperConfigLocation": "global",
+    "diffEditor.codeLens": true,
+    "diffEditor.experimental.showMoves": true,
     "diffEditor.ignoreTrimWhitespace": false,
     "docker.volumes.sortBy": "CreatedTime",
     "dotenv.enableAutocloaking": true,
     "editor.accessibilitySupport": "off",
     "editor.bracketPairColorization.enabled": true,
     "editor.codeActionsOnSave": {},
+    "editor.find.autoFindInSelection": "multiline",
     "editor.fontFamily": "'Cascadia Code', 'JetBrainsMono NF Thin', Consolas, 'Courier New', monospace",
     "editor.fontLigatures": true,
     "editor.fontSize": 14,
     "editor.fontVariations": false,
     "editor.linkedEditing": true,
     "editor.renderWhitespace": "all",
+    "editor.smoothScrolling": true,
     "editor.suggestSelection": "first",
     "editor.tokenColorCustomizations": {
-        "[*Dark*]": {
-            "textMateRules": [
-                {
-                    "scope": "ref.matchtext",
-                    "settings": {
-                        "foreground": "#fff"
-                    }
-                }
-            ]
-        },
         "[*Light*]": {
             "textMateRules": [
                 {
@@ -163,8 +160,27 @@
                 }
             ]
         },
-        "textMateRules": []
+        "[*Dark*]": {
+            "textMateRules": [
+                {
+                    "scope": "ref.matchtext",
+                    "settings": {
+                        "foreground": "#fff"
+                    }
+                }
+            ]
+        },
+        "textMateRules": [
+            {
+                "scope": "keyword.other.dotenv",
+                "settings": {
+                    "foreground": "#FF000000"
+                }
+            }
+        ]
     },
+    "editor.wordWrap": "bounded",
+    "explorer.fileNesting.enabled": true,
     "files.associations": {
         "*.html": "html",
         ".env*": "dotenv",
@@ -177,8 +193,10 @@
         "**/.project": true,
         "**/.settings": true
     },
+    "files.trimFinalNewlines": true,
     "files.trimTrailingWhitespace": true,
     "git.autofetch": true,
+    "git.enableCommitSigning": true,
     "github.copilot.editor.enableAutoCompletions": true,
     "github.copilot.enable": {
         ".env": false,
@@ -190,6 +208,10 @@
     "gitlens.defaultTimeFormat": "HH:mm:ss",
     "gitlens.remotes": [],
     "gitlens.views.commitDetails.files.layout": "tree",
+    "launch": {
+        "compounds": [],
+        "configurations": []
+    },
     "mssql.connections": [
         {
             "database": "{{put-database-name-here}}",
@@ -207,6 +229,7 @@
         "default": "linux"
     },
     "remote.autoForwardPortsSource": "hybrid",
+    "remote.downloadExtensionsLocally": true,
     "rest-client.fontFamily": "",
     "rsp-ui.enableStartServerOnActivation": [
         {
@@ -215,19 +238,51 @@
             "startOnActivation": true
         }
     ],
+    "scm.alwaysShowActions": true,
+    "scm.alwaysShowRepositories": true,
+    "scm.defaultViewMode": "tree",
+    "search.showLineNumbers": true,
     "settingsSync.ignoredExtensions": [],
+    "settingsSync.ignoredSettings": [
+        "-dotfiles.repository",
+        "-dotfiles.installCommand",
+        "-dotfiles.targetPath"
+    ],
     "sonarlint.rules": {
         "Web:TableWithoutCaptionCheck": {
             "level": "off"
         }
     },
+    "sortJSON.contextMenu": {
+        "sortJSONAlphaNum": false,
+        "sortJSONAlphaNumReverse": false,
+        "sortJSONKeyLength": false,
+        "sortJSONKeyLengthReverse": false,
+        "sortJSONReverse": false,
+        "sortJSONType": false,
+        "sortJSONTypeReverse": false,
+        "sortJSONValues": false,
+        "sortJSONValuesReverse": false
+    },
+    "terminal.integrated.cursorBlinking": true,
     "terminal.integrated.enableMultiLinePasteWarning": "auto",
+    "terminal.integrated.enableVisualBell": true,
+    "terminal.integrated.smoothScrolling": true,
+    "terminal.integrated.suggest.enabled": true,
+    "terminal.integrated.tabs.hideCondition": "never",
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "window.commandCenter": true,
     "window.restoreWindows": "none",
     "workbench.colorTheme": "Visual Studio Dark",
-    "workbench.editorAssociations": {
-    },
+    "workbench.editor.enablePreview": false,
+    "workbench.editor.pinnedTabsOnSeparateRow": true,
+    "workbench.editor.wrapTabs": true,
+    "workbench.editorAssociations": {},
+    "workbench.experimental.cloudChanges.autoStore": "onShutdown",
+    "workbench.hover.delay": 300,
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.list.smoothScrolling": true,
+    "workbench.tree.renderIndentGuides": "always",
     "yaml.customTags": [
         "!And",
         "!And sequence",
