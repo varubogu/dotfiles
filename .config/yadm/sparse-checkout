@@ -17,9 +17,6 @@
 !*.log.*.*
 !*dump*
 
-# YADM alternate files
-!.config/zsh/ohmyzsh
-
 # symlink.bashによるシンボリックリンク
 !.bash_profile
 !.bashrc
