@@ -68,6 +68,10 @@ export LOCAL_SHARE_DIR=$HOME/.local/share
 
 export PATH=$LOCAL_BIN_DIR:$PATH
 
+# Rust
+if [ -d "$HOME/.cargo" ]; then
+    . "$HOME/.cargo/env"
+fi
 
 # OS specific environment variables
 . "$HOME/.config/custom_env/sh.env.local"
