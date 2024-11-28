@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+echo_log_info "apt-get update..."
+sudo apt-get update && sudo apt-get upgrade -y
+
+echo_log_info "locale to japan ..."
+sudo apt-get -y install language-pack-ja
+
+echo_log_info "installing tools..."
+sudo apt-get install git zsh curl wget tree unzip fontconfig ca-certificates gnupg lsb-release -y
+
+
+# Fonts
+sudo apt-get install fonts-powerline fonts-jetbrains-mono -y

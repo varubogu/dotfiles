@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+while [[ "$#" -gt 0 ]]; do
+    case $1 in
+        --root) is_root=true ;;
+        *) echo "Unknown parameter passed: $1"; exit 1 ;;
+    esac
+    shift
+done
+
+if [ "$is_root" = "true" ]; then
+    echo_log_info "Root option detected. Proceeding with installation."
+else
+    echo_log_info "No root option detected. Skipping installation."
+    exit 0
+fi
+
+if command -v docker &>/dev/null; then
+    echo_log_info "docker is already installed"
+    exit 0
+fi
+
+# install
+echo_log_info "installing docker ..."
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --yes --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io -y
+sudo apt-get install docker-compose-plugin -y
+

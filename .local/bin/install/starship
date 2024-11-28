@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# Starship
+curl -sS https://starship.rs/install.sh | FORCE=1 sh

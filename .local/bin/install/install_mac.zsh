@@ -22,13 +22,11 @@ else
     echo_log_error "Brewfile is not found. Please create it first."
 fi
 
+# powerline fonts
 echo_log_info "installing powerline fonts..."
-# clone
 git clone https://github.com/powerline/fonts.git --depth=1
-# install
 cd fonts
 ./install.sh
-# clean-up a bit
 cd ..
 rm -rf fonts
 

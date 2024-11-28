@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+while [[ "$#" -gt 0 ]]; do
+    case $1 in
+        --root) is_root=true ;;
+        *) echo "Unknown parameter passed: $1"; exit 1 ;;
+    esac
+    shift
+done
+
+if [ "$is_root" = "true" ]; then
+    echo_log_info "Root option detected. Proceeding with installation."
+else
+    echo_log_info "No root option detected. Skipping installation."
+    exit 0
+fi
+
+if command -v brew &>/dev/null; then
+    echo_log_info "brew is already installed"
+    exit 0
+fi
+
+# アーキテクチャ判定
+arch=$(dpkg --print-architecture)
+
+if [ "$arch" != "x86_64" ]; then
+    echo_log_error "brew is not supported on $arch"
+    exit 0
+fi
+
+echo_log_info "installing HomeBrew..."
+sudo apt-get install build-essential procps file -y
+yes "" | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
