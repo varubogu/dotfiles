@@ -1,0 +1,8 @@
+#! /usr/bin/env bash
+
+file_path=$(realpath $0)
+echo $file_path
+dir_path=$(dirname $file_path)
+echo $dir_path
+
+export PATH="$dir_path:$PATH"

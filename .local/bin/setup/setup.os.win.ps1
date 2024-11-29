@@ -2,9 +2,7 @@
 # 1Password SSH Signer for WSL -> git config
 $wsl_gitconfig_path = "$HOME/.config/git/windows/local.gitconfig"
 Write-Output "Creating $wsl_gitconfig_path file..."
-# Start of Selection
-$appdata = $env:APPDATA -replace '\\', '/'
-# End of Selection
+$appdata = $env:USERPROFILE -replace '\\', '/'
 @"
 [gpg "ssh"]
   program = "$appdata/Local/1Password/app/8/op-ssh-sign.exe"
