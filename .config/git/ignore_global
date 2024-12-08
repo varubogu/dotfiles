@@ -263,3 +263,5 @@ __pycache__/
 .ssh/*
 .config/ssh/*
 
+# Intellij IDEA
+.idea/dictionaries/
