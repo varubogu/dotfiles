@@ -69,9 +69,12 @@ export LOCAL_SHARE_DIR=$HOME/.local/share
 export PATH=$LOCAL_BIN_DIR:$PATH
 
 # Rust
-if [ -d "$HOME/.cargo" ]; then
-    . "$HOME/.cargo/env"
-fi
+[ -d "$HOME/.cargo" ] && [ -f "$HOME/.cargo/env" ] && \. "$HOME/.cargo/env"
+
+# export NVM_DIR="$HOME/.nvm"
+export NVM_DIR="$XDG_DATA_HOME/nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh" # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # OS specific environment variables
 . "$HOME/.config/custom_env/sh.env.local"
