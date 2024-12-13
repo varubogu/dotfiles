@@ -96,3 +96,6 @@ pysh(){
         echo "pyshell_venv is not found."
     fi
 }
+
+# bun completions
+[ -s "/Users/toyosuke/.bun/_bun" ] && source "/Users/toyosuke/.bun/_bun"
