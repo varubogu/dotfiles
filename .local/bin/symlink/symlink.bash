@@ -115,4 +115,4 @@ if is_mac; then
     safe_symlink $HOME/Movies $HOME/Videos
 fi
 
-safe_copy $DOTCONFIG/git/config $HOME/.gitconfig
+#safe_copy $DOTCONFIG/git/config $HOME/.gitconfig

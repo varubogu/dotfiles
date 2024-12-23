@@ -98,4 +98,4 @@ pysh(){
 }
 
 # bun completions
-[ -s "/Users/toyosuke/.bun/_bun" ] && source "/Users/toyosuke/.bun/_bun"
+[ -s "~/.bun/_bun" ] && source "~/.bun/_bun"
