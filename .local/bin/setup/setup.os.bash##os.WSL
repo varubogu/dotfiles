@@ -5,8 +5,12 @@ export WIN_USERNAME=$(powershell.exe '$env:USERNAME' | tr -d '\r')
 # Windows User Folder Path
 WIN_USERS_DIR="/mnt/c/Users"
 
-# Windows User Folder Path -> symlink ~/windows_home
-if [ -n "$WIN_USERNAME" && -r "$WIN_USERS_DIR" ]; then
+# WSL home -> Windows home symlink
+create_win_home_symlink() {
+    if [ -z "$WIN_USERNAME" ] || [ ! -r "$WIN_USERS_DIR" ]; then
+        echo_log_error "Windows username or user directory is not set."
+        return 1
+    fi
 
     export WIN_HOME="$WIN_USERS_DIR/$WIN_USERNAME"
 
@@ -16,20 +20,52 @@ if [ -n "$WIN_USERNAME" && -r "$WIN_USERS_DIR" ]; then
         ln -s "$WIN_HOME" $HOME/windows_home
     fi
 
-    # Host User Info -> shell environment
+    return 0;
+}
+
+# Host User Info -> shell environment
+create_env_rc() {
+    if [ -z "$WIN_USERNAME" ] || [ ! -r "$WIN_USERS_DIR" ]; then
+        echo_log_error "Windows username or user directory is not set."
+        return 1
+    fi
+
+    wsl_gitconfig_dir="$HOME/.config/git/wsl"
+    destination_file="$wsl_gitconfig_dir/local.wsl.config"
+    source_file="$destination_file.example"
+
     wsl_rc_path="$HOME/.config/custom_env/wsl.rc"
     echo_log_info "Creating $wsl_rc_path file..."
     cat<< EOF > $wsl_rc_path
 export WIN_USERNAME=$WIN_USERNAME
-export WIN_HOME=$WIN_HOME
+export WIN_HOME=$WIN_HOMEEOF
 EOF
+    return 0;
+}
 
-    # 1Password SSH Signer for WSL -> git config
-    wsl_gitconfig_path="$HOME/.config/git/wsl/wsl.gitconfig"
-    echo_log_info "Creating $wsl_gitconfig_path file..."
-    cat<< EOF > $wsl_gitconfig_path
-[gpg "ssh"]
-program = "$WIN_HOME/AppData/Local/1Password/app/8/op-ssh-sign-wsl"
-EOF
+# 1Password SSH Signer for WSL -> git config
+create_ssh_signer() {
+    if [ -z "$WIN_USERNAME" ] || [ ! -r "$WIN_USERS_DIR" ]; then
+        echo_log_error "Windows username or user directory is not set."
+        return 1
+    fi
 
-fi
+    wsl_gitconfig_dir="$HOME/.config/git/wsl"
+    destination_file="$wsl_gitconfig_dir/local.wsl.config"
+    source_file="$destination_file.example"
+
+    if ! [ -f "$source_file" ]; then
+        echo_log_error "Source file $source_file does not exist."
+        exit 1
+    fi
+
+    echo_log_info "Creating $destination_file file..."
+
+    sed "s|XXXXXX|$WIN_HOME/AppData/Local/1Password/app/8/op-ssh-sign-wsl|g" "$source_file" > "$destination_file"
+
+    return 0;
+}
+
+create_win_home_symlink
+create_env_rc
+create_ssh_signer

@@ -1,7 +1,9 @@
 [core]
     sshCommand = "/mnt/c/windows/System32/OpenSSH/ssh.exe"
 
-# [include]
-# 	path = "~/.config/git/wsl/wsl.gpg.config"
+[gpg]
+	program = "/usr/bin/gpg"
+
 [include]
-	path = "~/.config/git/wsl/wsl.op.config"
+    # Git管理しないローカル設定ファイル（ユーザー名のパスなどを含むため分離）
+    path = "local.wsl.config"

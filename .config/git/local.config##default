@@ -1,0 +1,8 @@
+[core]
+    sshCommand = ""
+
+[gpg]
+    program = ""
+
+[gpg "ssh"]
+    program = ""

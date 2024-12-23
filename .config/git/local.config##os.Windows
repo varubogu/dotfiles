@@ -1,0 +1,11 @@
+# Windowsはなぜかホームディレクトリ「~」は使えないので、相対パスで指定する
+
+[core]
+    sshCommand = "C:/windows/System32/OpenSSH/ssh.exe"
+
+[gpg]
+    program = "C:/Program Files (x86)/GnuPG/bin/gpg.exe"
+
+[include]
+    # Git管理しないローカル設定ファイル（ユーザー名のパスなどを含むため分離）
+    path = "local.windows.config"

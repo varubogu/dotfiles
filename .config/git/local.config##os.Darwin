@@ -1,7 +1,8 @@
 [core]
     sshCommand = "/usr/bin/ssh"
 
-# [include]
-# 	path = "~/.config/git/mac/mac.gpg.config"
-[include]
-	path = "~/.config/git/mac/mac.op.config"
+[gpg]
+    program = "/opt/homebrew/bin/gpg"
+
+[gpg "ssh"]
+    program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"

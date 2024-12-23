@@ -59,6 +59,10 @@ function Main {
     Write-Host "symlink execution"
     . "$BIN_DIR\symlink\symlink.ps1"
 
+    # 追加設定
+    . "./setup_win.ps1"
+    Create-Local-Windows-Config
+
     Write-Host "Installed dotfiles successfully!"
 }
 

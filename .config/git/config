@@ -1,12 +1,36 @@
+### Common settings
+
 [user]
-	name = varubogu
-	email = toyosuke@varubogu.com
+    name = varubogu
+    email = toyosuke@varubogu.com
 
 [core]
-	excludesfile = "~/.config/git/ignore_global"
+    excludesfile = "~/.config/git/ignore_global"
+
 [commit]
-	gpgsign = true
+    gpgsign = true
+
 [init]
-	defaultBranch = main
+    defaultBranch = main
+
+
+### SSH signing start
+[user]
+    # ssh
+    signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIED0NDE5FuqNhuWHOpyYxJByfDcrVfrAMQZgcL1KsPGR
+[gpg]
+    format = ssh
+### SSH signing end
+
+
+### GPG signing
+# [user]
+#     signingkey = EA7AA4229D1CF2A8F97F8EC1B117B1C7B99A1FB9
+# [gpg]
+#     format = gpg
+### GPG signing end
+
+
+### OS Specific settings
 [include]
-	path = "local.config"
+    path = "local.config"

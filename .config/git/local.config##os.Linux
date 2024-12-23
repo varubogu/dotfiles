@@ -1,7 +1,9 @@
 [core]
     sshCommand = "/usr/bin/ssh"
 
-# [include]
-# 	path = "~/.config/git/linux/linux.gpg.config"
-[include]
-	path = "~/.config/git/linux/linux.op.config"
+[gpg]
+    program = "/usr/bin/gpg"
+
+[gpg "ssh"]
+    # あってるか不明
+    program = "~/.local/share/1password/agent.sock"
