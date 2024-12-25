@@ -12,7 +12,7 @@ $aws\
 $azure\
 $bun\
 $c\
-$cmake
+$cmake\
 $dart\
 $elixir\
 $elm\
@@ -54,7 +54,7 @@ disabled = true # Disabled by default
 #style = "bg:#DA627D"
 style = "bg:#592833"
 format = "[ $path ]($style)"
-truncation_length = 5
+truncation_length = 8
 truncation_symbol = "…/"
 
 # Here is how you can shorten some long paths by text replacement
