@@ -8,7 +8,12 @@ $directory\
 $git_branch\
 $git_status\
 [](fg:#926152 bg:#86BBD8)\
+$aws\
+$azure\
+$bun\
 $c\
+$cmake
+$dart\
 $elixir\
 $elm\
 $golang\
@@ -49,7 +54,7 @@ disabled = true # Disabled by default
 #style = "bg:#DA627D"
 style = "bg:#592833"
 format = "[ $path ]($style)"
-truncation_length = 3
+truncation_length = 5
 truncation_symbol = "…/"
 
 # Here is how you can shorten some long paths by text replacement
@@ -65,10 +70,41 @@ truncation_symbol = "…/"
 # So either put "Important Documents" before "Documents" or use the substituted version:
 # "Important 󰈙 " = " 󰈙 "
 
+[aws]
+format = 'on [$symbol($profile )(\($region\) )]($style)'
+style = 'bold blue'
+symbol = '🅰 '
+
+[aws.region_aliases]
+ap-southeast-2 = 'au'
+us-east-1 = 'va'
+
+[aws.profile_aliases]
+CompanyGroupFrobozzOnCallAccess = 'Frobozz'
+
+[azure]
+disabled = false
+format = 'on [$symbol($subscription)]($style) '
+symbol = '󰠅 '
+style = 'blue bold'
+
+[azure.subscription_aliases]
+very-long-subscription-name = 'vlsn'
+
+[bun]
+symbol = "🥟 "
+format = 'via [🍔 $version](bold green) '
+
 [c]
 symbol = " "
 style = "bg:#86BBD8"
 format = '[ $symbol ($version) ]($style)'
+
+[dart]
+symbol = " "
+
+[deno]
+symbol = " "
 
 [docker_context]
 symbol = " "
@@ -122,6 +158,7 @@ format = '[ $symbol ($version) ]($style)'
 symbol = ""
 style = "bg:#86BBD8"
 format = '[ $symbol ($version) ]($style)'
+detect_files = ['package.json', '.node-version', '!bunfig.toml', '!bun.lockb']
 
 [nim]
 symbol = "󰆥 "
