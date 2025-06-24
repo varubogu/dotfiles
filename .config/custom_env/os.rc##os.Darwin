@@ -1,6 +1,25 @@
 #!/bin/zsh
 
+# Add Homebrew Group to PATH
+if is_command_available brew; then
+    eval "$(brew shellenv)"
+fi
+
+# Use 1Password's SSH agent
+SSH_1PASSWORD_AGENT_SOCK=$HOME/.1Password/agent.sock
+if [ -S $SSH_1PASSWORD_AGENT_SOCK ]; then
+    export SSH_AUTH_SOCK=$SSH_1PASSWORD_AGENT_SOCK
+fi
+
+
 # Homebrew aliases and settings
 if command -v brew &> /dev/null; then
     alias brewup='brew update && brew upgrade'
+fi
+
+if [ -d $HOME/.orbstack/shell ]; then
+    source $HOME/.orbstack/shell/init.zsh 2>/dev/null || :
+# TODO: XDG Base Directory Specification?
+# elif [ -d $HOME/.orbstack/shell ]; then
+#     source $HOME/.orbstack/shell/init.zsh 2>/dev/null || :
 fi
