@@ -60,9 +60,9 @@ function Main {
     . "$BIN_DIR\symlink\symlink.ps1"
 
     # 追加設定
-    if (Test-Path "$HOME/.local/bin/setup/setup.os.win") {
+    if (Test-Path "$HOME/.local/bin/setup/setup.os.win.ps1") {
         Write-Host "os specific setup"
-        . "$HOME/.local/bin/setup/setup.os.win"
+        . "$HOME/.local/bin/setup/setup.os.win.ps1"
         Create-Local-Windows-Config
         Write-Host "os specific setup done"
     } else {
