@@ -109,7 +109,7 @@ fi
 safe_symlink $DOTCONFIG/bash/.bashrc $HOME/.bashrc
 safe_symlink $DOTCONFIG/bash/.bash_profile $HOME/.bash_profile
 safe_symlink $DOTCONFIG/zsh/.zshenv $HOME/.zshenv
-safe_symlink $DOTCONFIG/editorconfig/config $HOME/.editorconfig
+safe_symlink $DOTCONFIG/.editorconfig $HOME/.editorconfig
 
 if is_mac; then
     safe_symlink $HOME/Movies $HOME/Videos
