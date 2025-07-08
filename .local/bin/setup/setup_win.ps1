@@ -60,8 +60,14 @@ function Main {
     . "$BIN_DIR\symlink\symlink.ps1"
 
     # 追加設定
-    . "./setup_win.ps1"
-    Create-Local-Windows-Config
+    if (Test-Path "$HOME/.local/bin/setup/setup.os.win") {
+        Write-Host "os specific setup"
+        . "$HOME/.local/bin/setup/setup.os.win"
+        Create-Local-Windows-Config
+        Write-Host "os specific setup done"
+    } else {
+        Write-Host "No os specific setup found"
+    }
 
     Write-Host "Installed dotfiles successfully!"
 }
