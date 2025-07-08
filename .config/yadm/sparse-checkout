@@ -1,29 +1,29 @@
 # 一旦全ファイルを含める
 /*
 
-# 除外するリポジトリファイル
-!.github
-!.vscode
-!tests
-!README.md
-!LICENSE
+# リポジトリに含めないファイル・ディレクトリを除外
+!/.github
+!/.vscode
+!/tests
+!/README.md
+!/LICENSE
 
 # 自分自身も除外する
-!.local/share/yadm
+!/.local/share/yadm
 
-# 除外するGit管理対象外ファイル
+# ログ関連は除外
 !*.log
 !*.log.*
 !*.log.*.*
 !*dump*
 
-# symlink.bashによるシンボリックリンク
-!.bash_profile
-!.bashrc
-!.editorconfig
-!.gitconfig
-!.gitignore
-!.zprofile
-!.zshrc
-!Brewfile
-!windows_home
+# シンボリックリンクを除外
+!/.bash_profile
+!/.bashrc
+!/.editorconfig
+!/.gitconfig
+!/.gitignore
+!/.zprofile
+!/.zshrc
+!/.Brewfile
+!/windows_home
