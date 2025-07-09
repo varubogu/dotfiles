@@ -25,6 +25,17 @@ $scriptUrl = "https://raw.github.com/varubogu/dotfiles/master/.local/bin/setup/s
 $scriptContent = Invoke-RestMethod -Uri $scriptUrl
 Invoke-Expression $scriptContent
 ```
+[!NOTE]
+> ⚠️ For Windows, you need to install the latest version of PowerShell, the app installer, and Winget.
+
+### setup overview
+
+1. Install YADM (For Mac, install HomeBrew and use it to install YADM.)
+2. Cloning a dot file repository with YADM
+3. Create XDG Base Directory structure
+4. Create symlinks for configuration files 💡
+5. Detects available package managers and installs apps.
+
 
 ## Structure
 
