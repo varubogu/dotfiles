@@ -45,7 +45,6 @@ function Invoke-PowerShellScript {
     $scriptDir = $script.installedLocation
     $scriptPath = Join-Path -Path $scriptDir -ChildPath "$scriptName.ps1"
     if (Test-Path $scriptPath) {
-        echo @args
         & $scriptPath @args
     } else {
         Write-Host "Script not found: $scriptPath" -ForegroundColor Red
