@@ -45,7 +45,8 @@ function Invoke-PowerShellScript {
     $scriptDir = $script.installedLocation
     $scriptPath = Join-Path -Path $scriptDir -ChildPath "$scriptName.ps1"
     if (Test-Path $scriptPath) {
-        & $scriptPath
+        echo @args
+        & $scriptPath @args
     } else {
         Write-Host "Script not found: $scriptPath" -ForegroundColor Red
     }
@@ -53,9 +54,8 @@ function Invoke-PowerShellScript {
 
 # yadmスクリプトの実行。
 function yadm {
-    Invoke-PowerShellScript -scriptName "yadm"
+    Invoke-PowerShellScript -scriptName "yadm" @args
 }
-
 
 if (Is-Command-Exists starship) {
     Invoke-Expression (&starship init powershell)
