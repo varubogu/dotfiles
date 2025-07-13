@@ -22,19 +22,25 @@ function Setup-Yadm {
         Install-Script -Name yadm -Scope CurrentUser
     }
 
+    $yadmScript = Get-installedScript -name yadm
+    $yadmDir = $yadmScript.installedLocation
+    $yadmPath = Join-Path -Path $yadmDir -ChildPath "yadm.ps1"
+
     Write-Host "Cloning dotfiles.to yadm..."
     if (Test-Path "$HOME/.local/share/yadm/repo.git") {
         Write-Host "yadm is already initialized"
-        yadm pull origin $BRANCH
+        & "$yadmPath" pull origin $BRANCH
     }
     else {
         Write-Host "yadm is none repository. Cloning dotfiles..."
-        yadm clone $REPO_URL
+        & "$yadmPath" clone $REPO_URL
 
         # 不要なファイルを除外して再読み込みする
-        yadm config core.sparseCheckout true
+        & "$yadmPath" config core.sparseCheckout true
+
         Copy-Item -Path "$HOME\.config\yadm\sparse-checkout" -Destination "$HOME\.local\share\yadm\repo.git\info\sparse-checkout"
-        yadm checkout main
+        & "$yadmPath" checkout main
+
     }
 }
 
