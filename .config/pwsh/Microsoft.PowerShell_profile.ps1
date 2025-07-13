@@ -6,18 +6,31 @@ Import-Module -Name Microsoft.WinGet.CommandNotFound
 
 ### My Custom
 
+
 # コマンドが存在するかチェック
-function Is-Command-Found() {
+function Is-Command-Found {
     param (
         [string]$command
     )
     return (Get-Command $command -ErrorAction SilentlyContinue)
 }
 
-if (Is-Command-Found starship) {
+# コマンド存在チェック＋存在しない場合にメッセージ
+function Is-Command-Exists {
+    param (
+        [string]$command
+    )
+    if (Is-Command-Found $command) {
+        return $true
+    } else {
+        Write-Host "'$command' is not installed." -ForegroundColor Red
+        return $false
+    }
+
+}
+
+if (Is-Command-Exists starship) {
     Invoke-Expression (&starship init powershell)
-} else {
-    Write-Host "starship is not installed. Skipping initialization."
 }
 
 if (Is-Command-Found python) {
