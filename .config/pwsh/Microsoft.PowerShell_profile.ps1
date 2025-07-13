@@ -26,8 +26,36 @@ function Is-Command-Exists {
         Write-Host "'$command' is not installed." -ForegroundColor Red
         return $false
     }
-
 }
+
+# PowerShellスクリプトを実行する関数
+# スクリプト名を引数に取り、インストール済みのスクリプトから取得して実行します。
+# スクリプトが存在する場所について環境変数PATHを通さずに実行することを目的としています。
+# Parameters:
+#    [string] $scriptName 呼び出したいスクリプトのファイル名（拡張子を除く）
+function Invoke-PowerShellScript {
+    param (
+        [string]$scriptName
+    )
+    $script = Get-installedScript -name $scriptName
+    if (-not $script) {
+        Write-Host "$scriptName script is not installed. Please install it first." -ForegroundColor Red
+        return
+    }
+    $scriptDir = $script.installedLocation
+    $scriptPath = Join-Path -Path $scriptDir -ChildPath "$scriptName.ps1"
+    if (Test-Path $scriptPath) {
+        & $scriptPath
+    } else {
+        Write-Host "Script not found: $scriptPath" -ForegroundColor Red
+    }
+}
+
+# yadmスクリプトの実行。
+function yadm {
+    Invoke-PowerShellScript -scriptName "yadm"
+}
+
 
 if (Is-Command-Exists starship) {
     Invoke-Expression (&starship init powershell)
