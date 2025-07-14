@@ -50,7 +50,7 @@ create_ssh_signer() {
         return 1
     fi
 
-    wsl_gitconfig_dir="$HOME/.config/git/wsl"
+    wsl_gitconfig_dir="$HOME/.config/git"
     destination_file="$wsl_gitconfig_dir/local.wsl.config"
     source_file="$destination_file.example"
 
