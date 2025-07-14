@@ -24,11 +24,11 @@ if [ -d $HOME/.orbstack/shell ]; then
 #     source $HOME/.orbstack/shell/init.zsh 2>/dev/null || :
 fi
 
-if command -v asdf &> /dev/null; then
+if command -v mise &> /dev/null; then
     if command -v brew &> /dev/null; then
-        export ASDF_DIR="$(brew --prefix asdf)"
-        source "$ASDF_DIR/libexec/asdf.sh"
+        export MISE_DIR="$(brew --prefix mise)"
+        source "mise activate"
     else
-        export ASDF_DIR="$HOME/.asdf"
+        export MISE_DIR="$HOME/.mise"
     fi
 fi
