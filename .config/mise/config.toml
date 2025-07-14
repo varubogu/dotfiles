@@ -1,11 +1,15 @@
 [tools]
+# no dependency
+erlang = "latest"
 deno = "latest"
 dotnet = "latest"
-elixir = "latest"
-erlang = "latest"
-flutter = "latest"
-kotlin = "latest"
-rust = "latest"
 go = "latest"
 java = "latest"
 python = "latest"
+rust = "latest"
+
+# Dependency
+elixir = "latest"
+flutter = "latest"
+kotlin = "latest"
+ruby = "latest" # required 'libyaml'
