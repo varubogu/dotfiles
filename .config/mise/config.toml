@@ -1,0 +1,11 @@
+[tools]
+deno = "latest"
+dotnet = "latest"
+elixir = "latest"
+erlang = "latest"
+flutter = "latest"
+kotlin = "latest"
+rust = "latest"
+go = "latest"
+java = "latest"
+python = "latest"
