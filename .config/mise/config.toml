@@ -13,3 +13,4 @@ elixir = "latest"
 flutter = "latest"
 kotlin = "latest"
 ruby = "latest" # required 'libyaml'
+android-sdk = "latest"
