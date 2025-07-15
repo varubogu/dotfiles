@@ -3,6 +3,7 @@
 # Add Homebrew Group to PATH
 if command -v "brew" &> /dev/null; then
     eval "$(brew shellenv)"
+    alias brewup='brew update && brew upgrade'
 fi
 
 # Use 1Password's SSH agent
@@ -11,10 +12,12 @@ if [ -S $SSH_1PASSWORD_AGENT_SOCK ]; then
     export SSH_AUTH_SOCK=$SSH_1PASSWORD_AGENT_SOCK
 fi
 
-
-# Homebrew aliases and settings
-if command -v brew &> /dev/null; then
-    alias brewup='brew update && brew upgrade'
+# Add Homebrew Group to PATH
+if command -v "trash" &> /dev/null; then
+    alias rm='trash'
+else
+    alias rm='echo "trash is not found.
+    Use 'trash' command instead of 'rm' to avoid accidental deletions."'
 fi
 
 if [ -d $HOME/.orbstack/shell ]; then
