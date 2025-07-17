@@ -265,3 +265,24 @@ __pycache__/
 
 # Intellij IDEA
 .idea/dictionaries/
+
+
+# ====================
+#
+# AI tools
+#
+# ====================
+.claude/
+GEMINI.md
+.cursor/
+.cursorrules
+
+
+# ====================
+#
+# Other
+#
+# ====================
+
+tmp/
+temp/
