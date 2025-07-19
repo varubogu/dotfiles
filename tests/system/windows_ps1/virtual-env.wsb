@@ -1,0 +1,12 @@
+<Configuration>
+    <MappedFolders>
+        <MappedFolder>
+            <HostFolder>.\sandbox_bin</HostFolder>
+            <SandboxFolder>C:\sandbox_bin</SandboxFolder>
+            <readonly>true</readonly>
+        </MappedFolder>
+    </MappedFolders>
+    <LogonCommand>
+        <Command>powershell -ExecutionPolicy RemoteSigned -Command "Start-Process powershell { -File 'C:\sandbox_bin\sandbox_exec.ps1' -ExecutionPolicy RemoteSigned }"</Command>
+    </LogonCommand>
+</Configuration>

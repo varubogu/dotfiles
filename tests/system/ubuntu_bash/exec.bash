@@ -17,5 +17,3 @@ fi
 ~/.local/bin/doctor
 
 # install result test
-
-

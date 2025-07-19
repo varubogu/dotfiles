@@ -14,6 +14,7 @@
 ### テスト対象OS
 
 - Windows 11（ホストはWindowsのみ）
+  - Windowsの場合、Windowsサンドボックス（Windows Pro版のみ使用可能）にてテストする
 - macOS（ホストはmacOSのみ）
 - Ubuntu 24.04
 - AlmaLinux 9
@@ -46,6 +47,3 @@
 - ディレクトリの変更
 - シンボリックリンクの変更
 - シンボリックリンクの削除
-
-
-
