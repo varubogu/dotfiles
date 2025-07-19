@@ -29,7 +29,7 @@ function Setup-Winget {
 
 function Setup-Git {
     Write-Host "Checking git..."
-    $yadmScript = Get-installedScript -name yadm
+    $yadmScript = Get-installedScript -name git
     if ($yadmScript) {
         Write-Host "git already installed"
     } else {
