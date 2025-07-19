@@ -19,7 +19,7 @@ $REPO_NAME = "dotfiles"
 $REPO_URL = "https://github.com/$REPO_OWNER/$REPO_NAME.git"
 $REPO_RAW = "https://raw.github.com/$REPO_OWNER/$REPO_NAME"
 $BRANCH = "main"
-$BIN_DIR = "$HOME\.local\bin"
+$BIN_DIR = "$env:USERPROFILE\.local\bin"
 
 function Setup-Winget {
     # https://learn.microsoft.com/ja-jp/windows/package-manager/winget/
@@ -71,7 +71,7 @@ function Setup-Yadm {
     $yadmPath = Join-Path -Path $yadmDir -ChildPath "yadm.ps1"
 
     Write-Host "Cloning dotfiles.to yadm..."
-    if (Test-Path "$HOME/.local/share/yadm/repo.git") {
+    if (Test-Path "$env:USERPROFILE/.local/share/yadm/repo.git") {
         Write-Host "yadm is already initialized"
         & "$yadmPath" pull origin $BRANCH
     }
@@ -82,14 +82,14 @@ function Setup-Yadm {
         # 不要なファイルを除外して再読み込みする
         & "$yadmPath" config core.sparseCheckout true
 
-        Copy-Item -Path "$HOME\.config\yadm\sparse-checkout" -Destination "$HOME\.local\share\yadm\repo.git\info\sparse-checkout"
+        Copy-Item -Path "$env:USERPROFILE\.config\yadm\sparse-checkout" -Destination "$env:USERPROFILE\.local\share\yadm\repo.git\info\sparse-checkout"
         & "$yadmPath" checkout main
     }
 }
 
 function Main {
     # ホームディレクトリに移動
-    Set-Location $HOME
+    Set-Location $env:USERPROFILE
 
     # 実行ポリシーを変更（yadmコマンド実行に必要）
     Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
@@ -118,9 +118,9 @@ function Main {
     . "$BIN_DIR\symlink\symlink.ps1"
 
     # 追加設定
-    if (Test-Path "$HOME/.local/bin/setup/setup.os.win.ps1") {
+    if (Test-Path "$env:USERPROFILE/.local/bin/setup/setup.os.win.ps1") {
         Write-Host "os specific setup"
-        . "$HOME/.local/bin/setup/setup.os.win.ps1"
+        . "$env:USERPROFILE/.local/bin/setup/setup.os.win.ps1"
         Create-Local-Windows-Config
         Write-Host "os specific setup done"
     } else {
