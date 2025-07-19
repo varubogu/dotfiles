@@ -82,6 +82,12 @@ function Main {
     # 実行ポリシーを変更（yadmコマンド実行に必要）
     Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 
+    # wingetインストール
+    Setup-Winget
+
+    # wingetでGitインストール
+    Setup-Git
+
     # yadmをインストール & dotfilesをclone
     Setup-Yadm
 
