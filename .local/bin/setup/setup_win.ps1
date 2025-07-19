@@ -3,7 +3,16 @@
 # エラー発生時に実行を停止
 $ErrorActionPreference = "Stop"
 
-$EXECSHELL = "pwsh.exe"
+if (Get-Command pwsh -ErrorAction SilentlyContinue) {
+    Write-Host "pwsh がインストールされています。"
+    $EXECSHELL = "pwsh"
+    $is_pwsh = $true
+} else {
+    Write-Host "pwsh.exe が見つかりません。powershell.exeを使用します。"
+    $EXECSHELL = "powershell.exe"
+    $is_pwsh = $false
+}
+
 
 $REPO_OWNER = "varubogu"
 $REPO_NAME = "dotfiles"
@@ -19,7 +28,7 @@ function Setup-Winget {
     Install-PackageProvider -Name NuGet -Force | Out-Null
     Install-Module -Name Microsoft.WinGet.Client -Force -Repository PSGallery | Out-Null
     Write-Host "Using Repair-WinGetPackageManager cmdlet to bootstrap WinGet..."
-    Repair-WinGetPackageManager -AllUsers
+    Repair-WinGetPackageManager -AllUsers -ErrorAction SilentlyContinue
     Write-Host "Done."
     Write-Host ""
     Write-Host "winget version is..."
