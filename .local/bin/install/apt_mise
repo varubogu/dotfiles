@@ -1,0 +1,2 @@
+#!/usr/bin/zsh
+curl https://mise.run | sh
