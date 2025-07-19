@@ -88,7 +88,7 @@ function Setup-Yadm {
 
 function Main {
     # ホームディレクトリに移動
-    Set-Location $env:USERPROFILE
+    Set-Location "$env:USERPROFILE"
 
     # 実行ポリシーを変更（yadmコマンド実行に必要）
     Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
