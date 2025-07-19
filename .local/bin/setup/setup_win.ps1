@@ -35,6 +35,10 @@ function Setup-Git {
         Write-Host "git is not installed."
         Write-Host "Installing git from winget..."
         winget install git.git --source winget --accept-source-agreements
+
+        # インストール直後のシェルセッションではパスがまだ通っていないため一時的に登録（シェルセッション後に消える）
+        $GIT_COMMAND = "C:\Program Files\Git\cmd"
+        $env:PATH = "$env:PATH;$GIT_COMMAND"
     }
 }
 
@@ -51,6 +55,7 @@ function Setup-Yadm {
 
         Write-Host "Installing yadm..."
         Install-Script -Name yadm -Scope CurrentUser -Force
+        $yadmScript = Get-installedScript -Name yadm -ErrorAction SilentlyContinue
     }
 
     $yadmDir = $yadmScript.installedLocation
