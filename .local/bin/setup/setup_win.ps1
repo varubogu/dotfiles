@@ -19,7 +19,6 @@ $REPO_NAME = "dotfiles"
 $REPO_URL = "https://github.com/$REPO_OWNER/$REPO_NAME.git"
 $REPO_RAW = "https://raw.github.com/$REPO_OWNER/$REPO_NAME"
 $BRANCH = "main"
-$BIN_DIR = "$env:USERPROFILE\.local\bin"
 
 function Setup-Winget {
     # https://learn.microsoft.com/ja-jp/windows/package-manager/winget/
@@ -105,6 +104,8 @@ function Main {
 
     # 3秒待つ
     Start-Sleep -s 3
+
+    $BIN_DIR = "$env:USERPROFILE\.local\bin"
 
     # XDG Base Directory Specificationを設定
     Start-Process $EXECSHELL -ArgumentList "-File `"$BIN_DIR\xdg_base_dir\setEnv.ps1`"" -Verb RunAs
