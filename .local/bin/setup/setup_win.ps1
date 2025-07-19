@@ -40,7 +40,8 @@ function Setup-Git {
 
 function Setup-Yadm {
     Write-Host "Checking yadm..."
-    if (Get-installedScript -Name yadm -ErrorActionPreference silentlyContinue) {
+    $yadmScript = Get-installedScript -Name yadm -ErrorAction SilentlyContinue
+    if ($yadmScript) {
         Write-Host "yadm already installed"
     } else {
         Write-Host "yadm is not installed."
@@ -52,7 +53,6 @@ function Setup-Yadm {
         Install-Script -Name yadm -Scope CurrentUser -Force
     }
 
-    $yadmScript = Get-installedScript -Name yadm
     $yadmDir = $yadmScript.installedLocation
     $yadmPath = Join-Path -Path $yadmDir -ChildPath "yadm.ps1"
 
