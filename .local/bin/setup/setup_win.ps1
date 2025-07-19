@@ -29,10 +29,8 @@ function Setup-Winget {
     Write-Host "Using Repair-WinGetPackageManager cmdlet to bootstrap WinGet..."
     Repair-WinGetPackageManager -AllUsers -ErrorAction SilentlyContinue
     Write-Host "Done."
-    Write-Host ""
     Write-Host "winget version is..."
     winget --version
-    Write-Host ""
 }
 
 function Setup-Git {
@@ -108,7 +106,7 @@ function Main {
     $BIN_DIR = "$env:USERPROFILE\.local\bin"
 
     # XDG Base Directory Specificationを設定
-    Start-Process $EXECSHELL -ArgumentList "-File `"$BIN_DIR\xdg_base_dir\setEnv.ps1`"" -Verb RunAs
+    Start-Process $EXECSHELL -ArgumentList '-File `$BIN_DIR\xdg_base_dir\setEnv.ps1`' -Verb RunAs
 
     # アプリを一括インストール
     Write-Host "install apps"
