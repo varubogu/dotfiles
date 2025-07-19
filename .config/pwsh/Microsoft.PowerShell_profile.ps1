@@ -199,3 +199,6 @@ ForEach-Object {
     Invoke-Expression "function global:$cmd { $fn }"
 }
 ### uutils end
+
+
+Set-Alias -Name "which" -Value "Get-Command"
