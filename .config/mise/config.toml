@@ -1,5 +1,8 @@
 [tools]
-# no dependency
+###-------------------------
+### no dependency
+###-------------------------
+
 erlang = "latest"
 deno = "latest"
 dotnet = "latest"
@@ -8,12 +11,28 @@ java = "latest"
 python = "latest"
 rust = "latest"
 
+
+
+###-------------------------
 # Dependency
+###-------------------------
+
+# depend on: erlang
 elixir = "latest"
+
+# Windows（PowerShell）:
+#   デフォルトであるvfox版が失敗するため、以下の通りvfoxを使わないようにしてインストールする
+# $env:MISE_DISABLE_BACKENDS=vfox
 flutter = "latest"
+
+# depend on: java
 kotlin = "latest"
 
-# Rubyインストールの依存関係
-# https://github.com/rbenv/ruby-build/wiki#suggested-build-environment
-# apt-get install build-essential autoconf libssl-dev libyaml-dev zlib1g-dev libffi-dev libgmp-dev rustc
+# Ubuntu:
+#   Rubyインストールの依存関係
+#   https://github.com/rbenv/ruby-build/wiki#suggested-build-environment
+#   apt-get install build-essential autoconf libssl-dev libyaml-dev zlib1g-dev libffi-dev libgmp-dev rustc
+# MacOS:
+#   yq（YAML操作のライブラリ）がないとビルドに失敗する
+#   brew install yq
 ruby = "latest"
