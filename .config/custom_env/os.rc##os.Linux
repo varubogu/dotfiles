@@ -2,4 +2,4 @@
 
 alias aptup='sudo apt update && sudo apt upgrade '
 
-eval "\$($HOME/.local/bin/mise activate zsh)"
+eval "$($HOME/.local/bin/mise activate zsh)"
