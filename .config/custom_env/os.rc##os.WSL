@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. $HOME/.config/custom_env/wsl.rc
+. $HOME/.config/custom_env/os.rc##os.Linux
 
 alias ssh='ssh.exe'
 alias ssh-add='ssh-add.exe'
