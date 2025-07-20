@@ -12,5 +12,8 @@ rust = "latest"
 elixir = "latest"
 flutter = "latest"
 kotlin = "latest"
-ruby = "latest" # required 'libyaml'
-android-sdk = "latest"
+
+# Rubyインストールの依存関係
+# https://github.com/rbenv/ruby-build/wiki#suggested-build-environment
+# apt-get install build-essential autoconf libssl-dev libyaml-dev zlib1g-dev libffi-dev libgmp-dev rustc
+ruby = "latest"
