@@ -28,5 +28,5 @@ if [ -d $HOME/.orbstack/shell ]; then
 fi
 
 if command -v mise &> /dev/null; then
-    eval "$($HOME/.local/bin/mise activate zsh)"
+    eval "$(mise activate zsh)"
 fi
