@@ -7,10 +7,11 @@ if command -v "brew" &> /dev/null; then
 fi
 
 # Use 1Password's SSH agent
-SSH_1PASSWORD_AGENT_SOCK=$HOME/.1Password/agent.sock
-if [ -S $SSH_1PASSWORD_AGENT_SOCK ]; then
-    export SSH_AUTH_SOCK=$SSH_1PASSWORD_AGENT_SOCK
-fi
+# SSH_1PASSWORD_AGENT_SOCK=$HOME/.1Password/agent.sock
+# if [ -S $SSH_1PASSWORD_AGENT_SOCK ]; then
+#     export SSH_AUTH_SOCK=$SSH_1PASSWORD_AGENT_SOCK
+# fi
+# --> sh.env.local
 
 # Add Homebrew Group to PATH
 if command -v "trash" &> /dev/null; then
