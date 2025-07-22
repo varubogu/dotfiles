@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir:*)",
+      "Bash(grep:*)",
+      "Bash(find:*)",
+      "Bash(ls:*)",
+      "Bash(cp:*)",
+      "Bash(mv:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(npx expo prebuild:*)",
+      "Bash(npx expo run:ios:*)",
+      "Bash(npx prisma generate:*)",
+      "Bash(npx vitest run:*)",
+      "Bash(pnpm test:*)",
+      "Bash(pnpm type-check)",
+      "Bash(pnpm db:generate:*)",
+      "Bash(pnpm db:seed-shisha:*)",
+      "Bash(pnpm db:studio:*)",
+      "Bash(pnpm test:*)",
+      "Bash(bun check:*)",
+      "Bash(bun test:*)",
+      "Bash(bun run test *:*)"
+    ],
+    "deny": [
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(git pull:*)",
+      "Bash(git checkout:*)"
+    ]
+  }
+}
