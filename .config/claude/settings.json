@@ -9,6 +9,7 @@
       "Bash(mv:*)",
       "Bash(git status:*)",
       "Bash(git diff:*)",
+      "Bash(git log:*)",
       "Bash(npx expo prebuild:*)",
       "Bash(npx expo run:ios:*)",
       "Bash(npx prisma generate:*)",
