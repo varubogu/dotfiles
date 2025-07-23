@@ -1,3 +1,7 @@
+# $schema: https://mise.jdx.dev/schema/mise.json
+
+# https://mise.jdx.dev/configuration.html
+
 [tools]
 ###-------------------------
 ### no dependency
