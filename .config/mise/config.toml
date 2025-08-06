@@ -28,7 +28,7 @@ elixir = "latest"
 
 # Windows（PowerShell）:
 #   デフォルトであるvfox版が失敗するため、以下の通りvfoxを使わないようにしてインストールする
-# $env:MISE_DISABLE_BACKENDS=vfox
+# $env:MISE_DISABLE_BACKENDS="vfox"
 flutter = "latest"
 
 # depend on: java
