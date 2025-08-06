@@ -1,0 +1,34 @@
+local f = {}
+
+function f.SetOsConfig(config)
+
+----------------------------------------------------
+-- shell
+----------------------------------------------------
+
+    config.default_prog = { 'pwsh.exe' }
+    config.launch_menu = {
+        {
+            label = 'PowerShell 7',
+            args = {'pwsh'}
+        },
+        {
+            label = 'Old Windows PowerShell',
+            args = {'powershell'}
+        },
+        {
+            label = 'コマンドプロンプト',
+            args = {'cmd'}
+        },
+        {
+            label = 'Ubuntu24.04',
+            args = {'wsl', '-d', 'ubuntu-24.04'},
+        },
+        {
+            label = 'Ubuntu',
+            args = {'wsl', '-d', 'ubuntu'},
+        },
+    }
+end
+
+return f
