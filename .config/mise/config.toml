@@ -14,6 +14,8 @@ go = "latest"
 java = "latest"
 python = "latest"
 rust = "latest"
+cmake = "latest"
+ninja = "latest"
 
 
 
@@ -30,6 +32,9 @@ elixir = "latest"
 flutter = "latest"
 
 # depend on: java
+gradle = "latest"
+
+# depend on: java
 kotlin = "latest"
 
 # Ubuntu:
@@ -40,3 +45,6 @@ kotlin = "latest"
 #   yq（YAML操作のライブラリ）がないとビルドに失敗する
 #   brew install yq
 ruby = "latest"
+
+[settings]
+env_file = "local.env"
