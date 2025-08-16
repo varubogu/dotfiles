@@ -273,7 +273,6 @@ __pycache__/
 #
 # ====================
 .claude/
-GEMINI.md
 .cursor/
 .cursorrules
 
@@ -286,3 +285,5 @@ GEMINI.md
 
 tmp/
 temp/
+
+.local_temp/
