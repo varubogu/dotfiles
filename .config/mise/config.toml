@@ -46,5 +46,7 @@ kotlin = "latest"
 #   brew install yq
 ruby = "latest"
 
+uv = "latest"
+
 [settings]
 env_file = "local.env"
