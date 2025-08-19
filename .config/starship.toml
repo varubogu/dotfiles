@@ -7,7 +7,7 @@ $directory\
 [](fg:#592833 bg:#926152)\
 $git_branch\
 $git_status\
-[](fg:#000000 bg:#86BBD8)\
+[](fg:#926152 bg:#86BBD8)\
 $aws\
 $azure\
 $bun\
