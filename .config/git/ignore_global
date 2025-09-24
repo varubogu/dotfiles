@@ -272,9 +272,9 @@ __pycache__/
 # AI tools
 #
 # ====================
-.claude/
-.cursor/
-.cursorrules
+# .claude/
+# .cursor/
+# .cursorrules
 
 
 # ====================
