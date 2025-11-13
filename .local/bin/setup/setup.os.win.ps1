@@ -17,7 +17,7 @@ function Create-Local-Windows-Config {
 
     $contents = Get-Content -Path $source_file -Raw
 
-    $updated_content = $contents -replace 'XXXXXX', "$env:localappdata/1Password/app/8/op-ssh-sign.exe"
+    $updated_content = $contents -replace 'XXXXXX', "$env:localappdata/Microsoft/WindowsApps/op-ssh-sign.exe"
 
     $updated_content | Out-File -FilePath $destination_file -Encoding utf8
 }

@@ -61,7 +61,7 @@ create_ssh_signer() {
 
     echo_log_info "Creating $destination_file file..."
 
-    sed "s|XXXXXX|$WIN_HOME/AppData/Local/1Password/app/8/op-ssh-sign-wsl|g" "$source_file" > "$destination_file"
+    sed "s|XXXXXX|$WIN_HOME/AppData/Local/Microsoft/WindowsApps/op-ssh-sign-wsl.exe|g" "$source_file" > "$destination_file"
 
     return 0;
 }
