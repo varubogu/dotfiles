@@ -1,3 +1,4 @@
+local wezterm = require("wezterm")
 local f = {}
 
 -- コマンドが存在するかチェックする関数
@@ -8,12 +9,10 @@ end
 
 function f.SetOsConfig(config)
 
-----------------------------------------------------
--- shell
-----------------------------------------------------
+    -- default shell
     if is_executable_in_path('pwsh') then
         config.default_prog = { 'pwsh' }
-    else if is_executable_in_path('powershell') then
+    elseif is_executable_in_path('powershell') then
         config.default_prog = { 'powershell' }
     else
         config.default_prog = { 'cmd' }
