@@ -1,12 +1,23 @@
 local f = {}
 
+-- コマンドが存在するかチェックする関数
+local function is_executable_in_path(executable)
+    local success, stdout, stderr = wezterm.run_child_process{'where', executable}
+    return success
+end
+
 function f.SetOsConfig(config)
 
 ----------------------------------------------------
 -- shell
 ----------------------------------------------------
-
-    config.default_prog = { 'pwsh.exe' }
+    if is_executable_in_path('pwsh') then
+        config.default_prog = { 'pwsh' }
+    else if is_executable_in_path('powershell') then
+        config.default_prog = { 'powershell' }
+    else
+        config.default_prog = { 'cmd' }
+    end
     config.launch_menu = {
         {
             label = 'PowerShell 7',
@@ -19,15 +30,7 @@ function f.SetOsConfig(config)
         {
             label = 'コマンドプロンプト',
             args = {'cmd'}
-        },
-        {
-            label = 'Ubuntu24.04',
-            args = {'wsl', '-d', 'ubuntu-24.04'},
-        },
-        {
-            label = 'Ubuntu',
-            args = {'wsl', '-d', 'ubuntu'},
-        },
+        }
     }
 end
 
