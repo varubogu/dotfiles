@@ -1,9 +1,9 @@
 [core]
     sshCommand = "/usr/bin/ssh"
 
-[gpg]
-    program = "/usr/bin/gpg"
+#[gpg]
+#    program = "/usr/bin/gpg"
 
 [gpg "ssh"]
-    # あってるか不明
-    program = "~/.local/share/1password/agent.sock"
+    # from: apt install 1password
+    program = "/opt/1Password/op-ssh-sign"
