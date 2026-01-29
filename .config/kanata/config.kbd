@@ -1,0 +1,47 @@
+(defsrc
+    caps muhenkan a b f p n e d h k y v x s bspc
+)
+
+(defalias
+    ;; 1. CapsLock: 単押しEsc / 長押しEmacsレイヤー（基本）
+    cap-mod (tap-hold 200 200 esc (layer-toggle emacs-layer))
+
+    ;; 2. 無変換: 単押し無変換 / 長押しMeta(Alt)
+    mhn-meta (tap-hold-press 200 200 muhenkan lmet)
+
+    ;; 3. 2打鍵コンボ用
+    x-pre (one-shot-press 5000 (layer-toggle x-prefix-layer))
+
+    ;; 4. 特殊マクロ
+    kil (macro S-end bspc)
+    ynk C-v
+
+    ;; 5. 【重要】全機能をバイパスするトグルスイッチ
+    ;; CapsLockを押しながら BackSpace を押すと「標準モード」と「Emacsモード」を切り替えます
+    tog-base (layer-toggle bypass-mode)
+)
+
+;; --- 通常使用レイヤー ---
+(deflayer default
+    @cap-mod @mhn-meta a b f p n e d h k y v x s bspc
+;;  caps     muhenkan  a b f p n e d h k y v x s bspc
+)
+
+;; --- Emacsレイヤー（CapsLock長押し中） ---
+(deflayer emacs-layer
+    _    _        home left right up down end del bspc @kil @ynk pgdn @x-pre _ @tog-base
+;;  caps muhenkan a    b    f     p  n    e   d   h    k    y    v    x      s bspc
+)
+
+;; --- C-x プレフィックス用 ---
+(deflayer x-prefix-layer
+    _    _        _ _ _ _ _ _ _ _ _ _ _ _ C-s _
+;;  caps muhenkan a b f p n e d h k y v x s   bspc
+)
+
+;; --- 【完全バイパスレイヤー】 ---
+;; すべてアンダースコア（_）にすることで、OS標準の挙動をそのまま通します
+(deflayer bypass-mode
+    _    _        _ _ _ _ _ _ _ _ _ _ _ _ _ _
+;;  caps muhenkan a b f p n e d h k y v x s bspc
+)
