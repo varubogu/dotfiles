@@ -25,6 +25,7 @@ $scriptUrl = "https://raw.github.com/varubogu/dotfiles/master/.local/bin/dotfile
 $scriptContent = Invoke-RestMethod -Uri $scriptUrl
 Invoke-Expression $scriptContent
 ```
+
 [!NOTE]
 > ⚠️ For Windows, you need to install the latest version of PowerShell, the app installer, and Winget.
 
@@ -35,7 +36,6 @@ Invoke-Expression $scriptContent
 3. Create XDG Base Directory structure
 4. Create symlinks for configuration files 💡
 5. Detects available package managers and installs apps.
-
 
 ## Structure
 
