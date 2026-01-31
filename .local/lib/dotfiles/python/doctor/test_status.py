@@ -5,7 +5,7 @@ class TestTarget(Enum):
 
     Attributes:
         CONFIG: Config target -> ~/.config/dotfiles
-        LOCAL_BIN: Local bin target -> ~/.local/bin
+        LOCAL_BIN: Local bin target -> ~/.local/bin/dotfiles
         HOME: Home target -> ~
     """
     CONFIG = 0
@@ -36,4 +36,3 @@ class TestStatus:
             self.test_local_bin_number += 1
         elif target == TestTarget.HOME:
             self.test_home_number += 1
-

@@ -103,7 +103,7 @@ function Main {
     # 3秒待つ
     Start-Sleep -s 3
 
-    $BIN_DIR = "$env:USERPROFILE\.local\bin"
+    $BIN_DIR = "$env:USERPROFILE\.local\bin\dotfiles"
 
     # XDG Base Directory Specificationを設定
     Start-Process $EXECSHELL -ArgumentList '-File `$BIN_DIR\xdg_base_dir\setEnv.ps1`' -Verb RunAs
@@ -117,9 +117,9 @@ function Main {
     . "$BIN_DIR\symlink\symlink.ps1"
 
     # 追加設定
-    if (Test-Path "$env:USERPROFILE/.local/bin/setup/setup.os.win.ps1") {
+    if (Test-Path "$env:USERPROFILE/.local/bin/dotfiles/setup/setup.os.win.ps1") {
         Write-Host "os specific setup"
-        . "$env:USERPROFILE/.local/bin/setup/setup.os.win.ps1"
+        . "$env:USERPROFILE/.local/bin/dotfiles/setup/setup.os.win.ps1"
         Create-Local-Windows-Config
         Write-Host "os specific setup done"
     } else {

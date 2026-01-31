@@ -25,8 +25,8 @@
 初回のインストールを行う。
 対象パス
 
-- Windowsの場合：`/.local/bin/setup/setup_windows.ps1`
-- 上記以外の場合：`/.local/bin/setup/setup.sh`
+- Windowsの場合：`/.local/bin/dotfiles/setup/setup_windows.ps1`
+- 上記以外の場合：`/.local/bin/dotfiles/setup/setup.sh`
 
 ## 2回目のインストール
 

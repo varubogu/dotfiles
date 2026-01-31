@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-. $HOME/.local/lib/functions.bash
+. $HOME/.local/lib/dotfiles/functions.bash
 
 # シンボリックリンクを作成する関数
 #

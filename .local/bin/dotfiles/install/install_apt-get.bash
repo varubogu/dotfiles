@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. $HOME/.local/lib/functions.bash
+. $HOME/.local/lib/dotfiles/functions.bash
 
 # 引数チェック
 is_root=${1:-true}

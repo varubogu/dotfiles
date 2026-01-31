@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-. $HOME/.local/lib/functions.bash
+. $HOME/.local/lib/dotfiles/functions.bash
 
 # 現在のディレクトリをスタックにプッシュし、新しいディレクトリに移動
 pushd $HOME > /dev/null

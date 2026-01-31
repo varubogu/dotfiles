@@ -81,7 +81,7 @@ REPO_NAME="dotfiles"
 REPO_URL="https://github.com/$REPO_OWNER/$REPO_NAME.git"
 REPO_RAW="https://raw.github.com/$REPO_OWNER/$REPO_NAME"
 BRANCH="main"
-BIN_DIR=$HOME/.local/bin
+BIN_DIR=$HOME/.local/bin/dotfiles
 
 
 
@@ -181,9 +181,9 @@ main() {
     #     . $HOME/.bashrc
     # fi
 
-    if [ -f $HOME/.local/bin/setup/setup.os.bash ]; then
+    if [ -f $HOME/.local/bin/dotfiles/setup/setup.os.bash ]; then
         echo_log_info "os specific setup"
-        . $HOME/.local/bin/setup/setup.os.bash
+        . $HOME/.local/bin/dotfiles/setup/setup.os.bash
         echo_log_info "os specific setup done"
     fi
 
