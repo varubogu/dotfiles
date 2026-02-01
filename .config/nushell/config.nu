@@ -18,7 +18,7 @@
 #     config nu --doc | nu-highlight | less -R
 
 
-# weztermで動かす場合に文字入力のたびにスクロールされる不具合解消
+# weztermで動かす場合に文字入力のたびにスクロールされる不具合解消（Windowsのみ発生する問題）
 $env.config = {
   shell_integration: {
     osc133: false
