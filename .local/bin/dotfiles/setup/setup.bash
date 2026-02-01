@@ -1,5 +1,17 @@
 #!/bin/bash
 
+help() {
+    cat << EOF
+Usage: setup.bash [options]
+
+Options:
+    --noroot       Do not use sudo for root-required installations.
+    --yadm-only    Configure only the yadm installation and dotfiles cloning without installing or creating packages.
+    -h --help         Show this help message.
+
+EOF
+}
+
 # Exit script on error
 set -e
 
@@ -65,13 +77,27 @@ echo_env() {
 
 
 
-# デフォルトはtrue、-norootオプションがある場合はfalseに設定
+# コマンドオプション処理
 is_root=true
-for arg in "$@"; do
-    case $arg in
+is_yadm_only=false
+while [[ $# -gt 0 ]]; do
+    case $1 in
         --noroot)
             is_root=false
             shift
+            ;;
+        --yadm-only)
+            is_yadm_only=true
+            shift
+            ;;
+        -h|--help)
+            help
+            exit 0
+            ;;
+        *)
+            echo_log_error "Unknown option: $1"
+            help
+            exit 1
             ;;
     esac
 done
@@ -151,6 +177,11 @@ main() {
     fi
 
     setup_yadm
+
+    if [ "$is_yadm_only" = true ]; then
+        echo_log_info "yadm only setup completed."
+        exit 0
+    fi
 
     # XDG Base Directory Specificationを設定
     echo_log_info "XDG Base Directory Specification"
