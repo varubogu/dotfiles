@@ -7,6 +7,8 @@ Usage: setup.bash [options]
 Options:
     --noroot       Do not use sudo for root-required installations.
     --yadm-only    Configure only the yadm installation and dotfiles cloning without installing or creating packages.
+    --git-only    (Not implemented) Configure only the git installation and dotfiles cloning without installing or creating packages.
+    --dev-container Setup for development container environment.
     -h --help         Show this help message.
 
 EOF
@@ -80,6 +82,8 @@ echo_env() {
 # コマンドオプション処理
 is_root=true
 is_yadm_only=false
+is_git_only=false
+is_dev_container=false
 while [[ $# -gt 0 ]]; do
     case $1 in
         --noroot)
@@ -88,6 +92,14 @@ while [[ $# -gt 0 ]]; do
             ;;
         --yadm-only)
             is_yadm_only=true
+            shift
+            ;;
+        --git-only)
+            is_git_only=true
+            shift
+            ;;
+        --dev-container)
+            is_dev_container=true
             shift
             ;;
         -h|--help)
@@ -178,25 +190,28 @@ main() {
 
     setup_yadm
 
+    # XDG Base Directory Specificationを設定
+    echo_log_info "XDG Base Directory Specification"
+    . $HOME/.config/xdg_base_dir/set_env.bash
+
+    # 最低限のセットアップで終了
     if [ "$is_yadm_only" = true ]; then
         echo_log_info "yadm only setup completed."
         exit 0
     fi
 
-    # XDG Base Directory Specificationを設定
-    echo_log_info "XDG Base Directory Specification"
-    . $HOME/.config/xdg_base_dir/set_env.bash
-
     #　環境に合わせてパッケージをインストール
-    if is_mac; then
-        echo_log_info "mac install"
-        . $BIN_DIR/install/install_mac.zsh
-        echo_log_info "Installed mac dotfiles successfully!"
-    else
-        if is_command_available apt-get; then
-            echo_log_info "apt-get install"
-            . $BIN_DIR/install/install_apt-get.bash $is_root
-            echo_log_info "Installed apt dotfiles successfully!"
+    if [ "$is_git_only" = false && "$is_dev_container" = false ]; then
+        if is_mac; then
+            echo_log_info "mac install"
+            . $BIN_DIR/install/install_mac.zsh
+            echo_log_info "Installed mac dotfiles successfully!"
+        else
+            if is_command_available apt-get; then
+                echo_log_info "apt-get install"
+                . $BIN_DIR/install/install_apt-get.bash $is_root
+                echo_log_info "Installed apt dotfiles successfully!"
+            fi
         fi
     fi
 
