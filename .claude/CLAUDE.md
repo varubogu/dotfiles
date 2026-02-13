@@ -1,47 +1,33 @@
-# Claude Code 設定
+# Claude Code Settings
 
-## 応答について
+## About Responses
 
-- 日本語で会話すること
-- ユーザーが「質問」と言った場合、コード生成や修正は行わず、回答を提示するのみとする。
+- Communicate in Japanese
+- When the user says "question", only provide an answer without generating or modifying code.
 
-## あなたの役割について
+## About Work Process
 
-- あなたは優秀なシステムエンジニアです。
-- 最新のフレームワークや記述に関する原則（DRY原則、SOLID原則など）に精通しており、最適なコードや構造を設計できます。
+- When there are many requested tasks with similar content, first complete one of them and ask the user for instructions. Once you get OK from the user, proceed with the remaining work. This is also to confirm correct understanding and prevent rework.
 
-## 作業の進め方について、
+## About Code Generation
 
-- 依頼された仕事が多く、かつ内容が似通っている場合、まずそのうちの1件を完了させてユーザーに指示を仰ぎます。ユーザーからOKをもらったら残りの作業をしてください。
-- 作業を進めるうえで作業計画を立てる、検証用プロジェクトを作る場合は <project_root>/.local_temp/ ディレクトリを自由に使ってください。このフォルダはグローバルのgitignoreとプロジェクトのgitignoreで除外されます。
-- 作業を進めるうえで複数の方針が考えられる場合（１つだと断言できない場合）は、必ずユーザーに判断を委ねてください。その際は推薦案とその理由も提示してください。
+- Generate source code in small units as much as possible, following best practice rules such as DRY principle, SOLID principles, KISS principle, layered architecture, and clean architecture.
+- Always create or modify test code unless told it's unnecessary.
+- When selecting libraries or frameworks, prioritize those with permissive licenses such as MIT License.
+- Always create docstrings
 
-## コード生成について
+## About Refactoring
 
-- 最新バージョンの言語、ライブラリ、フレームワークを利用したコードを書く。
-- ソースコードは極力小さな単位に分けて作成し、DRY原則、SOLID原則、レイヤードアーキテクチャなどのベストプラクティスのルールに従って生成する。
-- ファイル編集や操作は言われたことのみ実施する。改良案や次に行うべきことがある場合はユーザーに承認をもらってから修正する。
-- テストコードは、不要だと言われない限り常に作成・修正する。
-- ライブラリやフレームワークを選択する際、MITライセンスなどの緩やかなライセンスをのものを優先的に使用する。
-- docstringは常に作成する
+- Propose refactoring to the user when there is too much code in a file. (Specifically, over 200 lines of code excluding tests)
+- Propose to the user when there is a better way to write code.
 
-## リファクタリングについて
+## When Issues Occur
 
-- ファイル内にコードが多すぎる場合、ユーザーにリファクタリング提案をすること。（具体的にはテスト以外のコードで200行超え）
-- より良いコードの書き方がある場合、ユーザーに提案すること。
+- Actively check official documentation web pages
+- If issues are not resolved, use print debugging such as `console.log` to gather information with user cooperation.
 
-## コードのチェック時、ビルド時
+## About Code Commits
 
-静的解析チェック時のメッセージは多くなってコンテキスト量が多くなるため、ファイルを出力してからその内容を少しずつ確認してください。
-出力先: <project_root>/.tmp/check/<timestamp>.txt
-
-## 不具合発生時
-
-- 公式のドキュメントWebページは積極的に確認すること
-- 不具合が解決しない場合、`console.log`などのprintデバッグを使ってユーザー協力のもと情報収集を行う。
-
-## コードのコミットについて
-
-- 課題1つが解決してコミット未完了のものがある場合、ユーザーにコミットメッセージを提出してコミットを促すこと。
-- コミットメッセージは英語または日本語で作成する（プロジェクトルールを最優先、その次にGitのコミットログから判断、それも不明なら。ユーザーに確認する）
-- `commit`や`push`はユーザーに行わせること
+- When one issue is resolved and there is uncommitted work, present a commit message to the user and encourage them to commit.
+- Create commit messages in English or Japanese (prioritize project rules first, then judge from Git commit logs, if still unclear, confirm with user)
+- Let the user perform `commit` and `push`
