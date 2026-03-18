@@ -1,0 +1,5 @@
+# codex mcp add playwright npx @playwright/mcp@latest
+
+[mcp_servers.playwright]
+command = "npx"
+args = ["@playwright/mcp@latest"]

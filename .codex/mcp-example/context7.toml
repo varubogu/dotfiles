@@ -1,0 +1,5 @@
+# codex mcp add context7 -- npx -y @upstash/context7-mcp
+
+[mcp_servers.context7]
+command = "npx"
+args = ["-y", "@upstash/context7-mcp"]

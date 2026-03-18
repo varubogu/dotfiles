@@ -1,0 +1,5 @@
+# mcp add serena uvx --from git+https://github.com/oraios/serena serena start-mcp-server --context codex
+
+[mcp_servers.serena]
+command = "uvx"
+args = ["--from", "git+https://github.com/oraios/serena", "serena", "start-mcp-server", "--context", "codex"]
