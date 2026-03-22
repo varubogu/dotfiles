@@ -11,7 +11,7 @@ config.macos_window_background_blur = 20
 -- Tab
 ----------------------------------------------------
 -- タイトルバーを非表示
-config.window_decorations = "RESIZE"
+config.window_decorations = "TITLE | RESIZE"
 -- タブバーの表示
 config.show_tabs_in_tab_bar = true
 -- -- タブが一つの時は非表示
