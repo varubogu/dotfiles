@@ -1,4 +1,5 @@
 {
+   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "enabledPlugins": {
     "context7@claude-plugins-official": true,
     "frontend-design@claude-plugins-official": true,
@@ -8,6 +9,29 @@
     "plugin-dev@claude-plugins-official": true,
     "rust-analyzer-lsp@claude-plugins-official": true
   },
+    "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Read",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "input=$(cat); file=$(echo \"$input\" | jq -r '.tool_input.file_path // empty'); if echo \"$file\" | grep -qE '(^|/)\\.env(\\.[^./]*)*$' && ! echo \"$file\" | grep -qE '\\.example$'; then echo '{\"decision\":\"block\",\"reason\":\".envファイルへのアクセスはブロックされています\"}'; exit 2; fi"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "input=$(cat); cmd=$(echo \"$input\" | jq -r '.tool_input.command // empty'); if echo \"$cmd\" | grep -qE '(^|[[:space:];|&])(cat|sed|head|tail|awk|less|more|grep|strings)[[:space:]].*\\.env(\\.[^[:space:]]*)?([[:space:]]|$)' && ! echo \"$cmd\" | grep -qE '\\.example([[:space:]]|$)'; then echo '{\"decision\":\"block\",\"reason\":\".envファイルへのアクセスはブロックされています\"}'; exit 2; fi"
+          }
+        ]
+      }
+    ]
+  },
+
   "permissions": {
     "allow": [
       "Bash(bun check:*)",
@@ -32,7 +56,6 @@
       "Bash(pnpm db:generate:*)",
       "Bash(pnpm db:seed-shisha:*)",
       "Bash(pnpm db:studio:*)",
-      "Bash(pnpm test:*)",
       "mcp__serena__list_dir",
       "mcp__serena__search_for_pattern",
       "mcp__serena__jet_brains_find_symbol",
