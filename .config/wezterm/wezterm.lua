@@ -1,11 +1,20 @@
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
+-- weztermの設定ファイルを変更したときに自動でリロードする
 config.automatically_reload_config = true
+
+-- フォントサイズ
 config.font_size = 12.0
+-- IMSの使用
 config.use_ime = true
+-- ウィンドウ背景の透明度
 config.window_background_opacity = 0.85
+-- macOSのウィンドウ背景透過のぼかし効果
 config.macos_window_background_blur = 20
+-- スクロールバーを表示
+config.enable_scroll_bar = true
+
 
 ----------------------------------------------------
 -- Tab
