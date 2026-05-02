@@ -1,0 +1,61 @@
+(defsrc
+    caps muhenkan henkan a b f p n e d h k y v x s bspc
+)
+
+(defvar
+    tap-ms  200  ;; 単押しと判定するタイムアウト（ミリ秒）
+    hold-ms 200  ;; 長押しと判定するタイムアウト（ミリ秒）
+)
+
+(defalias
+    ;; 1. CapsLock(Linux) / 右Ctrl(WSL・Windows): 単押しEsc / 長押しEmacsレイヤー（C系）
+    cap-mod (tap-hold $tap-ms $hold-ms esc (layer-toggle emacs-c-layer))
+
+    ;; 2. 無変換: 単押し無変換 / 長押しEmacsレイヤー（M系）
+    mhn-em (tap-hold-press $tap-ms $hold-ms muhenkan (layer-toggle emacs-m-layer))
+
+    ;; 3. 変換: 単押し変換 / 長押しWinキー（単独離し→Win押下扱い、長押し+キー→Win+α）
+    hkn-win (tap-hold $tap-ms $hold-ms henkan lmet)
+
+    ;; 4. 2打鍵コンボ用
+    x-pre (one-shot-press 5000 (layer-toggle x-prefix-layer))
+
+    ;; 5. 特殊マクロ
+    kil (macro S-end bspc)
+    ynk C-v
+
+    ;; 6. 【重要】全機能をバイパスするトグルスイッチ
+    ;; CapsLock長押し中に BackSpace を押すと「標準モード」と「Emacsモード」を切り替えます
+    tog-base (layer-toggle bypass-mode)
+)
+
+;; --- 通常使用レイヤー ---
+(deflayer default
+    @cap-mod @mhn-em  @hkn-win a b f p n e d h k y v x s bspc
+;;  caps/rctrl muhenkan henkan a b f p n e d h k y v x s bspc
+)
+
+;; --- Emacs-Cレイヤー（CapsLock/右Ctrl長押し中：C-x系） ---
+(deflayer emacs-c-layer
+    _    _        _      home left right up down end del bspc @kil @ynk pgdn @x-pre _ @tog-base
+;;  caps muhenkan henkan a    b    f     p  n    e   d   h    k    y    v    x      s bspc
+)
+
+;; --- Emacs-Mレイヤー（無変換長押し中：M-x系） ---
+(deflayer emacs-m-layer
+    _    _        _      A-a  A-b  A-f  A-p  A-n  A-e  A-d  A-h  A-k  A-y  A-v  A-x  _  A-bspc
+;;  caps muhenkan henkan a    b    f    p    n    e    d    h    k    y    v    x    s  bspc
+)
+
+;; --- C-x プレフィックス用 ---
+(deflayer x-prefix-layer
+    _    _        _ _ _ _ _ _ _ _ _ _ _ _ _ C-s _
+;;  caps muhenkan henkan a b f p n e d h k y v x s   bspc
+)
+
+;; --- 【完全バイパスレイヤー】 ---
+;; すべてアンダースコア（_）にすることで、OS標準の挙動をそのまま通します
+(deflayer bypass-mode
+    _    _        _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+;;  caps muhenkan henkan a b f p n e d h k y v x s bspc
+)
