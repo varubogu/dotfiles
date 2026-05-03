@@ -279,6 +279,25 @@ __pycache__/
 
 # ====================
 #
+# VSCode
+#
+# ====================
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/tasks.json
+
+# ====================
+#
+# JetBrains
+#
+# ====================
+.idea/
+*.iml
+
+# ====================
+#
 # Other
 #
 # ====================
