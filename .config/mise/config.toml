@@ -7,15 +7,15 @@
 ### no dependency
 ###-------------------------
 
-erlang = "latest"
+#erlang = "latest"
 deno = "latest"
 dotnet = "latest"
 go = "latest"
-java = "latest"
+#java = "latest"
 python = "latest"
 rust = "latest"
-cmake = "latest"
-ninja = "latest"
+#cmake = "latest"
+#ninja = "latest"
 
 
 
@@ -24,18 +24,18 @@ ninja = "latest"
 ###-------------------------
 
 # depend on: erlang
-elixir = "latest"
+#elixir = "latest"
 
 # Windows（PowerShell）:
 #   デフォルトであるvfox版が失敗するため、以下の通りvfoxを使わないようにしてインストールする
 # $env:MISE_DISABLE_BACKENDS="vfox"
-flutter = "latest"
+#flutter = "latest"
 
 # depend on: java
-gradle = "latest"
+#gradle = "latest"
 
 # depend on: java
-kotlin = "latest"
+#kotlin = "latest"
 
 # Ubuntu:
 #   Rubyインストールの依存関係
