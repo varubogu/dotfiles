@@ -1,0 +1,2 @@
+#default_shell "pwsh"
+default_shell "nu"
